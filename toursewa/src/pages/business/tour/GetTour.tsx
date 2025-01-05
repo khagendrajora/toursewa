@@ -206,9 +206,7 @@ export const GetTour = () => {
                       <th className="border font-normal border-gray-500 p-1">
                         ID
                       </th>
-                      {/* <th className="border font-normal border-gray-500 min-w-[90px] md:min-w-[120px] p-2">
-                        Business Id
-                      </th> */}
+
                       <th className="border font-normal border-gray-500 p-1">
                         Name
                       </th>

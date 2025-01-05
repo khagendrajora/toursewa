@@ -5,7 +5,6 @@ import Destination from "./components/Destination";
 import Hero from "./components/Hero";
 
 import Packages from "./components/Packages";
-// import { Trek } from "./components/Trek";
 
 const LandingPage = () => {
   return (
@@ -15,7 +14,7 @@ const LandingPage = () => {
         <AboutUS />
         <Packages />
         <Destination />
-        {/* <Trek /> */}
+
         <Blogs />
       </div>
     </>

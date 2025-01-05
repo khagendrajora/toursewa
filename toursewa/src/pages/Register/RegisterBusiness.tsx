@@ -307,11 +307,6 @@ export const RegisterBusiness = () => {
                   Register
                 </button>
               </div>
-              {/* <div className="flex">
-                <div className="flex gap-1">
-                  <button className="text-gray-500">Back</button>
-                </div>
-              </div> */}
             </form>
           </div>
         </div>

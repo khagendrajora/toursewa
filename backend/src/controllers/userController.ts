@@ -82,10 +82,6 @@ export const adminlogin = async (req: Request, res: Response) => {
     const userID = data.id;
     const authToken = jwt.sign(userID, process.env.JWTSECRET as string);
     res.cookie("authToken", authToken, {
-      // httpOnly: true,
-      // sameSite: "strict",
-      // maxAge: 3600000,
-      // secure: false,
       expires: new Date(Date.now() + 99999),
     });
 
@@ -119,21 +115,8 @@ export const getAdmin = async (req: Request, res: Response) => {
 export const businessApprove = async (req: Request, res: Response) => {
   const id = req.params.id;
   let status = "";
-  // const authToken = req.cookies.authToken;
-  // if (!authToken) {
-  //   return res.status(404).json({ error: "Token not found or login first" });
-  // }
+
   try {
-    // const decodedToken = jwt.verify(
-    //   authToken,
-    //   process.env.JWTSECRET as string
-    // ) as { id: string };
-    // const userId = decodedToken.id;
-    // const user = await AdminUser.findOne({ userId });
-    // if (!user) {
-    //   return res.status(404).json({ err: "failed to Get user ID" });
-    // }
-    // if (user?.Role == true) {
     const business = await Business.findOne({ bId: id });
     if (!business) {
       return res.status(404).json({ error: "Business not found" });
@@ -229,24 +212,6 @@ export const businessApprove = async (req: Request, res: Response) => {
     return res.status(500).json({ error: error.message });
   }
 };
-
-// export const adminSignOut = async (req: Request, res: Response) => {
-//   const authToken = req.cookies.authToken;
-
-//   try {
-//     if (!authToken) {
-//       return res.status(400).json({ error: "token not found " });
-//     } else {
-//       res.clearCookie("authToken", {
-//         // httpOnly: true,
-//         // sameSite: "strict",
-//       });
-//       return res.status(200).json({ message: "Sign Out Successfully" });
-//     }
-//   } catch (error: any) {
-//     return res.status(500).json({ error: error.message });
-//   }
-// };
 
 export const forgetPass = async (req: Request, res: Response) => {
   let adminEmail = req.body.adminEmail;
@@ -671,60 +636,3 @@ export const removeFeatureProduct = async (req: Request, res: Response) => {
     return res.status(500).json({ error: error.message });
   }
 };
-
-// export const tourFeature = async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   try {
-//     const tour = await Tour.findById(id);
-//     if (!tour) {
-//       return res.status(404).json({ error: "Tour not found" });
-//     }
-//     tour.isFeatured = !tour.isFeatured;
-//     const updated = await tour.save();
-//     if (!updated) {
-//       return res.status(404).json({ error: "Failed" });
-//     }
-
-//     return res.status(200).json({ message: "Successfully Updated" });
-//   } catch (error: any) {
-//     return res.status(500).json({ error: error.message });
-//   }
-// };
-
-// export const trekFeature = async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   try {
-//     const tour = await Trekking.findById(id);
-//     if (!tour) {
-//       return res.status(404).json({ error: "Trek not found" });
-//     }
-//     tour.isFeatured = !tour.isFeatured;
-//     const updated = await tour.save();
-//     if (!updated) {
-//       return res.status(404).json({ error: "Failed" });
-//     }
-
-//     return res.status(200).json({ message: "Successfully Updated" });
-//   } catch (error: any) {
-//     return res.status(500).json({ error: error.message });
-//   }
-// };
-
-// export const vehFeature = async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   try {
-//     const tour = await Vehicle.findById(id);
-//     if (!tour) {
-//       return res.status(404).json({ error: "Vehicle not found" });
-//     }
-//     tour.isFeatured = !tour.isFeatured;
-//     const updated = await tour.save();
-//     if (!updated) {
-//       return res.status(404).json({ error: "Failed" });
-//     }
-
-//     return res.status(200).json({ message: "Successfully Updated" });
-//   } catch (error: any) {
-//     return res.status(500).json({ error: error.message });
-//   }
-// };

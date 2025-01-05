@@ -169,11 +169,6 @@ export const TourInfo = () => {
                               }
                               minDate={new Date()}
                               className="z-10"
-                              // tileClassName={({ date, view }) =>
-                              //   `${view === "month" ? "custom-tile" : ""} ${
-                              //     isBooked(date) ? "disable-date" : ""
-                              //   }`.trim()
-                              // }
                             />
 
                             <FontAwesomeIcon

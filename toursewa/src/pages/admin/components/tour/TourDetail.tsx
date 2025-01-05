@@ -11,7 +11,6 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import HTMLReactParser from "html-react-parser";
 
 export const TourDetail = () => {
-  // const navigate = useNavigate();
   const params = useParams();
   const id = params.id;
   const [tour, setTour] = useState<ITour>();
@@ -192,14 +191,6 @@ export const TourDetail = () => {
                 <h1 className="text-xl font-semibold">Itinerary</h1>
                 <span>{HTMLReactParser(tour.itinerary)}</span>
               </div>
-              {/* <div className="flex justify-center mt-10 w-full">
-                <button
-                  className=" rounded-lg p-3 w-3/4 md:w-1/3 text-sm text-white bg-button hover:bg-orange-700 md:text-xl"
-                  onClick={() => navigate(`/admin/updatetour/${tour.tourId}`)}
-                >
-                  Edit Details
-                </button>
-              </div> */}
             </>
           )}
         </div>

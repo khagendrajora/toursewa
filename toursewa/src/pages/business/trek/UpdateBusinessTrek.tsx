@@ -257,20 +257,6 @@ const UpdateBusinessTrek = () => {
               className="flex flex-wrap justify-center  mt-10 md:mt-14 text-sm gap-y-5 gap-x-12"
             >
               <div className="space-y-1 flex flex-wrap justify-center gap-y-5 gap-x-12 text-sm w-full">
-                {/* <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
-                  <label>Trek Id</label>
-                  <input
-                    type="text"
-                    placeholder="ID"
-                    className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
-                    required
-                    readOnly
-                    value={trekId}
-                    name="trekId"
-                    onChange={(e) => setTrekId(e.target.value)}
-                  />
-                </div> */}
-
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                   <label>Product Category</label>
                   <select

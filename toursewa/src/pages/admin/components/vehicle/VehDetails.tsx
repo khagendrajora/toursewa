@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const VehDetails = () => {
   const params = useParams();
   const id = params.id;
-  // const navigate = useNavigate();
+
   const [availability, setAvailability] = useState(false);
   const [veh, setVeh] = useState<IVeh | null>(null);
   const [showServices, setShowServices] = useState(false);
@@ -210,16 +210,6 @@ const VehDetails = () => {
               </tr>
             </tbody>
           </table>
-          {/* <div className="flex justify-center mt-10 w-full">
-            <button
-              className=" rounded-lg p-3 w-3/4 md:w-1/3 text-sm text-white bg-button hover:bg-orange-700 "
-              onClick={() => {
-                navigate(`/admin/updatevehicle/${id}`);
-              }}
-            >
-              Edit Details
-            </button>
-          </div> */}
         </div>
       </div>
     </>

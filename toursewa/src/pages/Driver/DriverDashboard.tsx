@@ -408,43 +408,6 @@ export const DriverDashboard = () => {
                                   style={{ color: "#06d01e" }}
                                 />
                               </button>
-                              {/* <button */}
-                              {/* // onClick={() => */}
-                              {/* //   navigate(
-                                //     `/business/vehicle/updateVehicle/${filter.vehId}`
-                                //   )
-                                // }
-                              //   className="hover:scale-110"
-                              //   title="Add To Hot Deals"
-                              // >
-                              //   <FontAwesomeIcon */}
-                              {/* //     icon={faCartPlus}
-                              //     style={{ color: "#f70808" }}
-                              //   />
-                              // </button> */}
-
-                              {/* <button onClick={() => Delete(filter._id)}>
-                                <FontAwesomeIcon
-                                  icon={faTrash}
-                                  size="lg"
-                                  style={{ color: "#ff0000" }}
-                                  className="hover:scale-110"
-                                  title="Delete"
-                                />
-                                {isButton ? <ButtonLoader /> : ""}
-                              </button> */}
-
-                              {/* <Link
-                                to={`/business/vehicle/adddriver/${filter.vehId}`}
-                                className=" text-lime-500 rounded-lg"
-                                title="Add Driver"
-                              >
-                                <FontAwesomeIcon
-                                  size="lg"
-                                  className="hover:scale-110"
-                                  icon={faPersonCirclePlus}
-                                />
-                              </Link> */}
                             </div>
                           </td>
                         </tr>

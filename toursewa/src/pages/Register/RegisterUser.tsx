@@ -5,7 +5,7 @@ import { URL } from "../../config/Config";
 import { toast, ToastContainer } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-// import * as React from "react";
+
 import { ButtonLoader } from "../../utils/ButtonLoader";
 
 export const RegisterUser = () => {

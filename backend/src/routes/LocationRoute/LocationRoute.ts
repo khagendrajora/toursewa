@@ -2,11 +2,9 @@ import express from "express";
 import {
   addCountry,
   addDistrict,
-  // addCountryState,
   addLocation,
   addMunicipality,
   addState,
-  // addStateMunicipality,
   deleteCountry,
   deleteDistrict,
   deleteLocation,
@@ -21,12 +19,6 @@ import {
   importBhaktapur,
   importLalitpur,
   importUData,
-  // importGandaki,
-  // importkarnali,
-  // importLumbini,
-  // importprov1,
-  // importprov2,
-  // importsudur,
   updateLocation,
 } from "../../controllers/Location/location";
 import upload from "../../middleware/fileUpload";
@@ -57,7 +49,5 @@ router.delete("/deletemunicipality/:id", deleteMunicipality);
 router.post("/importkathmandu", upload.single("file"), importUData);
 router.post("/importlalitpur", upload.single("file"), importLalitpur);
 router.post("/importBhaktapur", upload.single("file"), importBhaktapur);
-// router.post("/import1", upload.single("file"), importprov1);
-// router.post("/import2", upload.single("file"), importprov2);
-// router.post("/importkarnali", upload.single("file"), importkarnali);
+
 export default router;

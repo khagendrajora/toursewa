@@ -449,18 +449,7 @@ export const UpdateVeh = () => {
                   onChange={(e) => setCapacity(e.target.value)}
                 />
               </div>
-              {/* <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
-                <label>Name</label>
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
-                  required
-                  value={name}
-                  name="name"
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div> */}
+
               <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                 <label>Vehicle Number</label>
                 <input

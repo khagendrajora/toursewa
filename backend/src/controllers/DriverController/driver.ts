@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 import { sendEmail } from "../../utils/setEmail";
 import { customAlphabet } from "nanoid";
 import bcryptjs from "bcryptjs";
-// import jwt from "jsonwebtoken";
+
 import Business from "../../models/business";
 import AdminUser from "../../models/adminUser";
 import ClientUser from "../../models/User/userModel";
@@ -46,10 +46,6 @@ export const addDriver = async (req: Request, res: Response) => {
     if (email) {
       return res.status(400).json({ error: "Email already registered" });
     }
-    // const businessEmail = await Business.findOne({ primaryEmail: driverEmail });
-    // if (!businessEmail) {
-    //   return res.status(400).json({ error: "Business Not Found" });
-    // }
 
     const businessData = await Business.findOne({ bId: businessId });
     if (!businessData) {
@@ -71,10 +67,6 @@ export const addDriver = async (req: Request, res: Response) => {
     }
 
     const vehicleName = await vehicle.findOne({ vehId: vehicleId });
-
-    // if (driverNumber) {
-    //   return res.status(400).json({ error: "Phone Number is already used " });
-    // }
 
     const salt = await bcryptjs.genSalt(5);
     let hashedPassword = await bcryptjs.hash(driverPwd, salt);

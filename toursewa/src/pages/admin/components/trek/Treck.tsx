@@ -581,7 +581,6 @@ const Treck = () => {
                     setInputs({ ...inputs, itinerary: content });
                   }}
                 />
-                {/* <div>{HTMLReactParser(inputs.itinerary)}</div> */}
               </div>
 
               <div className="flex justify-center  w-full">

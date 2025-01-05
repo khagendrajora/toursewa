@@ -22,7 +22,7 @@ const UpdateBusinessTour = () => {
   const id = params.id;
   const navigate = useNavigate();
   const editor = React.useRef(null);
-  // const [tourId, setTourId] = useState(id);
+
   const [prodCategory, setProdCategory] = useState("");
   const [prodsubCategory, setprodsubCategory] = useState("");
   const [inclusion, setInclusion] = useState<string[]>([]);
@@ -255,20 +255,6 @@ const UpdateBusinessTour = () => {
               className="flex flex-wrap justify-center  mt-10 md:mt-14 text-sm gap-y-5 gap-x-12"
             >
               <div className="space-y-1 flex flex-wrap justify-center gap-y-5 gap-x-12 text-sm w-full">
-                {/* <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
-                  <label>Tour Id</label>
-                  <input
-                    type="text"
-                    placeholder="xyz"
-                    className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
-                    required
-                    readOnly
-                    value={tourId}
-                    name="tourId"
-                    onChange={(e) => setTourId(e.target.value)}
-                  />
-                </div> */}
-
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                   <label>Product Category</label>
                   <select

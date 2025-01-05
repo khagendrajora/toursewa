@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faTrash } from "@fortawesome/free-solid-svg-icons";
-// import { Link } from "react-router-dom";
+
 import { ButtonLoader } from "../../../../../utils/ButtonLoader";
 
 export const CountryList = () => {
@@ -65,12 +65,6 @@ export const CountryList = () => {
       ) : (
         <div className=" flex justify-center items-center text-xs">
           <div className="overflow-x-auto space-y-5 md:m-5 w-full p-3 ">
-            {/* <Link
-              to="/admin/country/addcountry"
-              className="bg-blue-400 p-2 rounded-md font-semibold"
-            >
-              Add Country
-            </Link> */}
             <table className="table-auto w-11/12 border-collapse border border-slate-400 text-xs md:text-lg ">
               <thead>
                 <tr>
@@ -93,22 +87,6 @@ export const CountryList = () => {
                       </td>
 
                       <td className="border border-slate-400 flex justify-evenly p-5 w-full">
-                        {/* <button
-                          className="rounded-lg  p-2 mr-3"
-                          onClick={() =>
-                            navigate(
-                              `/admin/locations/updatelocation/${location._id}`
-                            )
-                          }
-                          title="Edit"
-                        >
-                          <FontAwesomeIcon
-                            icon={faPenToSquare}
-                            size="xl"
-                            style={{ color: "#005af5" }}
-                          />
-                        </button> */}
-
                         <button
                           className=" rounded-lg  p-2"
                           onClick={() => Delete(location._id)}

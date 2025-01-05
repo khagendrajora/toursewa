@@ -583,20 +583,6 @@ export const Vehicle = () => {
                 />
               </div>
 
-              {/* <div className="flex flex-col  sm:w-1/3  w-11/12 space-y-1">
-                <label>Vehicle Name</label>
-                <input
-                  type="text"
-                  placeholder="Vehiccle Name"
-                  className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
-                  required
-                  value={inputs.name}
-                  onChange={(e) =>
-                    setInputs({ ...inputs, name: e.target.value })
-                  }
-                />
-              </div> */}
-
               <div className="flex flex-col sm:w-1/3  w-11/12 space-y-1">
                 <label>Vehicle Number</label>
                 <input
@@ -728,7 +714,6 @@ export const Vehicle = () => {
                     setInputs({ ...inputs, description: content });
                   }}
                 />
-                {/* <div>{HTMLReactParser(inputs.itinerary)}</div> */}
               </div>
 
               <div className="flex justify-center  w-full">

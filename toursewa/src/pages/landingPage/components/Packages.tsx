@@ -195,18 +195,9 @@ const Packages = () => {
                     Vehicle Rent
                   </h1>
                   <div className="text-start flex flex-col gap-y-2 flex-1 sm:min-w-[150px]">
-                    <p className="font-semibold">
-                      {/* {tour.duration} Days &nbsp; */}
-                      {veh.name}{" "}
-                    </p>
+                    <p className="font-semibold">{veh.name} </p>
                     <p className="flex flex-wrap">Capacity: {veh.capacity}</p>
-                    {/* <p>Duration: {tour.vehCategory} Days</p> */}
-                    {/* <p>
-                      Itineary:{" "}
-                      <Link to="" className="italic">
-                        View Itinerary
-                      </Link>
-                    </p> */}
+
                     <p>Rate: NRP 7500 Per Person</p>
                     <p>Operated by: {veh.businessId}</p>
                     <div className="flex justify-center mt-auto">

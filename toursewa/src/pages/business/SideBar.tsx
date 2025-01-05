@@ -170,16 +170,6 @@ export const SideBar = () => {
               </div>
             )}
 
-            {/* 
-            <Link
-              to="/business/reservations"
-              className={`flex gap-x-3 px-10 cursor-pointer items-center ${
-                isActive(`/business/reservations`) ? "text-button " : ""
-              }`}
-            >
-              <FontAwesomeIcon icon={faCartShopping} />
-              Reservations
-            </Link> */}
             <Link
               to="/business/drivers"
               className={`flex gap-x-3 hover:text-button px-10 cursor-pointer items-center ${

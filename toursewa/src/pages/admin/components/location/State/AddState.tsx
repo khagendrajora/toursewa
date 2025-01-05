@@ -3,29 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { stateData } from "../../../../../validation/FormValidations";
 import { URL } from "../../../../../config/Config";
 import { toast, ToastContainer } from "react-toastify";
-// import { ICountry } from "../../../../../../../backend/src/models/Locations/country";
-// import { useEffect } from "react";
 
 export const AddState = () => {
-  // const [country, setCountry] = useState<ICountry[]>([]);
-
-  // useEffect(() => {
-  //   const fetchLocations = async () => {
-  //     try {
-  //       const res = await fetch(`${URL}/api/getcountry`);
-  //       const data = await res.json();
-  //       if (!res.ok) {
-  //         console.error(data.error);
-  //       } else {
-  //         setCountry(data);
-  //       }
-  //     } catch (error: any) {
-  //       toast.error(error);
-  //     }
-  //   };
-  //   fetchLocations();
-  // }, []);
-
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -73,30 +52,6 @@ export const AddState = () => {
               onSubmit={formik.handleSubmit}
               className="flex flex-wrap justify-center mt-4 md:mt-14 lg:text-sm text-sm gap-y-5 gap-x-12"
             >
-              {/* <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
-                <label>Country Name</label>
-                <select
-                  name="country"
-                  className="border rounded-md p-2 text-xs md:text-lg shadow appearance-none"
-                  value={formik.values.country}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                >
-                  <option value="" disabled>
-                    Choose Country
-                  </option>
-                  {country &&
-                    country.map((c, i) => (
-                      <option key={i} value={c.country}>
-                        {c.country}
-                      </option>
-                    ))}
-                </select>
-                {formik.touched.country && formik.errors.country && (
-                  <div className="text-red-500">{formik.errors.country}</div>
-                )}
-              </div> */}
-
               <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                 <label>State Name</label>
                 <input

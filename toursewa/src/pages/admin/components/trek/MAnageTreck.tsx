@@ -162,16 +162,11 @@ export const MAnageTreck = () => {
                       <th className="border font-normal  border-gray-500 p-2">
                         Category
                       </th>
-                      {/* <th className="border  border-gray-500 p-2">
-                        Sub Category
-                      </th> */}
-                      {/* <th className="border  border-gray-500 p-2">Inclusion</th> */}
+
                       <th className="border font-normal border-gray-500 p-2">
                         Days
                       </th>
-                      {/* <th className="border border-gray-500  p-2">
-                        Destination
-                      </th> */}
+
                       <th className="border font-normal border-gray-500 p-2">
                         Number
                       </th>
@@ -208,21 +203,11 @@ export const MAnageTreck = () => {
                           <td className="border p-2 border-gray-500 text-center">
                             {trek?.prodCategory}
                           </td>
-                          {/* <td className="p-2 border border-gray-500 text-center">
-                            {trek?.prodsubCategory}
-                          </td>
-                          <td className="border p-2 border-gray-500 text-center">
-                            {trek?.inclusion &&
-                              trek?.inclusion.map((x) => (
-                                <h1 className="">{x}</h1>
-                              ))}
-                          </td> */}
+
                           <td className=" border p-2 border-gray-500 text-center">
                             {trek?.days}
                           </td>
-                          {/* <td className="p-2 border border-gray-500 text-center">
-                            {trek?.dest}
-                          </td> */}
+
                           <td className="border p-2 border-gray-500 text-center">
                             {trek?.numbers}
                           </td>
@@ -269,10 +254,6 @@ export const MAnageTreck = () => {
                                 </div>
                               </div>
                             )}
-                            {/* {trek?.operationDates &&
-                          trek?.operationDates.map((dates) => (
-                            <h1>{dates.toString()}</h1>
-                          ))} */}
                           </td>
                           <td className="flex justify-between flex-col border gap-6 border-b-0  text-white p-2 ">
                             <div className="flex gap-5 md:gap-7">

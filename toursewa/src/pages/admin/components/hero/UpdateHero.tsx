@@ -12,7 +12,7 @@ export const UpdateHero = () => {
   const params = useParams();
   const id = params.id;
   const [isbutton, setIsButton] = useState(false);
-  //   const [blogId, setBlogId] = useState(id);
+
   const [heading, setHeading] = useState("");
   const [description, setDescription] = useState("");
   const [existingheroImage, setExistingHeroImage] = useState<string[]>([]);
@@ -104,7 +104,6 @@ export const UpdateHero = () => {
                 <h1 className="font-bold text-xl lg:text-2xl">
                   Update Hero Contents
                 </h1>
-                {/* <p>Update a B</p> */}
               </div>
               <button
                 onClick={() => navigate(-1)}
@@ -119,20 +118,6 @@ export const UpdateHero = () => {
               className="flex flex-wrap justify-center mt-10 md:mt-14 text-sm gap-y-5"
             >
               <div className="space-y-1 flex flex-wrap justify-center gap-y-5 gap-x-12 text-sm w-full">
-                {/* <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
-                  <label>Blog Id</label>
-                  <input
-                    type="text"
-                    placeholder="xyz"
-                    className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
-                    required
-                    readOnly
-                    value={blogId}
-                    name="blogId"
-                    onChange={(e) => setBlogId(e.target.value)}
-                  />
-                </div> */}
-
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                   <label>Heading</label>
                   <input
@@ -157,19 +142,6 @@ export const UpdateHero = () => {
                     onChange={(e) => setDescription(e.target.value)}
                   />
                 </div>
-
-                {/* <div className="flex flex-col w-11/12  space-y-1">
-                  <label>Description</label>
-                  <JoditEditor
-                    ref={editor}
-                    value={desc}
-                    config={config}
-                    onChange={(content) => {
-                      setDesc(content);
-                    }}
-                  />
-                  <div>{HTMLReactParser(desc)}</div>
-                </div> */}
 
                 <div className="flex flex-col  sm:w-1/3  w-11/12 space-y-1">
                   <h1>Image</h1>

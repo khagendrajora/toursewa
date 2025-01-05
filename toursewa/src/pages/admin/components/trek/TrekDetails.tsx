@@ -9,7 +9,6 @@ import Calendar from "react-calendar";
 import HTMLReactParser from "html-react-parser";
 
 export const TrekDetails = () => {
-  // const navigate = useNavigate();
   const params = useParams();
   const id = params.id;
   const [availability, setAvailability] = useState(false);
@@ -165,9 +164,6 @@ export const TrekDetails = () => {
                             onClick={(e) => e.stopPropagation()}
                           >
                             <Calendar
-                              // tileClassName={({ date }) =>
-                              //   isBooked(date) ? "bg-red-500" : ""
-                              // }
                               minDate={new Date()}
                               className="z-10"
                               tileClassName={({ date, view }) =>
@@ -196,14 +192,6 @@ export const TrekDetails = () => {
                   {HTMLReactParser(trek.itinerary)}
                 </span>
               </div>
-              {/* <div className="flex justify-center mt-10 w-full">
-                <button
-                  className=" rounded-lg p-3 w-3/4 md:w-1/3 text-sm text-white bg-button hover:bg-orange-700 md:text-xl"
-                  onClick={() => navigate(`/admin/updatetrek/${trek.trekId}`)}
-                >
-                  Edit Details
-                </button>
-              </div> */}
             </>
           )}
         </div>

@@ -521,21 +521,7 @@ export const updateVeh = async (req: Request, res: Response) => {
     const data = await Vehicle.findOneAndUpdate(
       { vehId: id },
       updateData,
-      // {
-      //   businessId,
-      //   vehCategory,
-      //   vehSubCategory,
-      //   services,
-      //   amenities,
-      //   vehCondition,
-      //   madeYear,
-      //   vehNumber,
 
-      //   capacity,
-      //   name,
-      //   operationDates,
-      //   vehImages,
-      // },
       { new: true }
     );
     if (!data) {

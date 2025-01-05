@@ -162,17 +162,11 @@ export const Tours = () => {
                       <th className="border font-normal  border-gray-500 p-1">
                         Category
                       </th>
-                      {/* <th className="border font-normal  border-gray-500 p-2">
-                        Sub Category
-                      </th>
-                      <th className="border font-normal  border-gray-500 p-2">Inclusion</th> */}
-                      {/* <th className="border font-normal border-gray-500 p-2">
-                        Destination
-                      </th> */}
+
                       <th className="border font-normal border-gray-500  p-1">
                         Duration
                       </th>
-                      {/* <th className="border font-normal border-gray-500 p-2">Itinerary</th> */}
+
                       <th className="border font-normal  border-gray-500 p-1">
                         Capacity
                       </th>
@@ -208,20 +202,7 @@ export const Tours = () => {
                           <td className="border p-3 border-gray-500 text-center">
                             {tour?.prodCategory}
                           </td>
-                          {/* <td className="p-3 border-gray-500 border text-center">
-                            {tour?.prodsubCategory}
-                          </td> */}
-                          {/* <td className="border p-3 border-gray-500 text-center">
-                            {tour?.inclusion &&
-                              tour.inclusion.map((data) => (
-                                <ul>
-                                  <li>{data},</li>
-                                </ul>
-                              ))}
-                          </td> */}
-                          {/* <td className=" border p-3 border-gray-500 text-center">
-                            {tour?.dest}
-                          </td> */}
+
                           <td className="p-3 border-gray-500 border text-center">
                             {tour?.duration}
                           </td>
@@ -271,10 +252,6 @@ export const Tours = () => {
                                 </div>
                               </div>
                             )}
-                            {/* {tour?.operationDates &&
-                          tour?.operationDates.map((dates) => (
-                            <h1>{dates.toString()}</h1>
-                          ))} */}
                           </td>
 
                           <td className="flex justify-between flex-col border gap-6 border-b-0  text-white p-2 ">

@@ -130,10 +130,6 @@ export const VehicleDetailsPage = () => {
                               isBooked(date) ? "disable-date" : ""
                             }`.trim()
                           }
-                          // tileClassName={({ date, view }) => {
-                          //   view === "month" ? "custom-tile" : "";
-                          //   isBooked(date) ? "disable-date" : "";
-                          // }}
                         />
                         <div className="flex relative cursor-pointer mt-4 z-10">
                           <FontAwesomeIcon
@@ -215,19 +211,6 @@ export const VehicleDetailsPage = () => {
                             </th>
                             <td className="text-start">:{veh.capacity}</td>
                           </tr>
-
-                          {/* <tr className="">
-                            <th className="text-button text-start font-semibold  py-3">
-                              Operation Dates
-                            </th>
-                            <td className="text-start">
-                              {veh.operationDates.map((calender, i) => (
-                                <div key={i}>
-                                  {new Date(calender).toLocaleDateString()}
-                                </div>
-                              ))}
-                            </td>
-                          </tr> */}
                         </tbody>
                       </table>
                     </div>

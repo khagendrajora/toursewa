@@ -24,8 +24,6 @@ export const tourRev = async (req: Request, res: Response) => {
       return res.status(401).json({ error: "User Not found" });
     }
 
-    // const businessdata = await Business.findOne({ bId: vehData.businessId });
-
     let tourRev = new TourReservation({
       bookedBy: userData.userId,
       passengerName,
@@ -88,12 +86,7 @@ export const tourRev = async (req: Request, res: Response) => {
   </div>
      `,
     });
-    // sendEmail({
-    //   from: "beta.toursewa@gmail.com",
-    //   to: businessdata?.primaryEmail,
-    //   subject: "New Booking",
-    //   html: `<h2>A new booking with booking Id ${bookingId} of vehicle ${id}</h2>`,
-    // });
+
     return res.status(200).json({ message: "Successfully Send" });
   } catch (error: any) {
     return res.status(500).json({ error: error.message });
@@ -158,13 +151,6 @@ export const updateTourRevStatusByClient = async (
     if (!data) {
       return res.status(400).json({ error: "Failed to Update" });
     }
-
-    // const revDate = await ReservedDate.findOneAndDelete({
-    //   bookingId: bookingId,
-    // });
-    // if (!revDate) {
-    //   return res.status(400).json({ error: "failed to Update" });
-    // }
 
     let vehLogs = new TourRevLog({
       updatedBy: email,

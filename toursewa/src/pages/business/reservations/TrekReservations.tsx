@@ -157,9 +157,7 @@ export const TrekReservations = () => {
                             <th className="border border-gray-500 p-1 min-w-[80px] ">
                               Booking ID
                             </th>
-                            {/* <th className="border border-gray-500 p-1">
-                                Vehicle ID
-                              </th> */}
+
                             <th className="border  border-gray-500 p-1 min-w-[100px]">
                               Tour name
                             </th>
@@ -167,21 +165,14 @@ export const TrekReservations = () => {
                             <th className="border border-gray-500  p-1">
                               Passenger Name
                             </th>
-                            {/* <th className="border border-gray-500  p-1 min-w-[90px]">
-                              Booked By
-                            </th> */}
-                            {/* <th className="border border-gray-500  p-1  min-w-[100px]">
-                              Booing Name
-                            </th> */}
+
                             <th className="border border-gray-500  p-1">
                               Phone
                             </th>
                             <th className="border border-gray-500  p-1">
                               Email
                             </th>
-                            {/* <th className="border border-gray-500  p-1">
-                              Numbers
-                            </th> */}
+
                             <th className="border border-gray-500  p-1">
                               Date
                             </th>
@@ -199,9 +190,7 @@ export const TrekReservations = () => {
                             <td className="border border-gray-500 text-center p-1">
                               {filter?.bookingId}
                             </td>
-                            {/* <td className="border border-gray-500 text-center p-1">
-                                {filter?.vehicleId}
-                              </td> */}
+
                             <td className="border  border-gray-500 text-center p-1">
                               {filter?.trekName}
                             </td>
@@ -222,17 +211,6 @@ export const TrekReservations = () => {
                             <td className="border border-gray-500 text-center p-1">
                               {filter?.tickets}
                             </td>
-                            {/* <td className="border border-gray-500 text-center p-1">
-                              {filter?.sourceAddress} -{" "}
-                              {filter?.destinationAddress}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {filter?.startDate?.toString().split("T")[0]} to{" "}
-                              {filter?.endDate?.toString().split("T")[0]}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {filter?.numberOfPassengers}
-                            </td> */}
                           </tr>
                         </tbody>
                       </table>
@@ -350,9 +328,7 @@ export const TrekReservations = () => {
                             <th className="border border-gray-500 p-1 min-w-[80px] ">
                               Booking ID
                             </th>
-                            {/* <th className="border border-gray-500 p-1">
-                                Vehicle ID
-                              </th> */}
+
                             <th className="border  border-gray-500 p-1 min-w-[100px]">
                               Tour name
                             </th>
@@ -360,21 +336,14 @@ export const TrekReservations = () => {
                             <th className="border border-gray-500  p-1">
                               Passenger Name
                             </th>
-                            {/* <th className="border border-gray-500  p-1 min-w-[90px]">
-                              Booked By
-                            </th> */}
-                            {/* <th className="border border-gray-500  p-1  min-w-[100px]">
-                              Booing Name
-                            </th> */}
+
                             <th className="border border-gray-500  p-1">
                               Phone
                             </th>
                             <th className="border border-gray-500  p-1">
                               Email
                             </th>
-                            {/* <th className="border border-gray-500  p-1">
-                              Numbers
-                            </th> */}
+
                             <th className="border border-gray-500  p-1">
                               Date
                             </th>
@@ -413,16 +382,6 @@ export const TrekReservations = () => {
                             <td className="border border-gray-500 text-center p-1">
                               {data?.tickets}
                             </td>
-                            {/* <td className="border border-gray-500 text-center p-1">
-                              {data?.sourceAddress} - {data?.destinationAddress}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {data?.startDate?.toString().split("T")[0]} to{" "}
-                              {data?.endDate?.toString().split("T")[0]}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {data?.numberOfPassengers}
-                            </td> */}
                           </tr>
                         </tbody>
                       </table>

@@ -92,16 +92,6 @@ export const AdminLogin = () => {
               Login {isButton ? <ButtonLoader /> : ""}
             </button>
           </div>
-          {/* <div className="flex gap-3 items-center">
-          <p>Login with:</p>
-          <img
-            width="35"
-            height="35"
-            className="bg-white shadow-lg p-1 cursor-pointer"
-            src="https://img.icons8.com/fluency/48/google-logo.png"
-            alt="google-logo"
-          />
-        </div> */}
         </form>
       </div>
     </>

@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { PageLoader } from "../../../utils/PageLoader";
 import { ButtonLoader } from "../../../utils/ButtonLoader";
-// import { ITrRev } from "../../../../backend/src/models/Reservations/TrekReservation/TrekRevModel";
 
 export const TourReservations = () => {
   const { authUser } = useAuthContext();
@@ -44,53 +43,6 @@ export const TourReservations = () => {
     };
     fetchRev();
   }, [businessId]);
-
-  //  const updateRev = async (
-  //     id: string,
-  //     updateInputs: {
-  //       status: string;
-  //       email: string;
-  //       updatedBy: string | "";
-  //     }
-  //   ) => {
-  //     try {
-  //       const confirmed = window.confirm(
-  //         `Change the status to ${updateInputs.status}`
-  //       );
-  //       if (confirmed) {
-  //         setIsButton(`${id}${updateInputs.status}`);
-  //         const res = await fetch(
-  //           `${URL}/api/updatetourRevStatusbybid/${id}`,
-  //           {
-  //             method: "PUT",
-  //             headers: {
-  //               "Content-Type": "application/json",
-  //             },
-  //             body: JSON.stringify(updateInputs),
-  //           }
-  //         );
-  //         const data = await res.json();
-  //         if (!res.ok) {
-  //           toast.error(data.error);
-  //         } else {
-  //           toast.success("Booking Updated");
-  //           setRevData((prevData) =>
-  //             prevData
-  //               ? prevData.map((rev) =>
-  //                   rev.bookingId === id
-  //                     ? { ...rev, status: updateInputs.status as IStatus }
-  //                     : rev
-  //                 )
-  //               : null
-  //           );
-  //         }
-  //       }
-  //     } catch (error: any) {
-  //       toast.error(error);
-  //     } finally {
-  //       setIsButton("");
-  //     }
-  //   };
 
   const update = async (
     id: string,
@@ -206,9 +158,7 @@ export const TourReservations = () => {
                             <th className="border border-gray-500 p-1 min-w-[80px] ">
                               Booking ID
                             </th>
-                            {/* <th className="border border-gray-500 p-1">
-                                Vehicle ID
-                              </th> */}
+
                             <th className="border  border-gray-500 p-1 min-w-[100px]">
                               Tour name
                             </th>
@@ -216,12 +166,7 @@ export const TourReservations = () => {
                             <th className="border border-gray-500  p-1">
                               Passenger Name
                             </th>
-                            {/* <th className="border border-gray-500  p-1 min-w-[90px]">
-                              Booked By
-                            </th> */}
-                            {/* <th className="border border-gray-500  p-1  min-w-[100px]">
-                              Booing Name
-                            </th> */}
+
                             <th className="border border-gray-500  p-1">
                               Phone
                             </th>
@@ -271,17 +216,6 @@ export const TourReservations = () => {
                             <td className="border border-gray-500 text-center p-1">
                               {filter?.tickets}
                             </td>
-                            {/* <td className="border border-gray-500 text-center p-1">
-                              {filter?.sourceAddress} -{" "}
-                              {filter?.destinationAddress}
-                            </td> */}
-                            {/* <td className="border border-gray-500 text-center p-1">
-                              {filter?.startDate?.toString().split("T")[0]} to{" "}
-                              {filter?.endDate?.toString().split("T")[0]}
-                            </td> */}
-                            {/* <td className="border border-gray-500 text-center p-1">
-                              {filter?.numberOfPassengers}
-                            </td> */}
                           </tr>
                         </tbody>
                       </table>
@@ -399,9 +333,7 @@ export const TourReservations = () => {
                             <th className="border border-gray-500 p-1 min-w-[80px] ">
                               Booking ID
                             </th>
-                            {/* <th className="border border-gray-500 p-1">
-                                Vehicle ID
-                              </th> */}
+
                             <th className="border  border-gray-500 p-1 min-w-[100px]">
                               Tour name
                             </th>
@@ -409,21 +341,14 @@ export const TourReservations = () => {
                             <th className="border border-gray-500  p-1">
                               Passenger Name
                             </th>
-                            {/* <th className="border border-gray-500  p-1 min-w-[90px]">
-                              Booked By
-                            </th> */}
-                            {/* <th className="border border-gray-500  p-1  min-w-[100px]">
-                              Booing Name
-                            </th> */}
+
                             <th className="border border-gray-500  p-1">
                               Phone
                             </th>
                             <th className="border border-gray-500  p-1">
                               Email
                             </th>
-                            {/* <th className="border border-gray-500  p-1">
-                              Numbers
-                            </th> */}
+
                             <th className="border border-gray-500  p-1">
                               Date
                             </th>
@@ -462,16 +387,6 @@ export const TourReservations = () => {
                             <td className="border border-gray-500 text-center p-1">
                               {data?.tickets}
                             </td>
-                            {/* <td className="border border-gray-500 text-center p-1">
-                              {data?.sourceAddress} - {data?.destinationAddress}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {data?.startDate?.toString().split("T")[0]} to{" "}
-                              {data?.endDate?.toString().split("T")[0]}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {data?.numberOfPassengers}
-                            </td> */}
                           </tr>
                         </tbody>
                       </table>

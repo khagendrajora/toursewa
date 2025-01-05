@@ -559,29 +559,8 @@ export const ClientDashboard = () => {
                                 {data.date?.toString().split("T")[0]}
                               </span>
                             </h1>
-                            {/* <h1 className="flex gap-3 font-semibold">
-                              Start Date :
-                              <span className="font-normal text-zinc-500">
-                                {data.endDate?.toString().split("T")[0]}
-                              </span>
-                            </h1> */}
                           </div>
-                          <div className="space-y-4">
-                            {" "}
-                            {/* <h1 className="flex gap-3 font-semibold">
-                              From:{" "}
-                              <span className="font-normal text-zinc-500">
-                                {" "}
-                                {data.sourceAddress}{" "}
-                              </span>
-                            </h1> */}
-                            {/* <h1 className="flex gap-3 font-semibold">
-                              To:{" "}
-                              <span className="font-normal text-zinc-500">
-                                {data.destinationAddress}{" "}
-                              </span>
-                            </h1> */}
-                          </div>
+                          <div className="space-y-4"> </div>
                           <div className="space-y-4">
                             <h1 className="flex gap-3 font-semibold">
                               Booking Name:{" "}
@@ -679,29 +658,8 @@ export const ClientDashboard = () => {
                                 {data.date?.toString().split("T")[0]}
                               </span>
                             </h1>
-                            {/* <h1 className="flex gap-3 font-semibold">
-                              Start Date :
-                              <span className="font-normal text-zinc-500">
-                                {data.endDate?.toString().split("T")[0]}
-                              </span>
-                            </h1> */}
                           </div>
-                          <div className="space-y-4">
-                            {" "}
-                            {/* <h1 className="flex gap-3 font-semibold">
-                              From:{" "}
-                              <span className="font-normal text-zinc-500">
-                                {" "}
-                                {data.sourceAddress}{" "}
-                              </span>
-                            </h1> */}
-                            {/* <h1 className="flex gap-3 font-semibold">
-                              To:{" "}
-                              <span className="font-normal text-zinc-500">
-                                {data.destinationAddress}{" "}
-                              </span>
-                            </h1> */}
-                          </div>
+                          <div className="space-y-4"> </div>
                           <div className="space-y-4">
                             <h1 className="flex gap-3 font-semibold">
                               Booking Name:{" "}

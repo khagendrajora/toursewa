@@ -201,16 +201,6 @@ export const VehicleInfo = () => {
               </tr>
             </tbody>
           </table>
-          {/* <div className="flex justify-center mt-10 w-full">
-            <button
-              className=" rounded-lg p-3 w-3/4 md:w-1/3 text-sm text-white bg-button hover:bg-orange-700 md:text-xl"
-              onClick={() => {
-                navigate(`/business/vehicle/updateVehicle/${veh?.vehId}`);
-              }}
-            >
-              Edit Details
-            </button>
-          </div> */}
         </div>
       </div>
     </>

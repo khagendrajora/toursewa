@@ -4,33 +4,15 @@ import { IState } from "../../../../../../../backend/src/models/Locations/state"
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../../../../config/Config";
 import { toast, ToastContainer } from "react-toastify";
-// import { ICountry } from "../../../../../../../backend/src/models/Locations/country";
+
 import { useFormik } from "formik";
 import { districtData } from "../../../../../validation/FormValidations";
 
 export const AddDistrict = () => {
-  // const [country, setCountry] = useState<ICountry[]>([]);
   const [district, setDistrict] = useState<IDistrict[]>([]);
   const [state, setState] = useState<IState[]>([]);
   const [filterDistrict, setFilterDistrict] = useState<IDistrict[]>([]);
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const fetchLocations = async () => {
-  //     try {
-  //       const res = await fetch(`${URL}/api/getcountry`);
-  //       const data = await res.json();
-  //       if (!res.ok) {
-  //         console.error(data.error);
-  //       } else {
-  //         setCountry(data);
-  //       }
-  //     } catch (error: any) {
-  //       toast.error(error);
-  //     }
-  //   };
-  //   fetchLocations();
-  // }, []);
 
   useEffect(() => {
     const fetchLocations = async () => {
@@ -120,30 +102,6 @@ export const AddDistrict = () => {
               onSubmit={formik.handleSubmit}
               className="flex flex-wrap justify-center mt-4 md:mt-14 lg:text-sm text-sm gap-y-5 gap-x-12"
             >
-              {/* <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
-                <label>Country Name</label>
-                <select
-                  name="country"
-                  className="border rounded-md p-2 text-xs md:text-lg shadow appearance-none"
-                  value="Nepal"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                > */}
-              {/* <option value="" disabled>
-                    Choose Country
-                  </option>
-                  {country &&
-                    country.map((c, i) => (
-                      <option key={i} value={c.country}>
-                        {c.country}
-                      </option>
-                    ))} */}
-              {/* </select> */}
-              {/* {formik.touched && formik.errors && (
-                  <div className="text-red-500">{formik.errors}</div>
-                )} */}
-              {/* </div> */}
-
               <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                 <label>State Name</label>
                 <select
@@ -172,9 +130,7 @@ export const AddDistrict = () => {
               <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                 <label>District</label>
                 <select
-                  // type="text"
                   name="district"
-                  // placeholder="Municipality"
                   className="border rounded-md p-2 text-xs md:text-lg shadow appearance-none"
                   value={formik.values.district}
                   onChange={formik.handleChange}

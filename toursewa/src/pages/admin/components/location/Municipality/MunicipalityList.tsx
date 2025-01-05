@@ -5,16 +5,12 @@ import { IMunicipality } from "../../../../../../../backend/src/models/Locations
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  //   faPenToSquare,
-  faSpinner,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { ButtonLoader } from "../../../../../utils/ButtonLoader";
 
 export const MunicipalityList = () => {
   const [location, setLocation] = useState<IMunicipality[]>([]);
-  //   const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState(true);
   const [isButton, setIsButton] = useState<string | null>(null);
   useEffect(() => {
@@ -95,9 +91,7 @@ export const MunicipalityList = () => {
                       <td className="border border-slate-400 text-center">
                         {i + 1}
                       </td>
-                      {/* <td className="border border-slate-400 text-center">
-                        {location.country.toUpperCase()}
-                      </td> */}
+
                       <td className="border border-slate-400 p-3 text-center">
                         {location.state.toUpperCase()}
                       </td>
@@ -109,22 +103,6 @@ export const MunicipalityList = () => {
                       </td>
 
                       <td className="border border-slate-400 flex justify-evenly p-5 w-full">
-                        {/* <button
-                          className="rounded-lg  p-2 mr-3"
-                          onClick={() =>
-                            navigate(
-                              `/admin/locations/updatelocation/${location._id}`
-                            )
-                          }
-                          title="Edit"
-                        >
-                          <FontAwesomeIcon
-                            icon={faPenToSquare}
-                            size="xl"
-                            style={{ color: "#005af5" }}
-                          />
-                        </button> */}
-
                         <button
                           className=" rounded-lg  p-2"
                           onClick={() => Delete(location._id)}

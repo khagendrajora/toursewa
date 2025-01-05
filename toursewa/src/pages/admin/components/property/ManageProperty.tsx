@@ -136,9 +136,7 @@ export const ManageProperty = () => {
                       <th className="border font-normal  border-slate-400 p-1">
                         Category
                       </th>
-                      {/* <th className="border font-normal  border-slate-400 p-1">
-                        Sub Category
-                      </th> */}
+
                       <th className="border font-normal  border-slate-400 p-1">
                         Address
                       </th>
@@ -151,19 +149,14 @@ export const ManageProperty = () => {
                       <th className="border font-normal  border-slate-400 p-1">
                         Phone
                       </th>
-                      {/* <th className="border font-normal  border-slate-400 p-1">
-                        Business Registration
-                      </th>
-                      <th className="border font-normal  border-slate-400 p-1">Tax</th> */}
+
                       <th className="border font-normal border-slate-400 p-1">
                         Contact Name
                       </th>
                       <th className="border font-normal border-slate-400 p-1">
                         Contact Phone
                       </th>
-                      {/* <th className="border font-normal border-slate-400  p-1">
-                        Date of Establishment
-                      </th> */}
+
                       <th className="border font-normal border-slate-400 p-1">
                         Action
                       </th>
@@ -180,34 +173,13 @@ export const ManageProperty = () => {
                           <td className="border  border-slate-400 text-center">
                             {property?.propCategory}
                           </td>
-                          {/* <td className="border  border-slate-400 text-center">
-                            {property?.propSubCategory}
-                          </td> */}
+
                           <td className="border border-slate-400 text-center">
                             {property?.address.country}
                           </td>
                           <td className="border border-slate-400 text-center">
                             {property?.address.state}
                           </td>
-                          {/* 
-                          <td className="border border-slate-400 text-center">
-                            {property?.address.district}
-                          </td> */}
-
-                          {/* <td className="border border-slate-400 text-center">
-                            {property?.address.municipality}
-                          </td> */}
-                          {/* 
-                          <td className="border border-slate-400 text-center">
-                            {property?.address.street}
-                          </td>
-                          <td className="border border-slate-400 text-center">
-                            {property?.address.subrub}
-                          </td> */}
-
-                          {/* <td className="border border-slate-400 text-center">
-                            {property?.address.postcode}
-                          </td> */}
 
                           <td className="border border-slate-400 text-center">
                             {property?.email}
@@ -218,12 +190,7 @@ export const ManageProperty = () => {
                           <td className="border border-slate-400 text-center">
                             {property?.phone}
                           </td>
-                          {/* <td className="border border-slate-400 text-center">
-                            {property?.businessReg}
-                          </td>
-                          <td className="border border-slate-400 text-center">
-                            {property?.tax}
-                          </td> */}
+
                           <td className="border border-slate-400 text-center">
                             {property?.contactName}
                           </td>
@@ -247,28 +214,6 @@ export const ManageProperty = () => {
                                   style={{ color: "#06d01e" }}
                                 />
                               </Link>
-
-                              {/* <button
-                                className={`hover:scale-110`}
-                                onClick={() => update(property?.bId)}
-                                title={`${
-                                  business?.isActive ? "Deactivate" : "Activate"
-                                }`}
-                              >
-                                {business.isActive ? (
-                                  <FontAwesomeIcon
-                                    icon={faCircleXmark}
-                                    size="lg"
-                                    style={{ color: "#e60505" }}
-                                  />
-                                ) : (
-                                  <FontAwesomeIcon
-                                    icon={faCircleCheck}
-                                    size="lg"
-                                    style={{ color: "#36fa00" }}
-                                  />
-                                )}
-                              </button> */}
 
                               <button
                                 onClick={() =>

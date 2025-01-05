@@ -7,36 +7,17 @@ import { useEffect, useState } from "react";
 import { IState } from "../../../../../../../backend/src/models/Locations/state";
 import { IDistrict } from "../../../../../../../backend/src/models/Locations/Districts";
 import { IMunicipality } from "../../../../../../../backend/src/models/Locations/municipality";
-// import { ICountry } from "../../../../../../../backend/src/models/Locations/country";
 
 export const AddMunicipality = () => {
-  // const [country, setCountry] = useState<ICountry[]>([]);
   const [state, setState] = useState<IState[]>([]);
   const [municipality, setMunicipality] = useState<IMunicipality[]>([]);
   const [district, setDistrict] = useState<IDistrict[]>([]);
-  // const [filterState, setFilterState] = useState<IState[]>([]);
+
   const [filterDistrict, setFilterDistrict] = useState<IDistrict[]>([]);
   const [filterMunicipality, setFilterMunicipality] = useState<IMunicipality[]>(
     []
   );
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const fetchLocations = async () => {
-  //     try {
-  //       const res = await fetch(`${URL}/api/getcountry`);
-  //       const data = await res.json();
-  //       if (!res.ok) {
-  //         console.error(data.error);
-  //       } else {
-  //         setCountry(data);
-  //       }
-  //     } catch (error: any) {
-  //       toast.error(error);
-  //     }
-  //   };
-  //   fetchLocations();
-  // }, []);
 
   useEffect(() => {
     const fetchLocations = async () => {
@@ -151,30 +132,6 @@ export const AddMunicipality = () => {
               onSubmit={formik.handleSubmit}
               className="flex flex-wrap justify-center mt-4 md:mt-14 lg:text-sm text-sm gap-y-5 gap-x-12"
             >
-              {/* <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
-                <label>Country Name</label>
-                <select
-                  name="country"
-                  className="border rounded-md p-2 text-xs md:text-lg shadow appearance-none"
-                  value="Nepal"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                >
-                  {/* <option value="" disabled> */}
-              {/* Choose Country
-                  </option>
-                  {country &&
-                    country.map((c, i) => (
-                      <option key={i} value={c.country}>
-                        {c.country}
-                      </option>
-                    ))} */}
-              {/* </select>
-                {formik.touched.country && formik.errors.country && (
-                  <div className="text-red-500">{formik.errors.country}</div>
-                )}
-              </div>  */}
-
               <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                 <label>State Name</label>
                 <select

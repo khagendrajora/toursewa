@@ -30,10 +30,10 @@ import { GetTreck } from "./pages/business/trek/GetTreck";
 import { RegisterBusiness } from "./pages/Register/RegisterBusiness";
 import { VerifyBusinessEmail } from "./pages/Register/VerifyBusinessEmail";
 import { ManageSubcategory } from "./pages/admin/components/subcategory/ManageSubcategory";
-// import { UpdateSubcategory } from "./pages/admin/components/subcategory/UpdateSubcategory";
+
 import { VehiclePage } from "./pages/landingPage/VehiclePage";
 import { RegisterUser } from "./pages/Register/RegisterUser";
-// import { GetHotDeals } from "./pages/admin/components/aboutUs/GetHotDeals";
+
 import { GetBlogs } from "./pages/admin/components/blogs/GetBlogs";
 import { Business } from "./pages/admin/components/business/Business";
 import { GetDestination } from "./pages/admin/components/destination/GetDestination";
@@ -98,7 +98,7 @@ import UpdateLocation from "./pages/admin/components/location/Location/UpdateLoc
 import { CountryList } from "./pages/admin/components/location/Country/CountryList";
 import { StateList } from "./pages/admin/components/location/State/StateList";
 import { MunicipalityList } from "./pages/admin/components/location/Municipality/MunicipalityList";
-// import { AddCountry } from "./pages/admin/components/location/Country/AddCountry";
+
 import { AddMunicipality } from "./pages/admin/components/location/Municipality/AddMunicipality";
 import { AddState } from "./pages/admin/components/location/State/AddState";
 import AddLocation from "./pages/admin/components/location/Location/AddLocation";
@@ -114,7 +114,7 @@ import { ResetDriverAndVerify } from "./pages/passwordReset/ResetDriverAndVerify
 import { TrekInfo } from "./pages/business/trek/TrekInfo";
 import { TourInfo } from "./pages/business/tour/TourInfo";
 import { UpdateDriver } from "./pages/business/drivers/UpdateDriver";
-import { Emailtest } from "./pages/landingPage/Emailtest";
+
 import { TourReservations } from "./pages/business/reservations/TourReservations";
 import { TrekReservations } from "./pages/business/reservations/TrekReservations";
 import { VehicleInfo } from "./pages/Driver/VehicleInfo";
@@ -135,7 +135,7 @@ function App() {
                 <Route path="admindashboard" element={<AdminDashboard />} />
                 <Route path="addadmin" element={<AddAdmin />} />
                 <Route path="driver" element={<DriverList />} />
-                {/* <Route path="aboutus" element={<GetHotDeals />} /> */}
+
                 <Route path="blogs" element={<GetBlogs />} />
                 <Route path="teams" element={<Teams />} />
                 <Route path="business" element={<Business />} />
@@ -143,7 +143,7 @@ function App() {
                 <Route path="state" element={<StateList />} />
                 <Route path="municipality" element={<MunicipalityList />} />
                 <Route path="district" element={<DistrictList />} />
-                {/* <Route path="country/addcountry" element={<AddCountry />} /> */}
+
                 <Route path="district/adddistrict" element={<AddDistrict />} />
                 <Route
                   path="municipality/addmunicipality"
@@ -364,7 +364,7 @@ function App() {
             )}
 
             <Route path="addclient" element={<RegisterUser />} />
-            {/* <Route path="forgetemailpwd" element={<ClientPwd />} /> */}
+
             <Route path="resetuserpwd/:token" element={<ClientReset />} />
             <Route path="destinationpage" element={<DestinationPage />} />
             <Route path="addbusiness" element={<RegisterBusiness />} />
@@ -391,10 +391,7 @@ function App() {
             <Route path="/vehiclelist" element={<VehiclePage />} />
             <Route path="/trekpage" element={<TrekPage />} />
             <Route path="/tourpage" element={<TourPage />} />
-            {/* <Route
-              path="/vehiclelist/vehdetails/:id"
-              element={<VehDetails />}
-            /> */}
+
             <Route
               path="/tourpage/tourdetails/:id"
               element={<TourDetailPage />}
@@ -429,8 +426,6 @@ function App() {
               element={<ResetDriverAndVerify />}
             />
             <Route path="/resetdriverpwd/:token" element={<DriverReset />} />
-
-            <Route path="/emailtest" element={<Emailtest />} />
           </Route>
         </Routes>
       </BrowserRouter>

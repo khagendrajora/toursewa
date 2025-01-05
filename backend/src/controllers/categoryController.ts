@@ -147,15 +147,6 @@ export const addSubCategory = async (req: Request, res: Response) => {
   }
 };
 
-// export const getSubCategory = async (req: Request, res: Response) => {
-//   const subCategory = await SubCategory.find().populate("categoryName");
-//   if (!subCategory) {
-//     return res.status(404).json({ error: "Failed to fetch Sub category" });
-//   } else {
-//     return res.send(subCategory);
-//   }
-// };
-
 export const deleteSubCategory = async (req: Request, res: Response) => {
   const id = req.params.id;
   try {
@@ -170,56 +161,6 @@ export const deleteSubCategory = async (req: Request, res: Response) => {
     return res.status(500).json({ error: error });
   }
 };
-
-// export const subcategoryDetails = async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   try {
-//     await SubCategory.findById(id).then((data) => {
-//       if (!data) {
-//         return res.status(404).json({ error: "Detailed not found" });
-//       } else {
-//         return res.send(data);
-//       }
-//     });
-//   } catch (error: any) {
-//     return res.status(500).json({ error: error });
-//   }
-// };
-
-// export const updateSubcategory = async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   let { categoryName, subCategoryName, desc } = req.body;
-//   categoryName = categoryName.toLowerCase().trim();
-//   subCategoryName = subCategoryName.trim();
-//   let categoryId;
-//   try {
-//     const data = await Category.findOne({ categoryName });
-//     if (!data) {
-//       return res
-//         .status(400)
-//         .json({ error: "Category not found,  add category First" });
-//     } else {
-//       categoryId = data._id;
-//       const newdata = await SubCategory.findByIdAndUpdate(
-//         id,
-//         {
-//           categoryName,
-//           subCategoryName,
-//           desc,
-//           categoryId,
-//         },
-//         { new: true }
-//       );
-//       if (!newdata) {
-//         return res.status(400).json({ error: "failed to update" });
-//       } else {
-//         return res.status(200).json({ message: "Successfully Updated" });
-//       }
-//     }
-//   } catch (error: any) {
-//     return res.status(500).json({ error: error });
-//   }
-// };
 
 export const addTrekCategory = async (req: Request, res: Response) => {
   let { categoryName, desc, subCategory } = req.body;
