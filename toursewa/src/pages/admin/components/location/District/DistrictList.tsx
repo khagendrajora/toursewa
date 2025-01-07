@@ -6,7 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { ButtonLoader } from "../../../../../utils/ButtonLoader";
 import { URL } from "../../../../../config/Config";
 import axios from "axios";
-import { IDistrict } from "../../../../../../../backend/src/models/Locations/Districts";
+import { IDistrict } from "../../../../../SharedTypes/Locations/Districts";
 
 export const DistrictList = () => {
   const [isLoading, setIsLoading] = useState(true);

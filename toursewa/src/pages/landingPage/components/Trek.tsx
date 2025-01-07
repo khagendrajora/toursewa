@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ITrekking } from "../../../../../backend/src/models/Product/trekking";
+import { ITrekking } from "../../../.../../SharedTypes/Product/trekking";
 import { URL } from "../../../config/Config";
 import { Link, useNavigate } from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { IDistrict } from "../../../../../../../backend/src/models/Locations/Districts";
-import { IState } from "../../../../../../../backend/src/models/Locations/state";
+import { IDistrict } from "../../../../../SharedTypes/Locations/Districts";
+import { IState } from "../../../../../SharedTypes/Locations/state";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../../../../config/Config";
 import { toast, ToastContainer } from "react-toastify";

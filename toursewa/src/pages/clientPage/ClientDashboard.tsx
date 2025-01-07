@@ -4,13 +4,10 @@ import { useAuthContext } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { URL } from "../../config/Config";
-import {
-  IStatus,
-  IVRev,
-} from "../../../../backend/src/models/Reservations/vehReserv";
+import { IStatus, IVRev } from "../../SharedTypes/Reservations/vehReserv";
 import { ButtonLoader } from "../../utils/ButtonLoader";
-import { ITuRev } from "../../../../backend/src/models/Reservations/TourReservation/tourRevModel";
-import { ITrRev } from "../../../../backend/src/models/Reservations/TrekReservation/TrekRevModel";
+import { ITuRev } from "../../SharedTypes/Reservations/TourReservation/tourRevModel";
+import { ITrRev } from "../../SharedTypes/Reservations/TrekReservation/TrekRevModel";
 
 export const ClientDashboard = () => {
   const { authUser } = useAuthContext();

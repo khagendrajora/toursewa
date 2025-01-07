@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { IVeh } from "../../../../../backend/src/models/Product/vehicle";
-import { IRDates } from "../../../../../backend/src/models/Reservations/ReservedDated";
+import { IVeh } from "../../../.../../SharedTypes/Product/vehicle";
+import { IRDates } from "../../../.../../SharedTypes/Reservations/ReservedDated";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { IMAGE_URL } from "../../../config/Config";

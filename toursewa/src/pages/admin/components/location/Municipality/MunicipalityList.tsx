@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { URL } from "../../../../../config/Config";
 import { Link } from "react-router-dom";
-import { IMunicipality } from "../../../../../../../backend/src/models/Locations/municipality";
+import { IMunicipality } from "../../../../../SharedTypes/Locations/municipality";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

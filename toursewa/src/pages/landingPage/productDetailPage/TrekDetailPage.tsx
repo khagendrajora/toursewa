@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ITrekking } from "../../../../../backend/src/models/Product/trekking";
+import { ITrekking } from "../../../.../../SharedTypes/Product/trekking";
 import { useAuthContext } from "../../../context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

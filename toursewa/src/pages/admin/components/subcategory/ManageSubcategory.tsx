@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { ISubCategory } from "./../../../../../../backend/src/models/subCategory";
+import { ISubCategory } from "./../../../../SharedTypes/subCategory";
 
 export const ManageSubcategory = () => {
   const navigate = useNavigate();

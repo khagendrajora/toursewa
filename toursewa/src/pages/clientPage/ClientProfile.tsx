@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 import { newPassword } from "../../validation/FormValidations";
 import { useAuthContext } from "../../context/AuthContext";
 import { ButtonLoader } from "../../utils/ButtonLoader";
-import { IUser } from "../../../../backend/src/models/User/userModel";
+import { IUser } from "../../SharedTypes/User/userModel";
 import { UpdateClientProfile } from "./UpdateClientProfile";
 
 export const ClientProfile = () => {

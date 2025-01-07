@@ -8,8 +8,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { ButtonLoader } from "../../utils/ButtonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { IMG_URL } from "../../../../backend/src/config/Config";
-import { BCategory } from "../../../../backend/src/models/Category/businessCategory";
+import { IMAGE_URL } from "../../config/Config";
+import { BCategory } from "../../SharedTypes/Category/businessCategory";
 
 export const UpdateBusinessProfile = () => {
   const navigate = useNavigate();
@@ -368,7 +368,7 @@ export const UpdateBusinessProfile = () => {
                       />
                       {typeof profileIcon === "string" ? (
                         <img
-                          src={`${IMG_URL}/${profileIcon}`}
+                          src={`${IMAGE_URL}/${profileIcon}`}
                           className="w-10"
                         />
                       ) : (
@@ -401,7 +401,7 @@ export const UpdateBusinessProfile = () => {
 
                           {typeof image === "string" ? (
                             <img
-                              src={`${IMG_URL}/${image}`}
+                              src={`${IMAGE_URL}/${image}`}
                               alt="gallery"
                               className="w-16"
                             />

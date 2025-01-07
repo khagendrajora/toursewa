@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IDriver } from "../../../../../../backend/src/models/Drivers/Driver";
+import { IDriver } from "../../../../SharedTypes/Drivers/Driver";
 import { toast, ToastContainer } from "react-toastify";
 import { URL } from "../../../../config/Config";
 import axios from "axios";

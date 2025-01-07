@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { IDest } from "./../../../../../../backend/src/models/Pages/LandingPage/Destination";
+import { IDest } from "./../../../../SharedTypes/Pages/LandingPage/Destination";
 import { toast, ToastContainer } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

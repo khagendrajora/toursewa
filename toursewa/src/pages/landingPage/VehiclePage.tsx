@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate } from "react-router-dom";
-import { IVeh } from "../../../../backend/src/models/Product/vehicle";
+import { IVeh } from "../../SharedTypes/Product/vehicle";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { IMAGE_URL, URL } from "../../config/Config";

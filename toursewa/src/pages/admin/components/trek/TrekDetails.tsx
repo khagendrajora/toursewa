@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { ITrekking } from "../../../../../../backend/src/models/Product/trekking";
+import { ITrekking } from "../../../../SharedTypes/Product/trekking";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Calendar from "react-calendar";

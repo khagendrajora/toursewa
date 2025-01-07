@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { URL } from "../../../config/Config";
 import { useEffect, useState } from "react";
-import { ITour } from "../../../../../backend/src/models/Product/tour";
+import { ITour } from "../../../.../../SharedTypes/Product/tour";
 import { toast, ToastContainer } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";

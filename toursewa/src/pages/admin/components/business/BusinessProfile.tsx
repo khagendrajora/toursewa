@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { IBusiness } from "../../../../../../backend/src/models/business";
+import { IBusiness } from "../../../../SharedTypes/business";
 import { IMAGE_URL, URL } from "../../../../config/Config";
 import { PageLoader } from "../../../../utils/PageLoader";
 

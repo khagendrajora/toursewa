@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  mongodb:
+    image: "mongo"
+    ports:
+      - "27017:27017"
+    volumes:
+      - data:/data/db
+    restart: always
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+    env_file: 
+      - ./backend/.env
+    restart: on-failure
+    command: ["npm", "start"]
+
+  toursewa:
+    build: ./toursewa
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./toursewa/src:/app/src
+      - /app/node_modules
+    stdin_open: true
+    tty: true
+    environment:
+      - VITE_API_URL=http://backend:5000
+    depends_on:
+      - backend
+    restart: on-failure
+volumes:
+  data:
+  logs:
+
+

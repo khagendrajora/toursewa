@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { ITour } from "../../../../backend/src/models/Product/tour";
+import { ITour } from "../../SharedTypes/Product/tour";
 import { IMAGE_URL, URL } from "../../config/Config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";

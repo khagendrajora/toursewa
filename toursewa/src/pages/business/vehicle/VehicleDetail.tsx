@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { IVeh } from "../../../../../backend/src/models/Product/vehicle";
+import { IVeh } from "../../../.../../SharedTypes/Product/vehicle";
 import { IMAGE_URL, URL } from "../../../config/Config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";

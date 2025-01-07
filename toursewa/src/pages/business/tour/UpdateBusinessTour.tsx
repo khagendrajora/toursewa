@@ -9,10 +9,10 @@ import "react-phone-input-2/lib/style.css";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { TourCategory } from "../../../../../backend/src/models/Category/tourCategory";
-import { IMG_URL } from "../../../../../backend/src/config/Config";
+import { TourCategory } from "../../../.../../SharedTypes/Category/tourCategory";
+import { IMAGE_URL } from "../../../config/Config";
 import { ButtonLoader } from "../../../utils/ButtonLoader";
-import { IDest } from "../../../../../backend/src/models/Pages/LandingPage/Destination";
+import { IDest } from "../../../.../../SharedTypes/Pages/LandingPage/Destination";
 
 const UpdateBusinessTour = () => {
   const [category, setCategory] = useState<TourCategory[]>([]);
@@ -437,7 +437,7 @@ const UpdateBusinessTour = () => {
                         />
                         {typeof image === "string" ? (
                           <img
-                            src={`${IMG_URL}/${image}`}
+                            src={`${IMAGE_URL}/${image}`}
                             alt="gallery"
                             className="w-16"
                           />

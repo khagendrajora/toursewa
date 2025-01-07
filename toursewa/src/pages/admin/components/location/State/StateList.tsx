@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IState } from "../../../../../../../backend/src/models/Locations/state";
+import { IState } from "../../../../../SharedTypes/Locations/state";
 import { URL } from "../../../../../config/Config";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";

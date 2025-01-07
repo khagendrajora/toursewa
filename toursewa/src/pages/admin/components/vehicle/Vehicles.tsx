@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { IVeh } from "../../../../../../backend/src/models/Product/vehicle";
+import { IVeh } from "../../../../SharedTypes/Product/vehicle";
 import { toast, ToastContainer } from "react-toastify";
 import { URL } from "../../../../config/Config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

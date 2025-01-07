@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IHotDeal } from "../../../../backend/src/models/HotDeals/HotDeals";
+import { IHotDeal } from "../../SharedTypes/HotDeals/HotDeals";
 import { URL } from "../../config/Config";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";

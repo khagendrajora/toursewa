@@ -4,9 +4,9 @@ import { municipalityData } from "../../../../../validation/FormValidations";
 import { URL } from "../../../../../config/Config";
 import { toast, ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
-import { IState } from "../../../../../../../backend/src/models/Locations/state";
-import { IDistrict } from "../../../../../../../backend/src/models/Locations/Districts";
-import { IMunicipality } from "../../../../../../../backend/src/models/Locations/municipality";
+import { IState } from "../../../../../SharedTypes/Locations/state";
+import { IDistrict } from "../../../../../SharedTypes/Locations/Districts";
+import { IMunicipality } from "../../../../../SharedTypes/Locations/municipality";
 
 export const AddMunicipality = () => {
   const [state, setState] = useState<IState[]>([]);

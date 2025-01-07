@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { IVeh } from "../../../../../../backend/src/models/Product/vehicle";
+import { IVeh } from "../../../../SharedTypes/Product/vehicle";
 import { toast, ToastContainer } from "react-toastify";
 import { IMAGE_URL, URL } from "../../../../config/Config";
 import Calendar from "react-calendar";

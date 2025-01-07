@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { ITour } from "../../../../../../backend/src/models/Product/tour";
+import { ITour } from "../../../../SharedTypes/Product/tour";
 import { useEffect, useState } from "react";
 import { URL } from "../../../../config/Config";
 import Calendar from "react-calendar";

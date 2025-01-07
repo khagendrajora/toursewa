@@ -5,17 +5,17 @@ import { useFormik } from "formik";
 import { URL } from "../../config/Config";
 import { useAuthContext } from "../../context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
-import { IVRev } from "../../../../backend/src/models/Reservations/vehReserv";
-import { IVeh } from "../../../../backend/src/models/Product/vehicle";
+import { IVRev } from "../../SharedTypes/Reservations/vehReserv";
+import { IVeh } from "../../SharedTypes/Product/vehicle";
 import Calendar from "react-calendar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { ButtonLoader } from "../../utils/ButtonLoader";
 import { hotDeals } from "../../validation/FormValidations";
-import { IHotDeal } from "../../../../backend/src/models/HotDeals/HotDeals";
+import { IHotDeal } from "../../SharedTypes/HotDeals/HotDeals";
 import axios from "axios";
-import { IRDates } from "../../../../backend/src/models/Reservations/ReservedDated";
+import { IRDates } from "../../SharedTypes/Reservations/ReservedDated";
 
 export const DriverDashboard = () => {
   const { authUser } = useAuthContext();

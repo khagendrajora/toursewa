@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import * as React from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { IMG_URL } from "../../../../../../backend/src/config/Config";
+import { IMAGE_URL } from "../../../../config/Config";
 import { useAuthContext } from "../../../../context/AuthContext";
 import JoditEditor from "jodit-react";
 import HTMLReactParser from "html-react-parser";
@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { ButtonLoader } from "../../../../utils/ButtonLoader";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { TrekCategory } from "../../../../../../backend/src/models/Category/trekCategory";
+import { TrekCategory } from "../../../../SharedTypes/Category/trekCategory";
 
 export const UpdateTrek = () => {
   const params = useParams();
@@ -458,7 +458,7 @@ export const UpdateTrek = () => {
                       />
                       {typeof image === "string" ? (
                         <img
-                          src={`${IMG_URL}/${image}`}
+                          src={`${IMAGE_URL}/${image}`}
                           alt="gallery"
                           className="w-16"
                         />

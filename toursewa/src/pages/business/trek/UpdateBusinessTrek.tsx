@@ -9,10 +9,10 @@ import "react-phone-input-2/lib/style.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { TrekCategory } from "../../../../../backend/src/models/Category/trekCategory";
-import { IMG_URL } from "../../../../../backend/src/config/Config";
+import { TrekCategory } from "../../../.../../SharedTypes/Category/trekCategory";
+import { IMAGE_URL } from "../.././../config/Config";
 import { ButtonLoader } from "../../../utils/ButtonLoader";
-import { IDest } from "../../../../../backend/src/models/Pages/LandingPage/Destination";
+import { IDest } from "../../../.../../SharedTypes/Pages/LandingPage/Destination";
 
 const UpdateBusinessTrek = () => {
   const params = useParams();
@@ -475,7 +475,7 @@ const UpdateBusinessTrek = () => {
                       />
                       {typeof image === "string" ? (
                         <img
-                          src={`${IMG_URL}/${image}`}
+                          src={`${IMAGE_URL}/${image}`}
                           alt="gallery"
                           className="w-16"
                         />

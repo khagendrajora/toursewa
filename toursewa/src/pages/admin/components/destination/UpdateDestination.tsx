@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import * as React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { IMG_URL } from "../../../../../../backend/src/config/Config";
+import { IMAGE_URL } from "../../../../config/Config";
 import { useNavigate, useParams } from "react-router-dom";
 import { ButtonLoader } from "../../../../utils/ButtonLoader";
 
@@ -161,7 +161,7 @@ export const UpdateDestination = () => {
                           onClick={() => removeImage(i, true)}
                         />
                         <img
-                          src={`${IMG_URL}/${image}`}
+                          src={`${IMAGE_URL}/${image}`}
                           alt="gallery"
                           className="w-16"
                         />

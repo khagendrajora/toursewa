@@ -5,7 +5,7 @@ import { IMAGE_URL, URL } from "../../config/Config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { ITrekking } from "../../../../backend/src/models/Product/trekking";
+import { ITrekking } from "../../SharedTypes/Product/trekking";
 
 export const TrekPage = () => {
   const navigate = useNavigate();

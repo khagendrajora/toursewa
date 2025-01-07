@@ -2,16 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { IHero } from "../../../../../backend/src/models/Pages/LandingPage/Hero";
+import { IHero } from "../../../.../../SharedTypes/Pages/LandingPage/Hero";
 import { URL } from "../../../config/Config";
 import { useNavigate } from "react-router-dom";
-import { ITour } from "../../../../../backend/src/models/Product/tour";
+import { ITour } from "../../../.../../SharedTypes/Product/tour";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IVeh } from "../../../../../backend/src/models/Product/vehicle";
-import { ILocation } from "../../../../../backend/src/models/Locations/location";
+import { IVeh } from "../../../.../../SharedTypes/Product/vehicle";
+import { ILocation } from "../../../.../../SharedTypes/Locations/location";
 import { useAuthContext } from "../../../context/AuthContext";
-import { IRDates } from "../../../../../backend/src/models/Reservations/ReservedDated";
+import { IRDates } from "../../../.../../SharedTypes/Reservations/ReservedDated";
 
 const Hero = () => {
   const { authUser } = useAuthContext();

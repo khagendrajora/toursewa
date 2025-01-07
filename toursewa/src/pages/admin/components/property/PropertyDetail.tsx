@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { IProperty } from "../../../../../../backend/src/models/property";
+import { IProperty } from "../../../../SharedTypes/property";
 
 export const PropertyDetail = () => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { IAdminUser } from "./../../../../../../backend/src/models/adminUser";
+import { IAdminUser } from "./../../../../SharedTypes/adminUser";
 import { toast, ToastContainer } from "react-toastify";
 import { URL } from "../../../../config/Config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

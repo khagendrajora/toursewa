@@ -38,8 +38,8 @@ app.use("/api", DriverRoute);
 app.use("/api", Login);
 app.use("/api", LocationRoute);
 
-const port = 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 5000;
 
-app.listen(port, () => {
-  console.log(`Server Started on ${port}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server Started on ${PORT}`);
 });

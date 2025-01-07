@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { IHotDeal } from "../../../../../backend/src/models/HotDeals/HotDeals";
+import { IHotDeal } from "../../../.../../SharedTypes/HotDeals/HotDeals";
 
 import { URL } from "../../../config/Config";
 import { Link, useNavigate } from "react-router-dom";

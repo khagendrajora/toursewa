@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { IDriver } from "../../../../backend/src/models/Drivers/Driver";
+import { IDriver } from "../../SharedTypes/Drivers/Driver";
 import { toast, ToastContainer } from "react-toastify";
 import { URL } from "../../config/Config";
 import { PageLoader } from "../../utils/PageLoader";

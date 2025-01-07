@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ICountry } from "../../../../../../../backend/src/models/Locations/country";
+import { ICountry } from "../../../../../SharedTypes/Locations/country";
 import { URL } from "../../../../../config/Config";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";

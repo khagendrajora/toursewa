@@ -13,7 +13,7 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import HTMLReactParser from "html-react-parser";
-import { BCategory } from "../../../../../../../backend/src/models/Category/businessCategory";
+import { BCategory } from "../../../../../SharedTypes/Category/businessCategory";
 import { URL } from "../../../../../config/Config";
 import { ButtonLoader } from "../../../../../utils/ButtonLoader";
 import { PageLoader } from "../../../../../utils/PageLoader";

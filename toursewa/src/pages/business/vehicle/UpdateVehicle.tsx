@@ -5,12 +5,12 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { IMG_URL } from "../../../../../backend/src/config/Config";
+import { IMAGE_URL } from "../../../config/Config";
 import { useAuthContext } from "../../../context/AuthContext";
 import { ButtonLoader } from "../../../utils/ButtonLoader";
 import { useNavigate, useParams } from "react-router-dom";
-import { VCategory } from "../../../../../backend/src/models/Category/vehicleCategory";
-import { ILocation } from "../../../../../backend/src/models/Locations/location";
+import { VCategory } from "../../../.../../SharedTypes/Category/vehicleCategory";
+import { ILocation } from "../../../.../../SharedTypes/Locations/location";
 
 export const UpdateVehicle = () => {
   const navigate = useNavigate();
@@ -531,7 +531,7 @@ export const UpdateVehicle = () => {
                       />
                       {typeof image === "string" ? (
                         <img
-                          src={`${IMG_URL}/${image}`}
+                          src={`${IMAGE_URL}/${image}`}
                           alt="gallery"
                           className="w-16"
                         />

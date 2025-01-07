@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { BCategory } from "../../../../backend/src/models/Category/businessCategory";
+import { BCategory } from "../../SharedTypes/Category/businessCategory";
 import { useFormik } from "formik";
 import { businessSignup } from "../../validation/FormValidations";
 import { URL } from "../../config/Config";
@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useAuthContext } from "../../context/AuthContext";
-import { IState } from "../../../../backend/src/models/Locations/state";
+import { IState } from "../../SharedTypes/Locations/state";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 

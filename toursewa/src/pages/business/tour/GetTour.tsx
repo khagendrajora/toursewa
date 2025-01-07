@@ -13,7 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { URL } from "../../../config/Config";
 import axios from "axios";
-import { ITour } from "../../../../../backend/src/models/Product/tour";
+import { ITour } from "../../../.../../SharedTypes/Product/tour";
 import { useAuthContext } from "../../../context/AuthContext";
 import { PageLoader } from "../../../utils/PageLoader";
 import { ButtonLoader } from "../../../utils/ButtonLoader";

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { URL } from "../../config/Config";
-import { IVRev } from "../../../../backend/src/models/Reservations/vehReserv";
-import { ITuRev } from "../../../../backend/src/models/Reservations/TourReservation/tourRevModel";
-import { ITrRev } from "../../../../backend/src/models/Reservations/TrekReservation/TrekRevModel";
-import { IFeature } from "../../../../backend/src/models/Featured/Feature";
+import { IVRev } from "../../SharedTypes/Reservations/vehReserv";
+import { ITuRev } from "../../SharedTypes/Reservations/TourReservation/tourRevModel";
+import { ITrRev } from "../../SharedTypes/Reservations/TrekReservation/TrekRevModel";
+import { IFeature } from "../../SharedTypes/Featured/Feature";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ButtonLoader } from "../../utils/ButtonLoader";

@@ -7,7 +7,7 @@ import { driverData } from "../../../validation/FormValidations";
 import { URL } from "../../../config/Config";
 import { useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
-import { IVeh } from "../../../../../backend/src/models/Product/vehicle";
+import { IVeh } from "../../../.../../SharedTypes/Product/vehicle";
 import { useNavigate, useParams } from "react-router-dom";
 
 export const AddDriver = () => {

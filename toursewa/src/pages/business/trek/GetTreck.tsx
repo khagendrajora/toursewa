@@ -3,7 +3,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { ITrekking } from "../../../../../backend/src/models/Product/trekking";
+import { ITrekking } from "../../../.../../SharedTypes/Product/trekking";
 import {
   faCartPlus,
   faCircleInfo,

@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 mongoose
-  .connect(process.env.DATABASE as string)
+  .connect(`mongodb://mongodb:27017/toursewa`)
   .then(() => console.log("database Connected"))
   .catch((err) => console.log("Database connection failed", err));
 

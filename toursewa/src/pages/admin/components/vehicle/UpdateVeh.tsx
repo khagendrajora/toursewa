@@ -5,11 +5,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import * as React from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { IMG_URL } from "../../../../../../backend/src/config/Config";
+import { IMAGE_URL } from "../../../../config/Config";
 import { ButtonLoader } from "../../../../utils/ButtonLoader";
 import { useNavigate, useParams } from "react-router-dom";
-import { VCategory } from "../../../../../../backend/src/models/Category/vehicleCategory";
-import { ILocation } from "../../../../../../backend/src/models/Locations/location";
+import { VCategory } from "../../../../SharedTypes/Category/vehicleCategory";
+import { ILocation } from "../../../../SharedTypes/Locations/location";
 
 export const UpdateVeh = () => {
   const [locations, setLocation] = React.useState<ILocation[]>([]);
@@ -508,7 +508,7 @@ export const UpdateVeh = () => {
                       />
                       {typeof image === "string" ? (
                         <img
-                          src={`${IMG_URL}/${image}`}
+                          src={`${IMAGE_URL}/${image}`}
                           alt="gallery"
                           className="w-16"
                         />

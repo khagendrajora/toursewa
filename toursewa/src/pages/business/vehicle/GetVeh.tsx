@@ -12,7 +12,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { IVeh } from "../../../../../backend/src/models/Product/vehicle";
+import { IVeh } from "../../../.../../SharedTypes/Product/vehicle";
 import { URL } from "../../../config/Config";
 import axios from "axios";
 import { useAuthContext } from "../../../context/AuthContext";

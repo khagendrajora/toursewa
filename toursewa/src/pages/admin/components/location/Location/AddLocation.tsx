@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { locationData } from "../../../../../validation/FormValidations";
 import { URL } from "../../../../../config/Config";
-import { IMunicipality } from "../../../../../../../backend/src/models/Locations/municipality";
-import { IState } from "../../../../../../../backend/src/models/Locations/state";
+import { IMunicipality } from "../../../../../SharedTypes/Locations/municipality";
+import { IState } from "../../../../../SharedTypes/Locations/state";
 import { useEffect, useState } from "react";
-// import { ICountry } from "../../../../../../../backend/src/models/Locations/country";
-import { IDistrict } from "../../../../../../../backend/src/models/Locations/Districts";
+// import { ICountry } from "../../../../../SharedTypes/models/Locations/country";
+import { IDistrict } from "../../../../../SharedTypes/Locations/Districts";
 
 const AddLocation = () => {
   const navigate = useNavigate();

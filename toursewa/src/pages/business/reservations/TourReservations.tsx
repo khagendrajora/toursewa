@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import {
   ITuRev,
   IStatus,
-} from "../../../../../backend/src/models/Reservations/TourReservation/tourRevModel";
+} from "../../../.../../SharedTypes/Reservations/TourReservation/tourRevModel";
 import { URL } from "../../../config/Config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";

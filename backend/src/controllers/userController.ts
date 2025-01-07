@@ -5,7 +5,6 @@ import Business from "../models/business";
 import jwt from "jsonwebtoken";
 import Token from "../models/token";
 const { customAlphabet } = require("nanoid");
-
 import { v4 as uuid } from "uuid";
 import Driver from "../models/Drivers/Driver";
 import { sendEmail } from "../utils/setEmail";

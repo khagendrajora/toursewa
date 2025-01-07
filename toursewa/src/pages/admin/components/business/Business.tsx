@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { IBusiness } from "../../../../../../backend/src/models/business";
+import { IBusiness } from "../../../../SharedTypes/business";
 import { URL } from "../../../../config/Config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

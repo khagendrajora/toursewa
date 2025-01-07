@@ -6,10 +6,10 @@ import DatePicker, { DateObject } from "react-multi-date-picker";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { useAuthContext } from "../../context/AuthContext";
-import { IRDates } from "../../../../backend/src/models/Reservations/ReservedDated";
+import { IRDates } from "../../SharedTypes/Reservations/ReservedDated";
 import { ButtonLoader } from "../../utils/ButtonLoader";
-import { IVeh } from "../../../../backend/src/models/Product/vehicle";
-import { ILocation } from "../../../../backend/src/models/Locations/location";
+import { IVeh } from "../../SharedTypes/Product/vehicle";
+import { ILocation } from "../../SharedTypes/Locations/location";
 import { URL } from "../../config/Config";
 
 const VehReservation = () => {

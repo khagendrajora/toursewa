@@ -7,14 +7,13 @@ import { toast, ToastContainer } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import JoditEditor from "jodit-react";
-
 import "react-phone-input-2/lib/style.css";
 import { useNavigate } from "react-router-dom";
-import { TrekCategory } from "../../../../../backend/src/models/Category/trekCategory";
+import { TrekCategory } from "../../../.../../SharedTypes/Category/trekCategory";
 import { URL } from "../../../config/Config";
 import { useAuthContext } from "../../../context/AuthContext";
 import { ButtonLoader } from "../../../utils/ButtonLoader";
-import { IDest } from "../../../../../backend/src/models/Pages/LandingPage/Destination";
+import { IDest } from "../../../.../../SharedTypes/Pages/LandingPage/Destination";
 
 const AddTrek = () => {
   const navigate = useNavigate();

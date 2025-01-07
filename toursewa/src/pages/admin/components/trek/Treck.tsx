@@ -9,13 +9,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { ButtonLoader } from "../../../../utils/ButtonLoader";
 import JoditEditor from "jodit-react";
-
 import "react-phone-input-2/lib/style.css";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../../../config/Config";
-import { TrekCategory } from "../../../../../../backend/src/models/Category/trekCategory";
-import { IBusiness } from "../../../../../../backend/src/models/business";
-import { IDest } from "../../../../../../backend/src/models/Pages/LandingPage/Destination";
+import { TrekCategory } from "../../../../SharedTypes/Category/trekCategory";
+import { IBusiness } from "../../../../SharedTypes/business";
+import { IDest } from "../../../../SharedTypes/Pages/LandingPage/Destination";
 
 const Treck = () => {
   const navigate = useNavigate();

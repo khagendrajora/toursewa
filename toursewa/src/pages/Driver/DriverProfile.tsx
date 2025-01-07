@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { IDriver } from "../../../../backend/src/models/Drivers/Driver";
+import { IDriver } from "../../SharedTypes/Drivers/Driver";
 import { useAuthContext } from "../../context/AuthContext";
 import { IMAGE_URL, URL } from "../../config/Config";
 import { toast, ToastContainer } from "react-toastify";

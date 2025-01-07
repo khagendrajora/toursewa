@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
   IStatus,
   IVRev,
-} from "../../../../../backend/src/models/Reservations/vehReserv";
+} from "../../../.../../SharedTypes/Reservations/vehReserv";
 import { useAuthContext } from "../../../context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
 import { URL } from "../../../config/Config";

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import * as React from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { IMG_URL } from "../../../../../../backend/src/config/Config";
+import { IMAGE_URL } from "../../../../config/Config";
 import JoditEditor from "jodit-react";
 import HTMLReactParser from "html-react-parser";
 import "react-phone-input-2/lib/style.css";
@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { ButtonLoader } from "../../../../utils/ButtonLoader";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { TourCategory } from "../../../../../../backend/src/models/Category/tourCategory";
+import { TourCategory } from "../../../../SharedTypes/Category/tourCategory";
 
 export const UpdateTour = () => {
   const [category, setCategory] = useState<TourCategory[]>([]);
@@ -450,7 +450,7 @@ export const UpdateTour = () => {
                       />
                       {typeof image === "string" ? (
                         <img
-                          src={`${IMG_URL}/${image}`}
+                          src={`${IMAGE_URL}/${image}`}
                           alt="gallery"
                           className="w-16"
                         />

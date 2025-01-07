@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { ITour } from "../../../../../backend/src/models/Product/tour";
+import { ITour } from "../../../.../../SharedTypes/Product/tour";
 import { URL } from "../../../config/Config";
 import { Link, useNavigate } from "react-router-dom";
-import { ITrekking } from "../../../../../backend/src/models/Product/trekking";
-import { IVeh } from "../../../../../backend/src/models/Product/vehicle";
+import { ITrekking } from "../../../.../../SharedTypes/Product/trekking";
+import { IVeh } from "../../../.../../SharedTypes/Product/vehicle";
 
 const Packages = () => {
   const [tour, settour] = useState<ITour[]>([]);

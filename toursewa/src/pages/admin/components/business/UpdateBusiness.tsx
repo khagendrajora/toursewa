@@ -6,10 +6,10 @@ import * as React from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { IMG_URL } from "../../../../../../backend/src/config/Config";
+import { IMAGE_URL } from "../../../../config/Config";
 import { ButtonLoader } from "../../../../utils/ButtonLoader";
 import { useNavigate, useParams } from "react-router-dom";
-import { BCategory } from "../../../../../../backend/src/models/Category/businessCategory";
+import { BCategory } from "../../../../SharedTypes/Category/businessCategory";
 
 export const UpdateBusiness = () => {
   const navigate = useNavigate();
@@ -419,7 +419,7 @@ export const UpdateBusiness = () => {
                       />
                       {typeof profileIcon === "string" ? (
                         <img
-                          src={`${IMG_URL}/${profileIcon}`}
+                          src={`${IMAGE_URL}/${profileIcon}`}
                           className="w-10"
                         />
                       ) : (
@@ -452,7 +452,7 @@ export const UpdateBusiness = () => {
 
                           {typeof image === "string" ? (
                             <img
-                              src={`${IMG_URL}/${image}`}
+                              src={`${IMAGE_URL}/${image}`}
                               alt="gallery"
                               className="w-16"
                             />

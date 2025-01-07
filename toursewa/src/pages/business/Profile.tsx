@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { IMAGE_URL, URL } from "../../config/Config";
 import { useAuthContext } from "../../context/AuthContext";
-import { IBusiness } from "../../../../backend/src/models/business";
+import { IBusiness } from "../../SharedTypes/business";
 import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {

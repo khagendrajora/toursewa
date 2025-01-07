@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { IMAGE_URL, URL } from "../../config/Config";
 import { useParams } from "react-router-dom";
-import { IVeh } from "../../../../backend/src/models/Product/vehicle";
+import { IVeh } from "../../SharedTypes/Product/vehicle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Calendar from "react-calendar";

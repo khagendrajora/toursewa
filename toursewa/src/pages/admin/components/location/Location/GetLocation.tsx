@@ -8,7 +8,7 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { ILocation } from "../../../../../../../backend/src/models/Locations/location";
+import { ILocation } from "../../../../../SharedTypes/Locations/location";
 import { URL } from "../../../../../config/Config";
 import { ButtonLoader } from "../../../../../utils/ButtonLoader";
 

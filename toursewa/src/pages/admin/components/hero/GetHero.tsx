@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { IHero } from "./../../../../../../backend/src/models/Pages/LandingPage/Hero";
+import { IHero } from "./../../../../SharedTypes/Pages/LandingPage/Hero";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { IMAGE_URL, URL } from "../../../../config/Config";

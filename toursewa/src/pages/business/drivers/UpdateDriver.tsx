@@ -4,10 +4,10 @@ import { toast, ToastContainer } from "react-toastify";
 import { ButtonLoader } from "../../../utils/ButtonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { IMG_URL } from "../../../../../backend/src/config/Config";
+import { IMAGE_URL } from "../../../config/Config";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuthContext } from "../../../context/AuthContext";
-import { IVeh } from "../../../../../backend/src/models/Product/vehicle";
+import { IVeh } from "../../../.../../SharedTypes/Product/vehicle";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -211,7 +211,7 @@ export const UpdateDriver = () => {
                       />
                       {typeof driverImage === "string" ? (
                         <img
-                          src={`${IMG_URL}/${driverImage}`}
+                          src={`${IMAGE_URL}/${driverImage}`}
                           className="w-10"
                         />
                       ) : (

@@ -10,9 +10,9 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { ButtonLoader } from "../../../utils/ButtonLoader";
 import { useNavigate } from "react-router-dom";
-import { VCategory } from "../../../../../backend/src/models/Category/vehicleCategory";
+import { VCategory } from "../../../.../../SharedTypes/Category/vehicleCategory";
 import { URL } from "../../../config/Config";
-import { ILocation } from "../../../../../backend/src/models/Locations/location";
+import { ILocation } from "../../../.../../SharedTypes/Locations/location";
 import JoditEditor from "jodit-react";
 
 export const AddVehicle = () => {

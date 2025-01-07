@@ -8,10 +8,10 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { ButtonLoader } from "../../../../utils/ButtonLoader";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import { useNavigate } from "react-router-dom";
-import { IBusiness } from "../../../../../../backend/src/models/business";
+import { IBusiness } from "../../../../SharedTypes/business";
 import { URL } from "../../../../config/Config";
-import { VCategory } from "../../../../../../backend/src/models/Category/vehicleCategory";
-import { ILocation } from "../../../../../../backend/src/models/Locations/location";
+import { VCategory } from "../../../../SharedTypes/Category/vehicleCategory";
+import { ILocation } from "../../../../SharedTypes/Locations/location";
 import JoditEditor from "jodit-react";
 
 export const Vehicle = () => {

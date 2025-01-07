@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import * as React from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { IUser } from "../../../../backend/src/models/User/userModel";
+import { IUser } from "../../SharedTypes/User/userModel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { IMAGE_URL, URL } from "../../config/Config";

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { IBlogs } from "../../../../../backend/src/models/Pages/LandingPage/Blogs";
+import { IBlogs } from "../../../.../../SharedTypes/Pages/LandingPage/Blogs";
 import { URL } from "../../../config/Config";
 
 const Blogs = () => {

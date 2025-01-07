@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { IProperty } from "../../../../../../backend/src/models/property";
+import { IProperty } from "../../../../SharedTypes/property";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

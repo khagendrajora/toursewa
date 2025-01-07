@@ -3,9 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { URL } from "../../../../../config/Config";
 import { ButtonLoader } from "../../../../../utils/ButtonLoader";
-import { IMunicipality } from "../../../../../../../backend/src/models/Locations/municipality";
-import { IState } from "../../../../../../../backend/src/models/Locations/state";
-import { IDistrict } from "../../../../../../../backend/src/models/Locations/Districts";
+import { IMunicipality } from "../../../../../SharedTypes/Locations/municipality";
+import { IState } from "../../../../../SharedTypes/Locations/state";
+import { IDistrict } from "../../../../../SharedTypes/Locations/Districts";
 
 const UpdateLocation = () => {
   const navigate = useNavigate();

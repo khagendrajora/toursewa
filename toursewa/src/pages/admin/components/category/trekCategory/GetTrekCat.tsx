@@ -12,7 +12,7 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import HTMLReactParser from "html-react-parser";
-import { TrekCategory } from "../../../../../../../backend/src/models/Category/trekCategory";
+import { TrekCategory } from "../../../../../SharedTypes/Category/trekCategory";
 import { URL } from "../../../../../config/Config";
 import { ButtonLoader } from "../../../../../utils/ButtonLoader";
 import { PageLoader } from "../../../../../utils/PageLoader";

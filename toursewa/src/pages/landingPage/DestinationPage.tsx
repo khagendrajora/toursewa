@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IDest } from "../../../../backend/src/models/Pages/LandingPage/Destination";
+import { IDest } from "../../SharedTypes/Pages/LandingPage/Destination";
 
 export const DestinationPage = () => {
   const [dest, setDest] = useState<IDest[]>([]);

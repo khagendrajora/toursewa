@@ -12,9 +12,9 @@ import "react-phone-input-2/lib/style.css";
 import { useNavigate } from "react-router-dom";
 import JoditEditor from "jodit-react";
 
-import { TourCategory } from "../../../../../../backend/src/models/Category/tourCategory";
-import { IBusiness } from "../../../../../../backend/src/models/business";
-import { IDest } from "../../../../../../backend/src/models/Pages/LandingPage/Destination";
+import { TourCategory } from "../../../../SharedTypes/Category/tourCategory";
+import { IBusiness } from "../../../../SharedTypes/business";
+import { IDest } from "../../../../SharedTypes/Pages/LandingPage/Destination";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const Tour = () => {

@@ -10,11 +10,11 @@ import "react-phone-input-2/lib/style.css";
 import { useNavigate } from "react-router-dom";
 import JoditEditor from "jodit-react";
 
-import { TourCategory } from "../../../../../backend/src/models/Category/tourCategory";
+import { TourCategory } from "../../../.../../SharedTypes/Category/tourCategory";
 import { useAuthContext } from "../../../context/AuthContext";
 import { ButtonLoader } from "../../../utils/ButtonLoader";
 import { URL } from "../../../config/Config";
-import { IDest } from "../../../../../backend/src/models/Pages/LandingPage/Destination";
+import { IDest } from "../../../.../../SharedTypes/Pages/LandingPage/Destination";
 
 const AddTour = () => {
   const navigate = useNavigate();
