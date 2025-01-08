@@ -26,4 +26,5 @@ export interface IVeh extends Document {
   vehId: string;
   price?: string;
   description: string;
+  addedBy: string;
 }

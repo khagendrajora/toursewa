@@ -1,4 +1,4 @@
-version: '3.8'
+
 services:
   mongodb:
     image: "mongo"
@@ -6,20 +6,23 @@ services:
       - "27017:27017"
     volumes:
       - data:/data/db
-    restart: always
+  
 
   backend:
     build: ./backend
     ports:
       - "5000:5000"
     volumes:
-      - logs:/app/logs
+      - ./backend/logs:/app/logs
       - ./backend:/app
-      - /app/node_modules
+    environment:
+      - PORT=5000
+      - JWTSECRET=hello
+      - DB_URL=mongodb://mongodb:27017/toursewa
+      - FRONTEND_URL=http://localhost:5173
+      - Backend_URL=http://localhost:5000/api
     depends_on:
       - mongodb
-    env_file: 
-      - ./backend/.env
     restart: on-failure
     command: ["npm", "start"]
 
@@ -36,7 +39,8 @@ services:
       - VITE_API_URL=http://backend:5000
     depends_on:
       - backend
-    restart: on-failure
+    restart: unless-stopped
+    command: ["npm", "run", "preview"]
 volumes:
   data:
   logs:

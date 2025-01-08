@@ -15,7 +15,13 @@ const Packages = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const res = await fetch(`${URL}/api/gettour`);
+        const res = await fetch(`http://localhost:5000/api/gettour`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        });
         const data = await res.json();
         if (!res.ok) {
           console.error(data.error);

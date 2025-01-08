@@ -6,7 +6,8 @@ export interface IRDates extends Document {
   bookingDate: Date[];
   bookedBy: string;
   bookingId: string;
-  time?: string;
+  time: string;
+  startTime: string;
 }
 
 const revDates = new mongoose.Schema(
@@ -21,6 +22,11 @@ const revDates = new mongoose.Schema(
     },
     time: {
       type: String,
+      required: true,
+    },
+    startTime: {
+      type: String,
+      required: true,
     },
     bookedBy: {
       type: String,

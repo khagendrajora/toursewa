@@ -2,8 +2,8 @@ import express, { Express } from "express";
 import dotenv from "dotenv";
 dotenv.config();
 import path from "path";
-// import "./db/database";
-import { database } from "./db/database";
+import "./db/database";
+// import { database } from "./db/database";
 
 import adminRoute from "./routes/adminRoute";
 import categoryRoute from "./routes/CategoryRoute/categoryRoute";
@@ -23,7 +23,12 @@ const app: Express = express();
 app.use(express.json());
 
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
 
 app.use("/public/uploads", express.static(path.resolve("public/uploads")));
 app.use("/api", UserRoute);

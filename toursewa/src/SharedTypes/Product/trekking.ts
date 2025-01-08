@@ -15,5 +15,6 @@ export interface ITrekking extends Document {
   trekId: string;
   isFeatured: boolean;
   price?: string;
+  addedBy: string;
   isActive: boolean;
 }

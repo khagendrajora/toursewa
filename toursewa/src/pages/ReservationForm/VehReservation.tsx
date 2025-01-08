@@ -17,7 +17,7 @@ const VehReservation = () => {
   const location = useLocation();
   const {
     startDate,
-    ednDate,
+    endDate,
     baseLocation,
     dropLocation,
     time,
@@ -59,15 +59,17 @@ const VehReservation = () => {
     bookingName: string;
     numberOfPassengers: number | null;
     time: string;
+    startTime: string;
   }>({
     age: null,
     email: "",
     time: time || "",
+    startTime: "",
     phone: "",
     sourceAddress: baseLocation || sourceAddress || "",
     destinationAddress: dropLocation || destinationAddress || "",
     startDate: startDate || null,
-    endDate: ednDate || null,
+    endDate: endDate || null,
     address: "",
     bookingName: "",
     numberOfPassengers: null,
@@ -233,6 +235,7 @@ const VehReservation = () => {
           endDate: null,
           address: "",
           time: "",
+          startTime: "",
           numberOfPassengers: null,
         });
 
@@ -528,6 +531,18 @@ const VehReservation = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-y-2 w-3/4 sm:w-1/4 min-w-52">
+                  <label>Start Time</label>
+                  <input
+                    type="time"
+                    value={inputs.startTime}
+                    onChange={(e) =>
+                      setInputs({ ...inputs, startTime: e.target.value })
+                    }
+                    placeholder="Start Time"
+                    className="border border-gray-400 p-2 rounded-lg"
+                  />
+                </div>
+                <div className="flex flex-col gap-y-2 w-3/4 sm:w-1/4 min-w-52">
                   <label>End Date</label>
                   <DatePicker
                     style={{
@@ -585,7 +600,7 @@ const VehReservation = () => {
                 </div>
 
                 <div className="flex flex-col gap-y-2 w-3/4 sm:w-1/4 min-w-52">
-                  <label>End Time (Optional)</label>
+                  <label>End Time</label>
                   <input
                     type="time"
                     value={inputs.time}

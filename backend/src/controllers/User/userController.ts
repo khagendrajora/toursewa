@@ -2,7 +2,7 @@ import User from "../../models/User/userModel";
 import { Request, Response } from "express";
 import bcryptjs from "bcryptjs";
 import Token from "../../models/token";
-import { uuid } from "uuidv4";
+import { v4 as uuid } from "uuid";
 import { sendEmail } from "../../utils/setEmail";
 
 import { customAlphabet } from "nanoid";

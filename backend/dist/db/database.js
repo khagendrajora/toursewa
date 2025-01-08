@@ -8,7 +8,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 mongoose_1.default
-    .connect(process.env.DATABASE)
+    .connect(`mongodb://mongodb:27017/toursewa`)
     .then(() => console.log("database Connected"))
     .catch((err) => console.log("Database connection failed", err));
 exports.database = mongoose_1.default;

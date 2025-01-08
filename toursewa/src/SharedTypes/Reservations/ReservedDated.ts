@@ -5,4 +5,5 @@ export interface IRDates extends Document {
   bookedBy: string;
   bookingId: string;
   time?: string;
+  startTime: string;
 }

@@ -16,7 +16,7 @@ exports.getMyReservations = exports.resetPwd = exports.deleteUser = exports.upda
 const userModel_1 = __importDefault(require("../../models/User/userModel"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const token_1 = __importDefault(require("../../models/token"));
-const uuidv4_1 = require("uuidv4");
+const uuid_1 = require("uuid");
 const setEmail_1 = require("../../utils/setEmail");
 const nanoid_1 = require("nanoid");
 const ReservedDated_1 = __importDefault(require("../../models/Reservations/ReservedDated"));
@@ -63,7 +63,7 @@ const addNewUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             return res.status(400).json({ error: "Failed to save the User" });
         }
         let token = new token_1.default({
-            token: (0, uuidv4_1.uuid)(),
+            token: (0, uuid_1.v4)(),
             userId: clientUser._id,
         });
         token = yield token.save();

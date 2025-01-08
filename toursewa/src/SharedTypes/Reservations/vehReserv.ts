@@ -29,5 +29,6 @@ export interface IVRev extends Document {
   vehicleImage?: string[];
   numberOfPassengers: number;
   time?: string;
+  startTime: string;
   createdAt?: Date;
 }

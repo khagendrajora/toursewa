@@ -26,7 +26,7 @@ const vehReservation = (req, res) => __awaiter(void 0, void 0, void 0, function*
     const customId = (0, nanoid_1.customAlphabet)("1234567890", 4);
     let bookingId = customId();
     bookingId = "R" + bookingId;
-    const { bookingName, age, email, phone, sourceAddress, destinationAddress, startDate, endDate, address, bookedBy, bookedByName, numberOfPassengers, time, } = req.body;
+    const { bookingName, age, email, phone, sourceAddress, destinationAddress, startDate, endDate, address, bookedBy, bookedByName, numberOfPassengers, startTime, time, } = req.body;
     let bookingDate = [];
     const newStartDate = new Date(startDate);
     const newEndDate = new Date(endDate);
@@ -53,6 +53,7 @@ const vehReservation = (req, res) => __awaiter(void 0, void 0, void 0, function*
             bookedByName,
             age,
             sourceAddress,
+            startTime,
             destinationAddress,
             email,
             phone,
@@ -72,6 +73,7 @@ const vehReservation = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 vehicleId: id,
                 bookingDate,
                 bookedBy,
+                startTime,
                 time,
                 bookingId: bookingId,
             });

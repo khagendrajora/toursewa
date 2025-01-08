@@ -26,6 +26,7 @@ export const vehReservation = async (req: Request, res: Response) => {
     bookedBy,
     bookedByName,
     numberOfPassengers,
+    startTime,
     time,
   } = req.body;
   let bookingDate: string[] = [];
@@ -56,6 +57,7 @@ export const vehReservation = async (req: Request, res: Response) => {
       bookedByName,
       age,
       sourceAddress,
+      startTime,
       destinationAddress,
       email,
       phone,
@@ -74,6 +76,7 @@ export const vehReservation = async (req: Request, res: Response) => {
         vehicleId: id,
         bookingDate,
         bookedBy,
+        startTime,
         time,
         bookingId: bookingId,
       });
