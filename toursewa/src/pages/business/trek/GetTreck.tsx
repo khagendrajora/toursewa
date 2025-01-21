@@ -159,7 +159,7 @@ export const GetTreck = () => {
   return (
     <>
       <ToastContainer theme="colored" position="top-right" />
-      <div className="w-full flex flex-col gap-5">
+      <div className="h-screen flex flex-col gap-5">
         <div className="flex justify-between">
           <div>
             <h1 className="md:text-3xl text-lg font-bold">Trek List</h1>
@@ -172,7 +172,7 @@ export const GetTreck = () => {
             Add Trek
           </Link>
         </div>
-        <div className="flex mt-  justify-end">
+        <div className="flex mt-5 w-[88%] mx-auto justify-end ">
           <div className="relative">
             <input
               type="text"
@@ -190,79 +190,52 @@ export const GetTreck = () => {
         {isLoading ? (
           <PageLoader />
         ) : (
-          <div className=" flex justify-center items-center text-xs">
-            <div className="overflow-x-auto space-y-5 ">
+          <div className=" flex justify-center w-full items-center text-xs">
+            <div className="relative overflow-x-auto shadow-md rounded-sm ">
               {!filter || filter.length === 0 ? (
                 <p className="flex justify-center items-center p-5 text-3xl">
                   No data Found
                 </p>
               ) : (
-                <table className="table-auto border-collapse font-normal  border border-gray-500 text-xs md:text-lg ">
-                  <thead className="bg-neutral-400 font-normal  text-white">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                      <th className="border font-normal  border-gray-500 ">
-                        SN
-                      </th>
-                      <th className="border font-normal border-gray-500 ">
-                        ID
-                      </th>
+                      <th className="px-3  py-3 ">SN</th>
+                      <th className="px-3  py-3 p-2">ID</th>
 
-                      <th className="border font-normal border-gray-500 p-2">
-                        Name
-                      </th>
-                      <th className="border font-normal  border-gray-500 p-2">
-                        Category
-                      </th>
+                      <th className="px-3  py-3 p-2">Name</th>
+                      <th className="px-3  py-3 p-2">Category</th>
 
-                      <th className="border font-normal border-gray-500 p-2">
-                        Days
-                      </th>
+                      <th className="px-3  py-3">Days</th>
 
-                      <th className="border font-normal border-gray-500 p-2">
-                        Number
-                      </th>
-                      <th className="border  font-normal border-gray-500 p-2">
-                        Capacity
-                      </th>
+                      <th className="px-3  py-3">Number</th>
+                      <th className="px-3  py-3">Capacity</th>
 
-                      <th className="border font-normal  border-gray-500 min-w-[120px] md:min-w-[170px] p-2">
-                        Operational Dates
-                      </th>
+                      <th className="px-3  py-3 ">Operational Dates</th>
 
-                      <th className="border font-normal border-gray-500 p-2">
-                        Action
-                      </th>
+                      <th className="px-3  py-3">Action</th>
                     </tr>
                   </thead>
                   <tbody className="">
                     {filter &&
                       filter.map((trek, i) => (
-                        <tr className="" key={trek?._id}>
-                          <td className="border border-slate-400 text-center p-7">
-                            {i + 1}
-                          </td>
-                          <td className="border border-slate-400 text-center p-7">
-                            {trek?.trekId}
-                          </td>
-                          <td className="border  border-slate-400 text-center">
-                            {trek?.name}
-                          </td>
-                          <td className="border  border-slate-400 text-center">
-                            {trek?.prodCategory}
-                          </td>
+                        <tr
+                          key={trek?._id}
+                          className={`${
+                            i % 2 === 0 ? "bg-white" : "bg-gray-50"
+                          }`}
+                        >
+                          <td className="px-3  py-3">{i + 1}</td>
+                          <td className="px-3  py-3">{trek?.trekId}</td>
+                          <td className="px-3  py-3">{trek?.name}</td>
+                          <td className="px-3  py-3">{trek?.prodCategory}</td>
 
-                          <td className="border border-slate-400 text-center">
-                            {trek?.days}
-                          </td>
+                          <td className="px-3  py-3">{trek?.days}</td>
 
-                          <td className="border border-slate-400 text-center">
-                            {trek?.numbers}
-                          </td>
+                          <td className="px-3  py-3">{trek?.numbers}</td>
 
-                          <td className="border border-slate-400 text-center">
-                            {trek?.capacity}
-                          </td>
-                          <td className="p-2 border border-gray-500 text-center">
+                          <td className="px-3  py-3">{trek?.capacity}</td>
+                          <td className="px-3  py-3">
                             <span
                               className="cursor-pointer text-blue-400"
                               onClick={() => changeAvailability(trek._id || "")}
@@ -302,7 +275,7 @@ export const GetTreck = () => {
                             )}
                           </td>
 
-                          <td className="flex justify-between flex-col border gap-6 border-b-0  text-white p-2 ">
+                          <td className="px-3  py-3">
                             <div className="flex gap-4 md:gap-7">
                               <button
                                 onClick={() =>

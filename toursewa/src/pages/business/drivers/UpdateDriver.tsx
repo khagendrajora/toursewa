@@ -82,6 +82,8 @@ export const UpdateDriver = () => {
       formData.append("driverAge", driverAge.toString());
       formData.append("driverEmail", driverEmail || "");
       formData.append("driverPhone", driverPhone);
+      formData.append("updatedBy", authUser?.bId || "");
+
       if (driverImage) {
         formData.append("driverImage", driverImage);
       }

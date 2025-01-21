@@ -21,7 +21,7 @@ import { AdminDashboard } from "./pages/admin/AdminDashboard";
 // import { AdminLayout } from "./pages/admin/AdminLayout";
 import { Profile } from "./pages/business/Profile";
 import { Dashboard } from "./pages/business/Dashboard";
-import { BusinessLayout } from "./pages/business/layout/BusinessLayout";
+// import { BusinessLayout } from "./pages/business/layout/BusinessLayout";
 import { Login } from "./pages/Register/Login";
 import { GetVeh } from "./pages/business/vehicle/GetVeh";
 import { useAuthContext } from "./context/AuthContext";
@@ -122,6 +122,7 @@ import { HotDealsPage } from "./pages/landingPage/HotDealsPage";
 import { UpdateHero } from "./pages/admin/components/hero/UpdateHero";
 import { DestinationPage } from "./pages/landingPage/DestinationPage";
 import { AdminSideBar } from "./pages/admin/AdminSideBar";
+import { SideBar } from "./pages/business/SideBar";
 
 function App() {
   const { authUser } = useAuthContext();
@@ -276,7 +277,7 @@ function App() {
             )}
           </Route>
 
-          <Route path="business" element={<BusinessLayout />}>
+          <Route path="business" element={<SideBar />}>
             {authUser?.bId ? (
               <>
                 <Route

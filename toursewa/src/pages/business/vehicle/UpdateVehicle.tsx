@@ -30,6 +30,7 @@ export const UpdateVehicle = () => {
   const [capacity, setCapacity] = useState("");
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [price, setPrice] = useState("");
   const [operationDates, setOperationDates] = React.useState<string[]>([]);
   const [vehImages, setVehImages] = React.useState<File[]>([]);
   const [category, setCategory] = useState<VCategory[]>([]);
@@ -52,6 +53,7 @@ export const UpdateVehicle = () => {
             setMadeYear(res.data.madeYear);
             setCapacity(res.data.capacity);
             setName(res.data.name);
+            setPrice(res.data.price);
             setVehNumber(res.data.vehNumber);
             setOperationDates(res.data.operationDates);
             setQuantity(res.data.quantity);
@@ -207,6 +209,8 @@ export const UpdateVehicle = () => {
       });
       formData.append("vehCondition", vehCondition);
       formData.append("madeYear", madeYear);
+      formData.append("updatedBy", authUser?.loginedId || "");
+      formData.append("price", price.toString());
       formData.append("capacity", capacity);
       formData.append("name", name);
       formData.append("quantity", quantity);
@@ -461,6 +465,18 @@ export const UpdateVehicle = () => {
                   value={capacity}
                   name="capacity"
                   onChange={(e) => setCapacity(e.target.value)}
+                />
+              </div>
+
+              <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
+                <label>Price </label>
+                <input
+                  type="number"
+                  placeholder="Price"
+                  className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
+                  value={price}
+                  name="price"
+                  onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
               {/* <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">

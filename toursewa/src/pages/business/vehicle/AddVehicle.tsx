@@ -42,8 +42,10 @@ export const AddVehicle = () => {
     manufacturer: string;
     model: string;
     VIN: string;
+    price: string;
   }>({
     vehCategory: "",
+    price: "",
     vehSubCategory: "",
     services: [],
     amenities: [],
@@ -189,7 +191,7 @@ export const AddVehicle = () => {
     formData.append("businessName", authUser?.businessName || "");
     formData.append("vehCategory", inputs.vehCategory.toString());
     formData.append("vehSubCategory", inputs.vehSubCategory);
-
+    formData.append("price", inputs.price.toString());
     inputs.services.forEach((value) => {
       formData.append("services", value);
     });
@@ -197,7 +199,7 @@ export const AddVehicle = () => {
     inputs.amenities.forEach((value) => {
       formData.append("amenities", value);
     });
-
+    formData.append("addedBy", authUser?.loginedId || "");
     formData.append("vehCondition", inputs.vehCondition);
     formData.append("description", inputs.description);
     formData.append("vehNumber", inputs.vehNumber);
@@ -238,6 +240,7 @@ export const AddVehicle = () => {
           vehSubCategory: "",
           services: [],
           amenities: [],
+          price: "",
           vehCondition: "",
           description: "",
           madeYear: "",
@@ -527,6 +530,20 @@ export const AddVehicle = () => {
                   value={inputs.capacity !== null ? inputs.capacity : ""}
                   onChange={(e) =>
                     setInputs({ ...inputs, capacity: Number(e.target.value) })
+                  }
+                />
+              </div>
+
+              <div className="flex flex-col  sm:w-1/3  w-11/12 space-y-1">
+                <label>Price</label>
+                <input
+                  type="number"
+                  min={0}
+                  placeholder="Price"
+                  className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
+                  value={inputs.price !== null ? inputs.price : ""}
+                  onChange={(e) =>
+                    setInputs({ ...inputs, price: e.target.value })
                   }
                 />
               </div>

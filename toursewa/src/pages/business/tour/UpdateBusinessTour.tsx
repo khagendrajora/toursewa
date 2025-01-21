@@ -13,6 +13,7 @@ import { TourCategory } from "../../../.../../SharedTypes/Category/tourCategory"
 import { IMAGE_URL } from "../../../config/Config";
 import { ButtonLoader } from "../../../utils/ButtonLoader";
 import { IDest } from "../../../.../../SharedTypes/Pages/LandingPage/Destination";
+import { useAuthContext } from "../../../context/AuthContext";
 
 const UpdateBusinessTour = () => {
   const [category, setCategory] = useState<TourCategory[]>([]);
@@ -22,7 +23,7 @@ const UpdateBusinessTour = () => {
   const id = params.id;
   const navigate = useNavigate();
   const editor = React.useRef(null);
-
+  const { authUser } = useAuthContext();
   const [prodCategory, setProdCategory] = useState("");
   const [prodsubCategory, setprodsubCategory] = useState("");
   const [inclusion, setInclusion] = useState<string[]>([]);
@@ -31,6 +32,7 @@ const UpdateBusinessTour = () => {
   const [itinerary, setItinerary] = useState("");
   const [capacity, setCapacity] = useState("");
   const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
   const [phone, setPhone] = useState("");
   const [operationDates, setOperationDates] = React.useState<string[]>([]);
   const [tourImages, setTourImages] = React.useState<File[]>([]);
@@ -96,6 +98,7 @@ const UpdateBusinessTour = () => {
             setDuration(res.data.duration);
             setItinerary(res.data.itinerary);
             setCapacity(res.data.capacity);
+            setPrice(res.data.price);
             setName(res.data.name);
             setPhone(res.data.phone);
             setOperationDates(res.data.operationDates);
@@ -194,9 +197,11 @@ const UpdateBusinessTour = () => {
       inclusion.forEach((item) => formData.append("inclusion[]", item));
       formData.append("dest", dest);
       formData.append("duration", duration);
+      formData.append("price", price);
       formData.append("itinerary", itinerary);
       formData.append("capacity", capacity);
       formData.append("name", name);
+      formData.append("updatedBy", authUser?.loginedId || "");
       formData.append("phone", phone.toString());
       operationDates.forEach((dates) => {
         formData.append("operationDates[]", dates);
@@ -255,6 +260,20 @@ const UpdateBusinessTour = () => {
               className="flex flex-wrap justify-center  mt-10 md:mt-14 text-sm gap-y-5 gap-x-12"
             >
               <div className="space-y-1 flex flex-wrap justify-center gap-y-5 gap-x-12 text-sm w-full">
+                {/* <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
+                  <label>Tour Id</label>
+                  <input
+                    type="text"
+                    placeholder="xyz"
+                    className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
+                    required
+                    readOnly
+                    value={tourId}
+                    name="tourId"
+                    onChange={(e) => setTourId(e.target.value)}
+                  />
+                </div> */}
+
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                   <label>Product Category</label>
                   <select
@@ -338,7 +357,18 @@ const UpdateBusinessTour = () => {
                       ))}
                   </div>
                 </div>
-
+                <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    placeholder="abcdxyz"
+                    className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
+                    required
+                    value={name}
+                    name="name"
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                   <label>Destination</label>
                   <select
@@ -385,17 +415,18 @@ const UpdateBusinessTour = () => {
                   />
                 </div>
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
-                  <label>Name</label>
+                  <label>Price</label>
                   <input
-                    type="text"
-                    placeholder="abcdxyz"
+                    type="number"
+                    placeholder="Price"
                     className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
                     required
-                    value={name}
-                    name="name"
-                    onChange={(e) => setName(e.target.value)}
+                    value={price}
+                    name="price"
+                    onChange={(e) => setPrice(e.target.value)}
                   />
                 </div>
+
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                   <label>Operational Dates</label>
                   <input

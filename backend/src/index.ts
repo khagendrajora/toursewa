@@ -3,8 +3,6 @@ import dotenv from "dotenv";
 dotenv.config();
 import path from "path";
 import "./db/database";
-// import { database } from "./db/database";
-
 import adminRoute from "./routes/adminRoute";
 import categoryRoute from "./routes/CategoryRoute/categoryRoute";
 import DriverRoute from "./routes/driverRoutes/DriverRoute";
@@ -21,10 +19,8 @@ import cookieParser from "cookie-parser";
 
 const app: Express = express();
 app.use(express.json());
-
 app.use(cookieParser());
 app.use(cors());
-
 app.use("/public/uploads", express.static(path.resolve("public/uploads")));
 app.use("/api", UserRoute);
 app.use("/api", LandingPageRoute);

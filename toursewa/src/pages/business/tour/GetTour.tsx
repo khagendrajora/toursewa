@@ -27,9 +27,13 @@ export const GetTour = () => {
   const [search, setSearch] = useState<string>("");
   const [filter, setFilter] = useState<ITour[] | null>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [tour, setTour] = useState<ITour[] | []>([]);
+  const [tour, setTour] = useState<ITour[]>([]);
   const [isButton, setIsButton] = useState<string | null>(null);
   const [availability, setAvailability] = useState<string | null>(null);
+  const [paginationData, setPaginationData] = useState<ITour[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemPerPage = 5;
+  let totalPages = 0;
 
   useEffect(() => {
     const fetchVehicle = async () => {
@@ -155,11 +159,24 @@ export const GetTour = () => {
   const changeAvailability = (id: string) => {
     setAvailability((prev) => (prev === id ? null : id));
   };
+  totalPages = Math.ceil(tour?.length / itemPerPage);
+
+  const handlePageChange = (page: number) => {
+    if (currentPage > 0 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  useEffect(() => {
+    setPaginationData(
+      tour.slice((currentPage - 1) * itemPerPage, currentPage * itemPerPage)
+    );
+  }, [currentPage, tour]);
 
   return (
     <>
       <ToastContainer theme="colored" position="top-right" />
-      <div className="w-full  flex flex-col gap-5">
+      <div className="h-screen flex flex-col gap-5">
         <div className="flex justify-between">
           <div>
             <h1 className="md:text-3xl text-lg font-bold">Tour List</h1>
@@ -172,7 +189,7 @@ export const GetTour = () => {
             Add Tour
           </Link>
         </div>
-        <div className="flex mt-  justify-end">
+        <div className="flex mt-5 w-[88%] mx-auto justify-end">
           <div className="relative">
             <input
               type="text"
@@ -190,81 +207,52 @@ export const GetTour = () => {
         {isLoading ? (
           <PageLoader />
         ) : (
-          <div className=" flex justify-center items-center text-xs">
-            <div className="overflow-x-auto space-y-5 ">
+          <div className=" flex justify-center flex-col w-full items-center text-xs">
+            <div className="relative overflow-x-auto shadow-md rounded-sm ">
               {!filter || Object.keys(filter).length === 0 ? (
                 <>
                   <p>Empty</p>
                 </>
               ) : (
-                <table className="table-auto border-collapse  border border-gray-500 text-xs md:text-lg ">
-                  <thead className="bg-neutral-400 text-white">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                      <th className="border font-normal border-gray-500 p-1">
-                        SN
-                      </th>
-                      <th className="border font-normal border-gray-500 p-1">
-                        ID
-                      </th>
+                      <th className="px-3  py-3">SN</th>
+                      <th className="px-3  py-3">ID</th>
 
-                      <th className="border font-normal border-gray-500 p-1">
-                        Name
-                      </th>
-                      <th className="border font-normal  border-gray-500 p-1">
-                        Category
-                      </th>
+                      <th className="px-3  py-3">Name</th>
+                      <th className="px-3  py-3">Category</th>
 
-                      <th className="border font-normal border-gray-500  p-1">
-                        Duration
-                      </th>
+                      <th className="px-3  py-3">Duration</th>
 
-                      <th className="border font-normal  border-gray-500 p-1">
-                        Capacity
-                      </th>
+                      <th className="px-3  py-3">Capacity</th>
 
-                      <th className="border font-normal border-gray-500 p-1">
-                        Phone
-                      </th>
-                      <th className="border font-normal  border-gray-500 min-w-[120px] md:min-w-[170px] p-2">
-                        Operational Dates
-                      </th>
-                      <th className="border font-normal border-gray-500 p-2">
-                        Action
-                      </th>
+                      <th className="px-3  py-3">Phone</th>
+                      <th className="px-3  py-3">Operational&nbsp;Dates</th>
+                      <th className="px-3  py-3">Action</th>
                     </tr>
                   </thead>
                   <tbody className="">
-                    {filter &&
-                      filter.map((tour, i) => (
-                        <tr key={tour?._id}>
-                          <td className="border border-gray-500 p-3 text-center">
-                            {i + 1}
-                          </td>
-                          <td className="border border-gray-500 p-3 text-center">
-                            {tour?.tourId}
-                          </td>
-                          {/* <td className="p-3 border-gray-500  text-center border">
-                            {tour?.businessId}
-                          </td> */}
-                          <td className="border p-3 border-gray-500 text-center">
-                            {tour?.name}
-                          </td>
-                          <td className="border p-3 border-gray-500 text-center">
-                            {tour?.prodCategory}
-                          </td>
+                    {paginationData &&
+                      paginationData.map((tour, i) => (
+                        <tr
+                          key={tour?._id}
+                          className={`${
+                            i % 2 === 0 ? "bg-white" : "bg-gray-50"
+                          }`}
+                        >
+                          <td className="px-3  py-3">{i + 1}</td>
+                          <td className="px-3  py-3">{tour?.tourId}</td>
 
-                          <td className="p-3 border-gray-500 border text-center">
-                            {tour?.duration}
-                          </td>
+                          <td className="px-3  py-3">{tour?.name}</td>
+                          <td className="px-3  py-3">{tour?.prodCategory}</td>
 
-                          <td className="p-3 border-gray-500 border text-center">
-                            {tour?.capacity}
-                          </td>
+                          <td className="px-3  py-3">{tour?.duration}</td>
 
-                          <td className=" border p-3 border-gray-500 text-center">
-                            {tour?.phone}
-                          </td>
-                          <td className="p-3 border border-gray-500 text-center">
+                          <td className="px-3  py-3">{tour?.capacity}</td>
+
+                          <td className=" px-3  py-3">{tour?.phone}</td>
+                          <td className="px-3  py-3">
                             <span
                               className="cursor-pointer text-blue-400"
                               onClick={() => changeAvailability(tour._id || "")}
@@ -304,7 +292,7 @@ export const GetTour = () => {
                             )}
                           </td>
 
-                          <td className="flex justify-between flex-col border gap-6 border-b-0  text-white p-2 ">
+                          <td className="px-3  py-3">
                             <div className="flex gap-5 md:gap-7">
                               <button
                                 onClick={() =>
@@ -394,6 +382,70 @@ export const GetTour = () => {
                   </tbody>
                 </table>
               )}
+            </div>
+            <div className="flex flex-col w-full items-end text-xs p-2">
+              <span className=" text-gray-700">
+                Showing{" "}
+                <span className="font-semibold text-gray-900">
+                  {(currentPage - 1) * itemPerPage + 1}
+                </span>{" "}
+                to{" "}
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  {Math.min(currentPage * itemPerPage, tour.length)}
+                </span>{" "}
+                of{" "}
+                <span className="font-semibold text-gray-900">
+                  {tour.length}
+                </span>{" "}
+                Entries
+              </span>
+              <div className="inline-flex mt-2 xs:mt-0">
+                <button
+                  className="flex items-center justify-center  text-xs  text-white bg-gray-700 p-2 rounded-s hover:bg-gray-900"
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  <svg
+                    className="w-3 me-1 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 5H1m0 0 4 4M1 5l4-4"
+                    />
+                  </svg>
+                  Prev
+                </button>
+
+                <button
+                  className="flex items-center justify-center  text-xs  text-white bg-gray-700 p-2 hover:bg-gray-900"
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                  <svg
+                    className="w-3 ms-1 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         )}

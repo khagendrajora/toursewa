@@ -13,6 +13,7 @@ import { TrekCategory } from "../../../.../../SharedTypes/Category/trekCategory"
 import { IMAGE_URL } from "../.././../config/Config";
 import { ButtonLoader } from "../../../utils/ButtonLoader";
 import { IDest } from "../../../.../../SharedTypes/Pages/LandingPage/Destination";
+import { useAuthContext } from "../../../context/AuthContext";
 
 const UpdateBusinessTrek = () => {
   const params = useParams();
@@ -27,7 +28,9 @@ const UpdateBusinessTrek = () => {
   const [number, setNumber] = useState("");
   const [itinerary, setItinerary] = useState("");
   const [capacity, setCapacity] = useState("");
+  const { authUser } = useAuthContext();
   const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
   const [operationDates, setOperationDates] = React.useState<string[]>([]);
   const [trekImages, setTrekImages] = React.useState<File[]>([]);
   const [inclusionInput, setInclusionInput] = useState("");
@@ -90,6 +93,7 @@ const UpdateBusinessTrek = () => {
             setItinerary(res.data.itinerary);
             setCapacity(res.data.capacity);
             setName(res.data.name);
+            setPrice(res.data.price);
             setNumber(res.data.numbers);
             setOperationDates(res.data.operationDates);
             setTrekImages(res.data.trekImages);
@@ -193,8 +197,10 @@ const UpdateBusinessTrek = () => {
       formData.append("numbers", number.toString());
       formData.append("dest", dest);
       formData.append("days", days.toString());
+      formData.append("price", price.toString());
       formData.append("itinerary", itinerary);
       formData.append("capacity", capacity);
+      formData.append("updatedBy", authUser?.loginedId || "");
       formData.append("name", name);
 
       operationDates.forEach((dates) => {
@@ -257,6 +263,20 @@ const UpdateBusinessTrek = () => {
               className="flex flex-wrap justify-center  mt-10 md:mt-14 text-sm gap-y-5 gap-x-12"
             >
               <div className="space-y-1 flex flex-wrap justify-center gap-y-5 gap-x-12 text-sm w-full">
+                {/* <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
+                  <label>Trek Id</label>
+                  <input
+                    type="text"
+                    placeholder="ID"
+                    className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
+                    required
+                    readOnly
+                    value={trekId}
+                    name="trekId"
+                    onChange={(e) => setTrekId(e.target.value)}
+                  />
+                </div> */}
+
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                   <label>Product Category</label>
                   <select
@@ -345,6 +365,19 @@ const UpdateBusinessTrek = () => {
                 </div>
 
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
+                    required
+                    value={name}
+                    name="name"
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+
+                <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                   <label>Destination</label>
                   <select
                     className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
@@ -406,15 +439,15 @@ const UpdateBusinessTrek = () => {
                 </div>
 
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
-                  <label>Name</label>
+                  <label>Price</label>
                   <input
-                    type="text"
-                    placeholder="Name"
+                    type="number"
+                    placeholder="Price"
                     className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
                     required
-                    value={name}
-                    name="name"
-                    onChange={(e) => setName(e.target.value)}
+                    value={price}
+                    name="price"
+                    onChange={(e) => setPrice(e.target.value)}
                   />
                 </div>
 

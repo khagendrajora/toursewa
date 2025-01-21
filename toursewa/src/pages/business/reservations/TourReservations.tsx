@@ -15,10 +15,15 @@ export const TourReservations = () => {
   const { authUser } = useAuthContext();
   const [isLoading, setIsLoading] = useState(true);
   const businessId = authUser?.bId;
-  const [revData, setRevData] = useState<ITuRev[] | null>([]);
+  const [revData, setRevData] = useState<ITuRev[]>([]);
   const [search, setSearch] = useState<string>("");
   const [filterSearch, SetFilterSearch] = useState<ITuRev[] | null>(null);
   const [isButton, setIsButton] = useState("");
+
+  const [paginationData, setPaginationData] = useState<ITuRev[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemPerPage = 5;
+  let totalPages = 0;
 
   useEffect(() => {
     const fetchRev = async () => {
@@ -43,6 +48,53 @@ export const TourReservations = () => {
     };
     fetchRev();
   }, [businessId]);
+
+  //  const updateRev = async (
+  //     id: string,
+  //     updateInputs: {
+  //       status: string;
+  //       email: string;
+  //       updatedBy: string | "";
+  //     }
+  //   ) => {
+  //     try {
+  //       const confirmed = window.confirm(
+  //         `Change the status to ${updateInputs.status}`
+  //       );
+  //       if (confirmed) {
+  //         setIsButton(`${id}${updateInputs.status}`);
+  //         const res = await fetch(
+  //           `${URL}/api/updatetourRevStatusbybid/${id}`,
+  //           {
+  //             method: "PUT",
+  //             headers: {
+  //               "Content-Type": "application/json",
+  //             },
+  //             body: JSON.stringify(updateInputs),
+  //           }
+  //         );
+  //         const data = await res.json();
+  //         if (!res.ok) {
+  //           toast.error(data.error);
+  //         } else {
+  //           toast.success("Booking Updated");
+  //           setRevData((prevData) =>
+  //             prevData
+  //               ? prevData.map((rev) =>
+  //                   rev.bookingId === id
+  //                     ? { ...rev, status: updateInputs.status as IStatus }
+  //                     : rev
+  //                 )
+  //               : null
+  //           );
+  //         }
+  //       }
+  //     } catch (error: any) {
+  //       toast.error(error);
+  //     } finally {
+  //       setIsButton("");
+  //     }
+  //   };
 
   const update = async (
     id: string,
@@ -72,14 +124,14 @@ export const TourReservations = () => {
           toast.error(data.error);
         } else {
           toast.success("Booking Updated");
-          setRevData((prevData) =>
-            prevData
-              ? prevData.map((rev) =>
-                  rev._id === id
-                    ? { ...rev, status: updateInputs.status as IStatus }
-                    : rev
-                )
-              : null
+          setRevData(
+            (prevData) =>
+              prevData &&
+              revData.map((rev) =>
+                rev._id === id
+                  ? { ...rev, status: updateInputs.status as IStatus }
+                  : rev
+              )
           );
         }
       }
@@ -111,17 +163,31 @@ export const TourReservations = () => {
     }
   }, [search, revData]);
 
+  totalPages = Math.ceil(revData?.length / itemPerPage);
+
+  const handlePageChange = (page: number) => {
+    if (currentPage > 0 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  useEffect(() => {
+    setPaginationData(
+      revData.slice((currentPage - 1) * itemPerPage, currentPage * itemPerPage)
+    );
+  }, [currentPage, revData]);
+
   return (
     <>
       <ToastContainer theme="colored" position="top-center" />
-      <div className="w-full lg:w-11/12 flex flex-col gap-5">
+      <div className="h-screen flex flex-col gap-5">
         <div className="flex justify-between">
           <div>
             <h1 className="md:text-3xl text-lg font-bold">Reservation List</h1>
-            <p className="mt-2 text-xs md:text-lg">List of Reservations</p>
+            <p className="mt-2 text-xs md:text-lg">Tour Reservations</p>
           </div>
         </div>
-        <div className="flex mt-  justify-end">
+        <div className="flex mt-5 w-[88%] mx-auto justify-end">
           <div className="relative">
             <input
               type="text"
@@ -143,353 +209,347 @@ export const TourReservations = () => {
             <p className="text-center">Empty</p>
           </>
         ) : (
-          <div className=" flex justify-center items-center text-xs">
-            <div className="overflow-x-auto space-y-10 ">
-              {filterSearch &&
-                filterSearch.map((filter) => (
-                  <>
-                    <div className="space-y-1">
-                      <table className="table-auto border-collapse  border border-gray-500 text-xs ">
-                        <thead className="bg-neutral-400 text-white">
-                          <tr>
-                            <th className="border  border-gray-500 p-1">
-                              Status
-                            </th>
-                            <th className="border border-gray-500 p-1 min-w-[80px] ">
-                              Booking ID
-                            </th>
+          <div className=" flex justify-center flex-col pr-5 w-full items-center text-xs">
+            <div className="relative overflow-x-auto  scrollbar-hidden shadow-md rounded-sm ">
+              <table className="w-full text-sm text-left rtl:text-right  text-gray-500 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-300  dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th className="px-3 py-3">Status</th>
+                    <th className="px-3 py-3">Booking&nbsp;ID</th>
+                    <th className="px-3 py-3">Tour&nbsp;name</th>
+                    <th className="px-3 py-3">Passenger&nbsp;Name</th>
+                    <th className="px-3 py-3">Phone</th>
+                    <th className="px-3 py-3">Email</th>
+                    <th className="px-3 py-3">Date</th>
+                    <th className=" py-3">Passengers</th>
+                    <th className="px-3  py-3">Action</th>
+                  </tr>
+                </thead>
 
-                            <th className="border  border-gray-500 p-1 min-w-[100px]">
-                              Tour name
-                            </th>
+                <tbody className="">
+                  {filterSearch &&
+                    filterSearch.map((filter, i) => (
+                      <>
+                        <tr
+                          key={filter?._id}
+                          className={`${
+                            i % 2 === 0 ? "bg-white" : "bg-gray-50"
+                          }`}
+                        >
+                          <td className="px-3 py-3 text-red-500">
+                            {filter?.status}
+                          </td>
+                          <td className="px-3  py-3">{filter?.bookingId}</td>
 
-                            <th className="border border-gray-500  p-1">
-                              Passenger Name
-                            </th>
+                          <td className="px-3  py-3">{filter?.tourName}</td>
 
-                            <th className="border border-gray-500  p-1">
-                              Phone
-                            </th>
-                            <th className="border border-gray-500  p-1">
-                              Email
-                            </th>
-                            {/* <th className="border border-gray-500  p-1">
-                              Numbers
-                            </th> */}
-                            <th className="border border-gray-500  p-1">
-                              Date
-                            </th>
-                            <th className="border border-gray-500  p-1">
-                              No. of Passengers
-                            </th>
-                          </tr>
-                        </thead>
+                          <td className=" px-3  py-3">
+                            {filter?.passengerName}
+                          </td>
 
-                        <tbody className="">
-                          <tr key={filter?._id} className="">
-                            <td className="border border-gray-500 text-red-600 text-center p-1">
-                              {filter?.status}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {filter?.bookingId}
-                            </td>
-                            {/* <td className="border border-gray-500 text-center p-1">
-                                {filter?.vehicleId}
-                              </td> */}
-                            <td className="border  border-gray-500 text-center p-1">
-                              {filter?.tourName}
-                            </td>
+                          <td className="px-3  py-3">{filter?.phone}</td>
+                          <td className="px-3  py-3">{filter?.email}</td>
+                          <td className="min-w-[100px]">
+                            {filter?.date.toString().split("T")[0]}
+                          </td>
+                          <td className="py-3">{filter?.tickets}</td>
 
-                            <td className=" border border-gray-500 text-center p-1">
-                              {filter?.passengerName}
-                            </td>
+                          <td className="px-3  py-3">
+                            <div className="flex text-white gap-5  text-xs  w-full">
+                              {filter.status === "Completed" ? (
+                                ""
+                              ) : filter.status != "Canceled" ? (
+                                <button
+                                  className="p-1 rounded-sm bg-lime-500 hover:bg-lime-700 "
+                                  onClick={() => {
+                                    const updateInputs = {
+                                      bookingId: filter.bookingId,
+                                      status: "Completed",
+                                      email: filter.email || "",
+                                      updatedBy: authUser?.bId || "",
+                                    };
+                                    update(filter._id || "", updateInputs);
+                                  }}
+                                >
+                                  Mark&nbsp;Completed{" "}
+                                  {isButton === `${filter._id}Completed` ? (
+                                    <ButtonLoader />
+                                  ) : (
+                                    ""
+                                  )}
+                                </button>
+                              ) : (
+                                ""
+                              )}
 
-                            <td className="border border-gray-500 text-center p-1">
-                              {filter?.phone}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {filter?.email}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {filter?.date.toString().split("T")[0]}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {filter?.tickets}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div className="flex text-white gap-5  text-xs  w-full">
-                        {filter.status === "Completed" ? (
-                          ""
-                        ) : filter.status != "Canceled" ? (
-                          <button
-                            className="p-1 rounded-sm bg-lime-500 hover:bg-lime-700 "
-                            onClick={() => {
-                              const updateInputs = {
-                                bookingId: filter.bookingId,
-                                status: "Completed",
-                                email: filter.email || "",
-                                updatedBy: authUser?.bId || "",
-                              };
-                              update(filter._id || "", updateInputs);
-                            }}
-                          >
-                            Mark Completed{" "}
-                            {isButton === `${filter._id}Completed` ? (
-                              <ButtonLoader />
-                            ) : (
-                              ""
-                            )}
-                          </button>
-                        ) : (
-                          ""
-                        )}
+                              {filter.status === "Pending" ? (
+                                <button
+                                  className="p-1 rounded-sm bg-lime-500 hover:bg-lime-700 "
+                                  onClick={() => {
+                                    const updateInputs = {
+                                      status: "Approved",
+                                      email: filter.email || "",
+                                      bookingId: filter.bookingId,
+                                      updatedBy: authUser?.businessName || "",
+                                    };
+                                    update(filter._id || "", updateInputs);
+                                  }}
+                                >
+                                  Approve{" "}
+                                  {isButton === `${filter._id}Approved` ? (
+                                    <ButtonLoader />
+                                  ) : (
+                                    ""
+                                  )}
+                                </button>
+                              ) : filter.status === "Canceled" ||
+                                filter.status === "Completed" ? (
+                                ""
+                              ) : (
+                                <button
+                                  className="p-1 rounded-sm bg-blue-500 hover:bg-lime-700 "
+                                  onClick={() => {
+                                    const updateInputs = {
+                                      status: "Pending",
+                                      email: filter.email || "",
+                                      bookingId: filter.bookingId,
+                                      updatedBy: authUser?.bId || "",
+                                    };
+                                    update(filter._id || "", updateInputs);
+                                  }}
+                                >
+                                  Make&nbsp;Pending{" "}
+                                  {isButton === `${filter._id}Pending` ? (
+                                    <ButtonLoader />
+                                  ) : (
+                                    ""
+                                  )}
+                                </button>
+                              )}
 
-                        {filter.status === "Pending" ? (
-                          <button
-                            className="p-1 rounded-sm bg-lime-500 hover:bg-lime-700 "
-                            onClick={() => {
-                              const updateInputs = {
-                                status: "Approved",
-                                email: filter.email || "",
-                                bookingId: filter.bookingId,
-                                updatedBy: authUser?.businessName || "",
-                              };
-                              update(filter._id || "", updateInputs);
-                            }}
-                          >
-                            Approve{" "}
-                            {isButton === `${filter._id}Approved` ? (
-                              <ButtonLoader />
-                            ) : (
-                              ""
-                            )}
-                          </button>
-                        ) : filter.status === "Canceled" ||
-                          filter.status === "Completed" ? (
-                          ""
-                        ) : (
-                          <button
-                            className="p-1 rounded-sm bg-blue-500 hover:bg-lime-700 "
-                            onClick={() => {
-                              const updateInputs = {
-                                status: "Pending",
-                                email: filter.email || "",
-                                bookingId: filter.bookingId,
-                                updatedBy: authUser?.bId || "",
-                              };
-                              update(filter._id || "", updateInputs);
-                            }}
-                          >
-                            Make Pending{" "}
-                            {isButton === `${filter._id}Pending` ? (
-                              <ButtonLoader />
-                            ) : (
-                              ""
-                            )}
-                          </button>
-                        )}
+                              {filter.status === "Canceled" ||
+                              filter.status === "Completed" ? (
+                                ""
+                              ) : (
+                                <button
+                                  className="p-1 rounded-sm bg-red-500 hover:bg-red-700"
+                                  onClick={() => {
+                                    const updateInputs = {
+                                      bookingId: filter.bookingId,
+                                      status: "Canceled",
+                                      email: filter.email || "",
+                                      updatedBy: authUser?.bId || "",
+                                    };
+                                    update(filter._id || "", updateInputs);
+                                  }}
+                                >
+                                  Cancel{" "}
+                                  {isButton === `${filter._id}Canceled` ? (
+                                    <ButtonLoader />
+                                  ) : (
+                                    ""
+                                  )}
+                                </button>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      </>
+                    ))}
+                  {paginationData &&
+                    filterSearch?.length === 0 &&
+                    paginationData.map((data, i) => (
+                      <>
+                        <tr
+                          key={data?._id}
+                          className={`scrollbar-hidden ${
+                            i % 2 === 0 ? "bg-white" : "bg-gray-50"
+                          }`}
+                        >
+                          <td className="px-3  py-3 text-red-500">
+                            {data?.status}
+                          </td>
+                          <td className="px-3  py-3">{data?.bookingId}</td>
 
-                        {filter.status === "Canceled" ||
-                        filter.status === "Completed" ? (
-                          ""
-                        ) : (
-                          <button
-                            className="p-1 rounded-sm bg-red-500 hover:bg-red-700"
-                            onClick={() => {
-                              const updateInputs = {
-                                bookingId: filter.bookingId,
-                                status: "Canceled",
-                                email: filter.email || "",
-                                updatedBy: authUser?.bId || "",
-                              };
-                              update(filter._id || "", updateInputs);
-                            }}
-                          >
-                            Cancel{" "}
-                            {isButton === `${filter._id}Canceled` ? (
-                              <ButtonLoader />
-                            ) : (
-                              ""
-                            )}
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  </>
-                ))}
-              {revData &&
-                filterSearch?.length === 0 &&
-                revData.map((data) => (
-                  <>
-                    <div className="space-y-1">
-                      <table className="table-auto border-collapse  border border-gray-500 text-xs ">
-                        <thead className="bg-neutral-400 text-white">
-                          <tr>
-                            <th className="border  border-gray-500 p-1">
-                              Status
-                            </th>
-                            <th className="border border-gray-500 p-1 min-w-[80px] ">
-                              Booking ID
-                            </th>
+                          <td className="px-3  py-3">{data?.tourName}</td>
 
-                            <th className="border  border-gray-500 p-1 min-w-[100px]">
-                              Tour name
-                            </th>
+                          <td className=" px-3  py-3">{data?.passengerName}</td>
 
-                            <th className="border border-gray-500  p-1">
-                              Passenger Name
-                            </th>
+                          <td className="px-3  py-3">{data?.phone}</td>
+                          <td className="px-3  py-3">{data?.email}</td>
+                          <td className="min-w-[100px]  py-3">
+                            {data?.date.toString().split("T")[0]}
+                          </td>
+                          <td className=" py-3">{data?.tickets}</td>
 
-                            <th className="border border-gray-500  p-1">
-                              Phone
-                            </th>
-                            <th className="border border-gray-500  p-1">
-                              Email
-                            </th>
+                          <td className="px-1 py-1">
+                            <div className="flex text-white gap-5  text-xs  w-full">
+                              {data.status === "Completed" ? (
+                                ""
+                              ) : data.status != "Canceled" ? (
+                                <button
+                                  className="p-1 rounded-sm bg-lime-500 hover:bg-lime-700 "
+                                  onClick={() => {
+                                    const updateInputs = {
+                                      bookingId: data.bookingId,
+                                      status: "Completed",
+                                      email: data.email || "",
+                                      updatedBy: authUser?.bId || "",
+                                    };
+                                    update(data._id || "", updateInputs);
+                                  }}
+                                >
+                                  Mark&nbsp;Completed{" "}
+                                  {isButton === `${data._id}Completed` ? (
+                                    <ButtonLoader />
+                                  ) : (
+                                    ""
+                                  )}
+                                </button>
+                              ) : (
+                                ""
+                              )}
 
-                            <th className="border border-gray-500  p-1">
-                              Date
-                            </th>
-                            <th className="border border-gray-500  p-1">
-                              No. of Passengers
-                            </th>
-                          </tr>
-                        </thead>
+                              {data.status === "Pending" ? (
+                                <button
+                                  className="p-1 rounded-sm bg-lime-500 hover:bg-lime-700 "
+                                  onClick={() => {
+                                    const updateInputs = {
+                                      status: "Approved",
+                                      email: data.email || "",
+                                      bookingId: data.bookingId,
+                                      updatedBy: authUser?.businessName || "",
+                                    };
+                                    update(data._id || "", updateInputs);
+                                  }}
+                                >
+                                  Approve{" "}
+                                  {isButton === `${data._id}Approved` ? (
+                                    <ButtonLoader />
+                                  ) : (
+                                    ""
+                                  )}
+                                </button>
+                              ) : data.status === "Canceled" ||
+                                data.status === "Completed" ? (
+                                ""
+                              ) : (
+                                <button
+                                  className="p-1 rounded-sm bg-blue-500 hover:bg-lime-700 "
+                                  onClick={() => {
+                                    const updateInputs = {
+                                      status: "Pending",
+                                      email: data.email || "",
+                                      bookingId: data.bookingId,
+                                      updatedBy: authUser?.bId || "",
+                                    };
+                                    update(data._id || "", updateInputs);
+                                  }}
+                                >
+                                  Make&nbsp;Pending{" "}
+                                  {isButton === `${data._id}Pending` ? (
+                                    <ButtonLoader />
+                                  ) : (
+                                    ""
+                                  )}
+                                </button>
+                              )}
 
-                        <tbody className="">
-                          <tr key={data?._id} className="">
-                            <td className="border border-gray-500 text-center text-button p-1">
-                              {data?.status}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {data?.bookingId}
-                            </td>
+                              {data.status === "Canceled" ||
+                              data.status === "Completed" ? (
+                                ""
+                              ) : (
+                                <button
+                                  className="p-1 rounded-sm bg-red-500 hover:bg-red-700"
+                                  onClick={() => {
+                                    const updateInputs = {
+                                      bookingId: data.bookingId,
+                                      status: "Canceled",
+                                      email: data.email || "",
+                                      updatedBy: authUser?.bId || "",
+                                    };
+                                    update(data._id || "", updateInputs);
+                                  }}
+                                >
+                                  Cancel{" "}
+                                  {isButton === `${data._id}Canceled` ? (
+                                    <ButtonLoader />
+                                  ) : (
+                                    ""
+                                  )}
+                                </button>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      </>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="flex flex-col w-full items-end text-xs p-2">
+              <span className=" text-gray-700">
+                Showing{" "}
+                <span className="font-semibold text-gray-900">
+                  {(currentPage - 1) * itemPerPage + 1}
+                </span>{" "}
+                to{" "}
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  {Math.min(currentPage * itemPerPage, revData.length)}
+                </span>{" "}
+                of{" "}
+                <span className="font-semibold text-gray-900">
+                  {revData.length}
+                </span>{" "}
+                Entries
+              </span>
+              <div className="inline-flex mt-2 xs:mt-0">
+                <button
+                  className="flex items-center justify-center  text-xs  text-white bg-gray-700 p-2 rounded-s hover:bg-gray-900"
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  <svg
+                    className="w-3 me-1 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 5H1m0 0 4 4M1 5l4-4"
+                    />
+                  </svg>
+                  Prev
+                </button>
 
-                            <td className="border  border-gray-500 text-center p-1">
-                              {data?.tourName}
-                            </td>
-
-                            <td className=" border border-gray-500 text-center p-1">
-                              {data?.passengerName}
-                            </td>
-
-                            <td className="border border-gray-500 text-center p-1">
-                              {data?.phone}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {data?.email}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {data?.date.toString().split("T")[0]}
-                            </td>
-                            <td className="border border-gray-500 text-center p-1">
-                              {data?.tickets}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div className="flex text-white gap-5  text-xs  w-full">
-                        {data.status === "Completed" ? (
-                          ""
-                        ) : data.status != "Canceled" ? (
-                          <button
-                            className="p-1 rounded-sm bg-lime-500 hover:bg-lime-700 "
-                            onClick={() => {
-                              const updateInputs = {
-                                bookingId: data.bookingId,
-                                status: "Completed",
-                                email: data.email || "",
-                                updatedBy: authUser?.bId || "",
-                              };
-                              update(data._id || "", updateInputs);
-                            }}
-                          >
-                            Mark Completed{" "}
-                            {isButton === `${data._id}Completed` ? (
-                              <ButtonLoader />
-                            ) : (
-                              ""
-                            )}
-                          </button>
-                        ) : (
-                          ""
-                        )}
-
-                        {data.status === "Pending" ? (
-                          <button
-                            className="p-1 rounded-sm bg-lime-500 hover:bg-lime-700 "
-                            onClick={() => {
-                              const updateInputs = {
-                                status: "Approved",
-                                email: data.email || "",
-                                bookingId: data.bookingId,
-                                updatedBy: authUser?.businessName || "",
-                              };
-                              update(data._id || "", updateInputs);
-                            }}
-                          >
-                            Approve{" "}
-                            {isButton === `${data._id}Approved` ? (
-                              <ButtonLoader />
-                            ) : (
-                              ""
-                            )}
-                          </button>
-                        ) : data.status === "Canceled" ||
-                          data.status === "Completed" ? (
-                          ""
-                        ) : (
-                          <button
-                            className="p-1 rounded-sm bg-blue-500 hover:bg-lime-700 "
-                            onClick={() => {
-                              const updateInputs = {
-                                status: "Pending",
-                                email: data.email || "",
-                                bookingId: data.bookingId,
-                                updatedBy: authUser?.bId || "",
-                              };
-                              update(data._id || "", updateInputs);
-                            }}
-                          >
-                            Make Pending{" "}
-                            {isButton === `${data._id}Pending` ? (
-                              <ButtonLoader />
-                            ) : (
-                              ""
-                            )}
-                          </button>
-                        )}
-
-                        {data.status === "Canceled" ||
-                        data.status === "Completed" ? (
-                          ""
-                        ) : (
-                          <button
-                            className="p-1 rounded-sm bg-red-500 hover:bg-red-700"
-                            onClick={() => {
-                              const updateInputs = {
-                                bookingId: data.bookingId,
-                                status: "Canceled",
-                                email: data.email || "",
-                                updatedBy: authUser?.bId || "",
-                              };
-                              update(data._id || "", updateInputs);
-                            }}
-                          >
-                            Cancel{" "}
-                            {isButton === `${data._id}Canceled` ? (
-                              <ButtonLoader />
-                            ) : (
-                              ""
-                            )}
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  </>
-                ))}
+                <button
+                  className="flex items-center justify-center  text-xs  text-white bg-gray-700 p-2 hover:bg-gray-900"
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                  <svg
+                    className="w-3 ms-1 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         )}

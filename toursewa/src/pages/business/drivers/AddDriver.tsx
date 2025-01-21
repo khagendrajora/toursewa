@@ -6,7 +6,6 @@ import { useAuthContext } from "../../../context/AuthContext";
 import { driverData } from "../../../validation/FormValidations";
 import { URL } from "../../../config/Config";
 import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
 import { IVeh } from "../../../.../../SharedTypes/Product/vehicle";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -45,6 +44,7 @@ export const AddDriver = () => {
       vehicleId: "",
       driverImage: null,
       driverPwd: "",
+      addedBy: authUser?.bId || "",
     },
     validationSchema: driverData,
     onSubmit: async (values, { resetForm }) => {
@@ -56,6 +56,7 @@ export const AddDriver = () => {
       formData.append("driverEmail", values.driverEmail);
       formData.append("vehicleId", values.vehicleId);
       formData.append("driverPwd", values.driverPwd);
+      formData.append("addedBy", values.addedBy);
       formData.append("businessId", values.businessId);
       if (values.driverImage) {
         formData.append("driverImage", values.driverImage);

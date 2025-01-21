@@ -7,6 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import JoditEditor from "jodit-react";
+
 import "react-phone-input-2/lib/style.css";
 import { useNavigate } from "react-router-dom";
 import { TrekCategory } from "../../../.../../SharedTypes/Category/trekCategory";
@@ -53,11 +54,13 @@ const AddTrek = () => {
     operationDates: DateObject[];
     days: string;
     numbers: string;
+    price: string;
   }>({
     prodCategory: "",
     prodsubCategory: "",
     inclusion: [],
     dest: "",
+    price: "",
     itinerary: "",
     capacity: "",
     name: "",
@@ -164,9 +167,10 @@ const AddTrek = () => {
     formData.append("days", inputs.days);
     formData.append("itinerary", inputs.itinerary);
     formData.append("capacity", inputs.capacity);
-
+    formData.append("price", inputs.price);
     formData.append("name", inputs.name);
     formData.append("numbers", inputs.numbers);
+    formData.append("addedBy", authUser?.loginedId || "");
     inputs.operationDates.map((date) => {
       formData.append("operationDates", date.toString());
     });
@@ -196,6 +200,7 @@ const AddTrek = () => {
           days: "",
           itinerary: "",
           capacity: "",
+          price: "",
           name: "",
           numbers: "",
           operationDates: [],
@@ -283,6 +288,20 @@ const AddTrek = () => {
                 </div>
 
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
+                    required
+                    value={inputs.name}
+                    onChange={(e) =>
+                      setInputs({ ...inputs, name: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                   <label>Inclusion</label>
                   <div className="flex flex-row gap-x-2 items-center">
                     <input
@@ -367,15 +386,15 @@ const AddTrek = () => {
                 </div>
 
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
-                  <label>Name</label>
+                  <label>Price</label>
                   <input
-                    type="text"
-                    placeholder="Name"
+                    type="number"
+                    placeholder="Price"
                     className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
                     required
-                    value={inputs.name}
+                    value={inputs.price}
                     onChange={(e) =>
-                      setInputs({ ...inputs, name: e.target.value })
+                      setInputs({ ...inputs, price: e.target.value })
                     }
                   />
                 </div>

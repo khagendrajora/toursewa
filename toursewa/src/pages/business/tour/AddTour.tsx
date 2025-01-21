@@ -36,6 +36,7 @@ const AddTour = () => {
     itinerary: string;
     capacity: string;
     name: string;
+    price: string;
     phone: string;
     operationDates: DateObject[];
   }>({
@@ -44,6 +45,7 @@ const AddTour = () => {
     inclusion: [],
     dest: "",
     duration: "",
+    price: "",
     itinerary: "",
     capacity: "",
     name: "",
@@ -163,9 +165,11 @@ const AddTour = () => {
         formData.append("inclusion", value);
       });
       formData.append("dest", inputs.dest);
+      formData.append("addedBy", authUser?.loginedId || "");
       formData.append("duration", inputs.duration.toString());
       formData.append("itinerary", inputs.itinerary);
       formData.append("capacity", inputs.capacity);
+      formData.append("price", inputs.price.toString());
       formData.append("name", inputs.name);
       formData.append("phone", inputs.phone);
       inputs.operationDates.map((date) => {
@@ -193,6 +197,7 @@ const AddTour = () => {
           dest: "",
           duration: "",
           itinerary: "",
+          price: "",
           capacity: "",
           name: "",
           phone: "",
@@ -316,6 +321,20 @@ const AddTour = () => {
                     ))}
                   </div>
                 </div>
+
+                <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
+                    required
+                    value={inputs.name}
+                    onChange={(e) =>
+                      setInputs({ ...inputs, name: e.target.value })
+                    }
+                  />
+                </div>
                 <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
                   <label>Destination</label>
                   <select
@@ -363,17 +382,16 @@ const AddTour = () => {
                     }
                   />
                 </div>
-
-                <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm">
-                  <label>Name</label>
+                <div className="flex flex-col sm:w-1/3 w-11/12 space-y-1 text-sm ">
+                  <label>Price</label>
                   <input
-                    type="text"
-                    placeholder="Name"
+                    type="number"
+                    placeholder="Price"
                     className="border border-gray-600 rounded-md p-2 text-xs lg:text-lg shadow appearance-none"
                     required
-                    value={inputs.name}
+                    value={inputs.price}
                     onChange={(e) =>
-                      setInputs({ ...inputs, name: e.target.value })
+                      setInputs({ ...inputs, price: e.target.value })
                     }
                   />
                 </div>

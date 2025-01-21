@@ -22,9 +22,6 @@ export const ApproveBusiness = () => {
           toast.error(data.error);
         } else {
           toast.success(data.message);
-          //   setTimeout(() => {
-          //     navigate("/login");
-          //   }, 2000);
         }
       } catch (error: any) {
         toast.error(error);

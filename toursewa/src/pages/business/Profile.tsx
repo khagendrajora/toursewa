@@ -31,14 +31,14 @@ export const Profile = () => {
   return (
     <>
       <ToastContainer theme="colored" position="top-right" />
-      <div className="w-full bg-gray-100 h-full mxl:w-[1360px]">
-        <h1 className="p-5 text-button text-2xl font-medium">
+      <div className="w-full bg-zinc-50 h-full">
+        <h1 className=" text-button text-2xl p-2 font-medium">
           Profile Information
         </h1>
 
-        <div className="w-11/12 flex mb-4 justify-end">
+        <div className="w-11/12 flex m-4  justify-end">
           <button
-            className="bg-button hover:bg-[#06243C] p-2 text-white rounded-md"
+            className="bg-button hover:bg-[#06243C] p-2 text-xs  text-white rounded-md"
             onClick={() => {
               navigate(`/business/updatebusinessprofile/${businessId}`);
             }}
@@ -47,7 +47,7 @@ export const Profile = () => {
           </button>
         </div>
 
-        <div className="flex justify-center mb-10">
+        <div className="flex justify-center text-xs mb-10">
           <div className="w-11/12  flex flex-col gap-y-10">
             <div className="bg-white shadow rounded-lg p-4 gap-3 md:gap-10 flex items-center">
               <div className="">
@@ -68,22 +68,22 @@ export const Profile = () => {
               </div>
             </div>
             <div className="bg-white shadow rounded-lg p-4 items-center">
-              <h1 className="font-bold">Personal Information</h1>
+              <h1 className="font-bold">Personal&nbsp;Information</h1>
 
               <table className="mt-5 font-light text-left w-full md:w-1/3 ">
-                <tr className="h-10">
-                  <th className="font-semibold">Contact Name:</th>
+                <tr className="h-10 flex flex-wrap gap-x-3">
+                  <th className="font-semibold">Contact&nbsp;Name:</th>
                   <td>{businessData?.contactName}</td>
                 </tr>
-                <tr className="h-10">
-                  <th className="font-semibold">Phone Number:</th>
+                <tr className="h-10 flex flex-wrap gap-x-3">
+                  <th className="font-semibold">Phone&nbsp;Number:</th>
                   <td>{businessData?.primaryPhone}</td>
                 </tr>
-                <tr className="h-10">
+                <tr className="h-10 flex flex-wrap gap-x-3">
                   <th className="font-semibold">Email:</th>
                   <td>{businessData?.primaryEmail}</td>
                 </tr>
-                <tr className="h-10">
+                <tr className="h-10 flex flex-wrap gap-x-3">
                   <th className="font-semibold">Address:</th>
                   <td>{businessData?.businessAddress?.street}</td>
                 </tr>
@@ -92,68 +92,68 @@ export const Profile = () => {
             <div className="bg-white shadow rounded-lg p-4 items-center">
               <h1 className="font-bold">Business Information</h1>
 
-              <table className="mt-5 font-light text-left w-full md:w-1/3 ">
-                <tr className="h-10">
-                  <th className="font-semibold">Business Name:</th>
+              <table className="mt-5 font-light  w-full md:w-1/3 ">
+                <tr className="h-10 flex flex-wrap gap-x-3">
+                  <th className="font-semibold">Business&nbsp;Name:</th>
                   <td>{businessData?.businessName}</td>
                 </tr>
-                <tr className="h-10">
-                  <th className="font-semibold">Business Category:</th>
+                <tr className="h-10 flex flex-wrap gap-x-3">
+                  <th className="font-semibold">Business&nbsp;Category:</th>
                   <td>{businessData?.businessCategory}</td>
                 </tr>
-                <tr className="h-10">
+                <tr className="h-10 flex flex-wrap gap-x-3">
                   <th className="font-semibold">SubCategory:</th>
                   <td>{businessData?.businessSubCategory}</td>
                 </tr>
-                <tr className="h-10">
+                <tr className="h-10 flex flex-wrap gap-x-3">
                   <th className="font-semibold">Phone:</th>
                   <td>{businessData?.primaryPhone}</td>
                 </tr>
 
-                <tr className="h-10">
+                <tr className="h-10 flex flex-wrap gap-x-3">
                   <th className="font-semibold">Email:</th>
                   <td>{businessData?.primaryEmail}</td>
                 </tr>
               </table>
             </div>
             <div className="bg-white shadow rounded-lg p-4 items-center">
-              <h1 className="font-bold">Address Information</h1>
+              <h1 className="font-bold">Address&nbsp;Information</h1>
 
               <table className="mt-5 font-light text-left w-full md:w-1/3 ">
-                <tr className="h-10">
+                <tr className="h-10 flex flex-wrap gap-x-3">
                   <th className="font-semibold">Address:</th>
                   <td>{businessData?.businessAddress?.street}</td>
                 </tr>
-                <tr className="h-10">
+                <tr className="h-10 flex flex-wrap gap-x-3">
                   <th className="font-semibold">Country:</th>
                   <td>{businessData?.businessAddress?.country}</td>
                 </tr>
-                <tr className="h-10">
+                <tr className="h-10 flex flex-wrap gap-x-3">
                   <th className="font-semibold">State:</th>
                   <td>{businessData?.businessAddress?.state}</td>
                 </tr>
-                <tr className="h-10">
+                <tr className="h-10 flex flex-wrap gap-x-3">
                   <th className="font-semibold">City:</th>
                   <td>{businessData?.businessAddress?.city}</td>
                 </tr>
               </table>
             </div>
             <div className="bg-white shadow rounded-lg p-4 items-center">
-              <h1 className="font-bold">Registration Information</h1>
+              <h1 className="font-bold">Registration&nbsp;Information</h1>
 
               <table className="mt-5 font-light text-left w-full md:w-1/3 ">
-                <tr className="h-10">
+                <tr className="h-10 flex flex-wrap gap-x-3">
                   <th className="font-semibold">Authority:</th>
                   <td>{businessData?.businessRegistration?.authority}</td>
                 </tr>
-                <tr className="h-10">
-                  <th className="font-semibold">Registration Number:</th>
+                <tr className="h-10 flex flex-wrap gap-x-3">
+                  <th className="font-semibold">Registration&nbsp;Number:</th>
                   <td>
                     {businessData?.businessRegistration?.registrationNumber}
                   </td>
                 </tr>
-                <tr className="h-10">
-                  <th className="font-semibold">Registration On:</th>
+                <tr className="h-10 flex flex-wrap gap-x-3">
+                  <th className="font-semibold">Registration&nbsp;On:</th>
                   <td>
                     {businessData?.businessRegistration?.registrationOn
                       ? businessData?.businessRegistration?.registrationOn
@@ -162,8 +162,8 @@ export const Profile = () => {
                       : ""}
                   </td>
                 </tr>
-                <tr className="h-10">
-                  <th className="font-semibold">Expires On:</th>
+                <tr className="h-10 flex flex-wrap gap-x-3">
+                  <th className="font-semibold">Expires&nbsp;On:</th>
                   <td>
                     {businessData?.businessRegistration?.expiresOn
                       ? businessData?.businessRegistration?.expiresOn
@@ -175,10 +175,10 @@ export const Profile = () => {
               </table>
             </div>
             <div className="bg-white shadow rounded-lg p-4 items-center">
-              <h1 className="font-bold">Social Media Information</h1>
+              <h1 className="font-bold">Social&nbsp;Media&nbsp;Information</h1>
 
               <table className="mt-5 font-light text-left w-full md:w-1/3 ">
-                <tr className="h-10">
+                <tr className="h-10 flex flex-wrap gap-x-3">
                   <th className="font-semibold">
                     {businessData?.socialMedia?.platform}:
                   </th>

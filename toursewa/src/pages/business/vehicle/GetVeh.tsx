@@ -164,7 +164,7 @@ export const GetVeh = () => {
     <>
       <ToastContainer theme="colored" position="top-right" />
       <div className="h-screen flex flex-col gap-5">
-        <div className="flex justify-between flex-wrap gap-y-5">
+        <div className="flex justify-between">
           <div>
             <h1 className="md:text-3xl text-lg font-bold">Vehicle List</h1>
             <p className="mt-2 text-xs md:text-lg">
@@ -178,7 +178,7 @@ export const GetVeh = () => {
             Add Vehicle
           </Link>
         </div>
-        <div className="flex  justify-end">
+        <div className="flex mt-5 w-[88%] mx-auto justify-end ">
           <div className="relative">
             <input
               type="text"
@@ -197,76 +197,51 @@ export const GetVeh = () => {
         {isLoading ? (
           <PageLoader />
         ) : (
-          <div className=" flex justify-center items-center text-xs">
-            <div className="overflow-x-auto space-y-5 ">
+          <div className=" flex justify-center w-full items-center text-xs">
+            <div className="relative overflow-x-auto scrollbar-hidden shadow-md rounded-sm ">
               {!filter || filter.length === 0 ? (
                 <p className="flex justify-center items-center text-xs">
                   No data Found
                 </p>
               ) : (
-                <table className="table-auto border-collapse  border border-gray-500 text-xs md:text-lg ">
-                  <thead className="bg-neutral-400 text-white">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                      <th className="border font-normal border-gray-500 ">
-                        SN
-                      </th>
-                      <th className="border font-normal border-gray-500 p-1">
-                        ID
-                      </th>
-                      <th className="border font-normal border-gray-500 p-1 min-w-[130px]">
-                        Vehicle Name
-                      </th>
-                      <th className="border font-normal  border-gray-500 p-">
-                        Category
-                      </th>
-                      <th className="border font-normal border-gray-500  p-1 min-w-[100px]">
-                        Made Year
-                      </th>
-                      <th className="border font-normal border-gray-500 p-1">
-                        Number
-                      </th>
-                      <th className="border font-normal border-gray-500 p-1">
-                        Capacity
-                      </th>
-                      <th className="border font-normal border-gray-500  min-w-[120px] md:min-w-[160px] max-w-[110px] ">
-                        Operational Dates
-                      </th>
-                      <th className="border font-normal border-gray-500 p-1 ">
-                        Action
-                      </th>
+                      <th className="px-3  py-3 ">SN</th>
+                      <th className="px-3  py-3">ID</th>
+                      <th className="px-3  py-3 ">Vehicle&nbsp;Name</th>
+                      <th className="px-3  py-3 ">Category</th>
+                      <th className="px-3  py-3 ">Made&nbsp;Year</th>
+                      <th className="min-w-[112px]  py-3 ">Number</th>
+                      <th className="px-3  py-3 ">Capacity</th>
+                      <th className="px-3  py-3  ">Operational&nbsp;Dates</th>
+                      <th className="px-3  py-3 ">Action</th>
                     </tr>
                   </thead>
                   <tbody className="">
                     {filter &&
                       filter.map((filter, i) => (
-                        <tr className="" key={filter._id}>
-                          <td className="border border-gray-500 text-center p-1">
-                            {i + 1}
-                          </td>
-                          <td className="border border-gray-500 text-center p-1">
-                            {filter.vehId}
-                          </td>
-                          <td className="border border-gray-500 text-center p-1">
-                            {filter.name}
-                          </td>
-                          <td className="border  border-gray-500 min-w-[100px]  text-center">
-                            {filter.vehCategory}
-                          </td>
+                        <tr
+                          key={filter._id}
+                          className={`${
+                            i % 2 === 0 ? "bg-white" : "bg-gray-50"
+                          }`}
+                        >
+                          <td className="px-3  py-3">{i + 1}</td>
+                          <td className="px-3  py-3">{filter.vehId}</td>
+                          <td className="px-3  py-3">{filter.name}</td>
+                          <td className="px-3  py-3">{filter.vehCategory}</td>
 
-                          <td className=" border border-gray-500 text-center p-1">
+                          <td className=" px-3  py-3">
                             {filter.madeYear
                               ? filter.madeYear.toString().split("-")[0]
                               : ""}
                           </td>
-                          <td className="border border-gray-500 min-w-[120px] text-center p-1">
-                            {filter.vehNumber}
-                          </td>
+                          <td className="px-3  py-3">{filter.vehNumber}</td>
 
-                          <td className="border border-gray-500 text-center p-1">
-                            {filter.capacity}
-                          </td>
+                          <td className="px-3 py-3">{filter.capacity}</td>
 
-                          <td className="border border-gray-500 text-center">
+                          <td className="px-3 py-3">
                             <span
                               className="cursor-pointer  text-blue-400"
                               onClick={() =>
@@ -276,9 +251,9 @@ export const GetVeh = () => {
                               {filter.operationDates?.length}
 
                               {availability === filter._id && (
-                                <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+                                <div className="fixed inset-0 flex justify-center  items-center bg-black bg-opacity-50 z-50">
                                   <div
-                                    className="relative bg-white p-5 rounded-lg shadow-md"
+                                    className="relative bg-white p-5 mt-20 rounded-lg shadow-md"
                                     onClick={(e) => e.stopPropagation()}
                                   >
                                     <Calendar
@@ -286,7 +261,7 @@ export const GetVeh = () => {
                                         isBooked(date, filter._id || "")
                                       }
                                       minDate={new Date()}
-                                      className="z-10"
+                                      className="z-10 w-[210px]  text-xs"
                                       tileClassName={({ date, view }) =>
                                         `${
                                           view === "month" ? "custom-tile" : ""
@@ -308,7 +283,7 @@ export const GetVeh = () => {
                               )}
                             </span>
                           </td>
-                          <td className="flex justify-between flex-col border gap-6 border-b-0  text-white p-1 ">
+                          <td className="px-3  py-3">
                             <div className="flex gap-4 md:gap-7">
                               <button
                                 onClick={() =>
