@@ -23,12 +23,7 @@ const app: Express = express();
 app.use(express.json());
 
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use("/public/uploads", express.static(path.resolve("public/uploads")));
 app.use("/api", UserRoute);

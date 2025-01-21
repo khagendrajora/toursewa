@@ -1,18 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import {  useState } from "react";
+import { useState } from "react";
 import { URL } from "../../config/Config";
-
+import { useAuthContext } from "../../context/AuthContext";
 
 export const AddAdmin = () => {
+  const { authUser } = useAuthContext();
   const [inputs, setInputs] = useState({
     adminName: "",
     adminEmail: "",
     adminPwd: "",
     cPwd: "",
+    addedBy: authUser?.loginedId,
   });
-
 
   const addAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +36,7 @@ export const AddAdmin = () => {
           adminEmail: "",
           adminPwd: "",
           cPwd: "",
+          addedBy: "",
         });
       }
     } catch (error: any) {

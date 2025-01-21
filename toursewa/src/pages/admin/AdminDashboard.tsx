@@ -8,6 +8,7 @@ import { IFeature } from "../../SharedTypes/Featured/Feature";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ButtonLoader } from "../../utils/ButtonLoader";
+import { useAuthContext } from "../../context/AuthContext";
 
 export const AdminDashboard = () => {
   const [reservation, setReservation] = useState<IVRev[] | []>([]);
@@ -17,6 +18,23 @@ export const AdminDashboard = () => {
   const [isButton, setIsButton] = useState<string | null>(null);
   const [showFeature, setShowFeature] = useState("feature");
   const [showReservation, setShowReservation] = useState("vehicle");
+  const { authUser } = useAuthContext();
+  const [vehPagination, setVehPagination] = useState<IVRev[]>([]);
+  const [vehCurrentPage, setVehCurrentPage] = useState(1);
+  const [tourPagination, setTourPagination] = useState<ITuRev[]>([]);
+  const [tourCurrentPage, setTourCurrentPage] = useState(1);
+  const [trekPagination, setTrekPagination] = useState<ITrRev[]>([]);
+  const [trekCurrentPage, setTrekCurrentPage] = useState(1);
+  const [featurePagination, setFeaturePagination] = useState<IFeature[]>([]);
+  const [featureCurrentPage, setFeatureCurrentPage] = useState(1);
+  const [reqPagination, setReqPagination] = useState<IFeature[]>([]);
+  const [reqCurrentPage, setReqCurrentPage] = useState(1);
+  const itemPerPage = 5;
+  let totalVehiclePages = 0;
+  let totalTourPages = 0;
+  let totalTrekPages = 0;
+  let totalFeaturePages = 0;
+  let totalReqPages = 0;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -108,10 +126,12 @@ export const AdminDashboard = () => {
 
   const Accept = async (id: string) => {
     try {
-      const confirmed = window.confirm("Request to Add in Featured ");
+      const confirmed = window.confirm("Add in Featured ?");
       if (confirmed) {
         setIsButton("feature");
-        const response = await axios.put(`${URL}/api/addfeature/${id}`);
+        const response = await axios.put(`${URL}/api/addfeature/${id}`, {
+          updatedBy: authUser?.loginedId,
+        });
         const data = response.data;
         if (data.message) {
           toast.success(data.message);
@@ -132,7 +152,7 @@ export const AdminDashboard = () => {
       if (confirmed) {
         setIsButton(id + "feature");
         const response = await axios.delete(
-          `${URL}/api/deletefeaturerequest/${id}`
+          `${URL}/api/deletefeaturerequest/${id}?updatedBy:${authUser?.loginedId}`
         );
         const data = response.data;
         if (data.message) {
@@ -153,7 +173,9 @@ export const AdminDashboard = () => {
       const confirmed = window.confirm("Remove  ?");
       if (confirmed) {
         setIsButton("feature");
-        const response = await axios.delete(`${URL}/api/removefeature/${id}`);
+        const response = await axios.delete(
+          `${URL}/api/removefeature/${id}?updatedBy=${authUser?.loginedId}`
+        );
         const data = response.data;
         if (data.message) {
           toast.success(data.message);
@@ -169,17 +191,91 @@ export const AdminDashboard = () => {
     }
   };
 
+  const handleFeatureChange = (page: number) => {
+    if (featureCurrentPage > 0 && page <= totalFeaturePages) {
+      setFeatureCurrentPage(page);
+    }
+  };
+  const handleReqChange = (page: number) => {
+    if (reqCurrentPage > 0 && page <= totalReqPages) {
+      setReqCurrentPage(page);
+    }
+  };
+  const handleTourChange = (page: number) => {
+    if (tourCurrentPage > 0 && page <= totalTourPages) {
+      setTourCurrentPage(page);
+    }
+  };
+  const handleTrekChange = (page: number) => {
+    if (trekCurrentPage > 0 && page <= totalTrekPages) {
+      setTrekCurrentPage(page);
+    }
+  };
+  const handleVehChange = (page: number) => {
+    if (vehCurrentPage > 0 && page <= totalVehiclePages) {
+      setVehCurrentPage(page);
+    }
+  };
+
   const filterFeature = feature.filter((f) => f.status == "Pending");
-
   const AcceptedFeature = feature.filter((f) => f.status == "Accepted");
+  totalVehiclePages = Math.ceil(reservation?.length / itemPerPage);
+  totalTourPages = Math.ceil(tourRev?.length / itemPerPage);
+  totalTrekPages = Math.ceil(trekRev?.length / itemPerPage);
+  totalFeaturePages = Math.ceil(AcceptedFeature?.length / itemPerPage);
+  totalReqPages = Math.ceil(filterFeature?.length / itemPerPage);
 
-  console.log(tourRev);
+  useEffect(() => {
+    setVehPagination(
+      reservation.slice(
+        (vehCurrentPage - 1) * itemPerPage,
+        vehCurrentPage * itemPerPage
+      )
+    );
+  }, [vehCurrentPage, reservation]);
+
+  useEffect(() => {
+    setTourPagination(
+      tourRev.slice(
+        (tourCurrentPage - 1) * itemPerPage,
+        tourCurrentPage * itemPerPage
+      )
+    );
+  }, [tourCurrentPage, tourRev]);
+
+  useEffect(() => {
+    setTrekPagination(
+      trekRev.slice(
+        (trekCurrentPage - 1) * itemPerPage,
+        trekCurrentPage * itemPerPage
+      )
+    );
+  }, [trekCurrentPage, trekRev]);
+
+  useEffect(() => {
+    setFeaturePagination(
+      AcceptedFeature.slice(
+        (featureCurrentPage - 1) * itemPerPage,
+        featureCurrentPage * itemPerPage
+      )
+    );
+  }, [featureCurrentPage, feature]);
+
+  useEffect(() => {
+    setReqPagination(
+      filterFeature.slice(
+        (reqCurrentPage - 1) * itemPerPage,
+        reqCurrentPage * itemPerPage
+      )
+    );
+  }, [reqCurrentPage, feature]);
+
   return (
     <>
       <div className="flex p-3 bg-white flex-col gap-5">
         <div className="flex">
           <button
-            className={`border p-1 ${
+            className={`border-2 p-1 ${
               showFeature == "feature" ? "bg-button" : ""
             }`}
             onClick={() => {
@@ -190,7 +286,7 @@ export const AdminDashboard = () => {
             <span className="text-lime-500">({AcceptedFeature.length})</span>
           </button>
           <button
-            className={`border p-1 ${
+            className={`border-2 p-1 ${
               showFeature == "request" ? "bg-button" : ""
             }`}
             onClick={() => {
@@ -202,132 +298,243 @@ export const AdminDashboard = () => {
           </button>
         </div>
         {showFeature === "feature" && AcceptedFeature.length > 0 && (
-          <div className="bg-white flex flex-col justify-center items-center  rounded-lg p-3 gap-5">
-            <div className="font-semibold text-lg text-button w-fit p-2">
+          <div className="bg-white flex flex-col justify-start item-start  rounded-lg pt-4 pb-10 gap-5">
+            <div className="font-semibold text-lg text-button underline w-fit p-2">
               Featured Products
             </div>
-            <div className="w-full max-w-full flex justify-center overflow-x-auto">
-              <table className="table-auto border-collapse border border-slate-400 text-xs md:text-sm">
-                <thead>
-                  <tr>
-                    <th className="border border-slate-400 p-1 min-w-[70px] font-semibold">
-                      Product Name
-                    </th>
-                    <th className="border border-slate-400 p-1 min-w-[70px] font-semibold">
-                      Requested By
-                    </th>
-                    <th className="border  border-slate-400 p-1 min-w-[100px] font-semibold">
-                      Status
-                    </th>
-                    <th className="border border-slate-400 p-2 font-semibold">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="">
-                  {AcceptedFeature.slice(0, 5).map((data) => (
-                    <>
-                      <tr key={data?._id}>
-                        <td className="border border-slate-400 text-center">
-                          {data?.name}
-                        </td>
-                        <td className="border border-slate-400 text-center">
-                          {data?.businessName}
-                        </td>
-                        <td className="border border-slate-400 text-center">
-                          {data?.status}
-                        </td>
-                        <td className="border  border-slate-400 text-center p-2">
-                          <button
-                            onClick={() => Remove(data.Id)}
-                            className="bg-red-600 text-white hover:text-black  rounded p-1"
-                          >
-                            Remove
-                          </button>
-                        </td>
-                      </tr>
-                    </>
-                  ))}
-                </tbody>
-              </table>
+            <div className=" flex justify-start flex-col items-start text-xs">
+              <div className="relative overflow-x-auto shadow-md rounded-sm">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th className="px-4  py-3">Product&nbsp;Name</th>
+                      <th className="px-4  py-3">Requested&nbsp;By</th>
+                      <th className="px-4  py-3">Status</th>
+                      <th className="px-4  py-3">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="">
+                    {featurePagination.map((data, i) => (
+                      <>
+                        <tr
+                          key={data?._id}
+                          className={`${
+                            i % 2 === 0 ? "bg-white" : "bg-gray-50"
+                          }`}
+                        >
+                          <td className="px-4  py-3">{data?.name}</td>
+                          <td className="px-4  py-3">{data?.businessName}</td>
+                          <td className="px-4  py-3">{data?.status}</td>
+                          <td className="px-4  py-3">
+                            <button
+                              onClick={() => Remove(data.Id)}
+                              className="bg-red-600 text-white hover:text-black  rounded p-1"
+                            >
+                              Remove
+                            </button>
+                          </td>
+                        </tr>
+                      </>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="flex flex-col w-full items-start text-slate-400 text-xs p-2">
+                <span className=" ">
+                  Showing{" "}
+                  <span className="font-semibold">
+                    {(featureCurrentPage - 1) * itemPerPage + 1}
+                  </span>{" "}
+                  to{" "}
+                  <span className="font-semibold ">
+                    {Math.min(
+                      featureCurrentPage * itemPerPage,
+                      AcceptedFeature.length
+                    )}
+                  </span>{" "}
+                  of{" "}
+                  <span className="font-semibold">
+                    {AcceptedFeature.length}
+                  </span>{" "}
+                  Entries
+                </span>
+                <div className="inline-flex mt-[1px] xs:mt-0">
+                  <button
+                    className="flex items-center justify-center cursor-pointer  text-xs p-1 rounded-s hover:text-black"
+                    onClick={() => handleFeatureChange(featureCurrentPage - 1)}
+                    disabled={featureCurrentPage === 1}
+                  >
+                    <svg
+                      className="w-3 me-1 rtl:rotate-180"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 5H1m0 0 4 4M1 5l4-4"
+                      />
+                    </svg>
+                    Prev
+                  </button>
+
+                  <button
+                    className="flex items-center justify-center cursor-pointer  text-xs p-1 rounded-s hover:text-black"
+                    onClick={() => handleFeatureChange(featureCurrentPage + 1)}
+                    disabled={featureCurrentPage === totalFeaturePages}
+                  >
+                    Next
+                    <svg
+                      className="w-3 ms-1 rtl:rotate-180"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}
         {showFeature === "request" && filterFeature.length > 0 && (
-          <div className="bg-white flex flex-col justify-center items-center rounded-lg p-3 gap-5">
-            <div className="font-semibold text-lg text-button w-fit p-2">
+          <div className="bg-white flex flex-col justify-start items-start rounded-lg pt-4 pb-10 gap-5">
+            <div className="font-semibold text-lg underline text-button w-fit p-2">
               Add to Feature Requests
             </div>
-            <div className="w-full max-w-full flex  justify-center overflow-x-auto">
-              <table className="table-auto border-collapse border border-slate-400 text-xs md:text-sm">
-                <thead>
-                  <tr>
-                    <th className="border border-slate-400 p-1 min-w-[70px] font-semibold">
-                      Product Name
-                    </th>
-                    <th className="border border-slate-400 p-1 min-w-[70px] font-semibold">
-                      Requested By
-                    </th>
-                    <th className="border  border-slate-400 p-1 min-w-[100px] font-semibold">
-                      Status
-                    </th>
-                    <th className="border border-slate-400 p-2 font-semibold">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="">
-                  {filterFeature.slice(0, 5).map((data) => (
-                    <>
-                      <tr key={data?._id}>
-                        <td className="border border-slate-400 text-center">
-                          {data?.name}
-                        </td>
-                        <td className="border border-slate-400 text-center">
-                          {data?.businessName}
-                        </td>
-                        <td className="border border-slate-400 text-center">
-                          {data?.status}
-                        </td>
-                        <td className="border  border-slate-400 text-center  text-white p-2">
-                          <div className="flex gap-6">
-                            {data.status == "Accepted" ? (
-                              ""
-                            ) : (
+            <div className=" flex justify-start flex-col items-center text-xs">
+              <div className="relative overflow-x-auto shadow-md rounded-sm">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-200  dark:text-gray-400">
+                    <tr>
+                      <th className="px-4  py-3 ">Product Name</th>
+                      <th className="px-4  py-3 ">Requested By</th>
+                      <th className="px-4  py-3 ">Status</th>
+                      <th className="px-4  py-3 ">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="">
+                    {reqPagination.map((data) => (
+                      <>
+                        <tr key={data?._id}>
+                          <td className="px-4  py-3 ">{data?.name}</td>
+                          <td className="px-4  py-3 ">{data?.businessName}</td>
+                          <td className="px-4  py-3 ">{data?.status}</td>
+                          <td className="px-4  py-3 ">
+                            <div className="flex gap-6">
+                              {data.status == "Accepted" ? (
+                                ""
+                              ) : (
+                                <button
+                                  onClick={() => Accept(data.Id)}
+                                  className="bg-lime-600 text-white hover:text-button rounded-md p-1"
+                                >
+                                  Accept{" "}
+                                  {isButton == data.Id + "feature" ? (
+                                    <ButtonLoader />
+                                  ) : (
+                                    ""
+                                  )}
+                                </button>
+                              )}
                               <button
-                                onClick={() => Accept(data.Id)}
-                                className="bg-lime-600  hover:text-button rounded-md p-1"
-                                title="Full Info"
+                                onClick={() => Reject(data.Id)}
+                                className="bg-red-600 text-white hover:text-black rounded-md p-1"
                               >
-                                Accept{" "}
-                                {isButton == data.Id + "feature" ? (
-                                  <ButtonLoader />
-                                ) : (
-                                  ""
-                                )}
+                                Reject
                               </button>
-                            )}
-                            <button
-                              onClick={() => Reject(data.Id)}
-                              className="bg-red-600  hover:text-black rounded-md p-1"
-                              // title="Full Info"
-                            >
-                              Reject
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    </>
-                  ))}
-                </tbody>
-              </table>
+                            </div>
+                          </td>
+                        </tr>
+                      </>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="flex flex-col w-full items-start text-slate-400 text-xs p-2">
+                <span className=" ">
+                  Showing{" "}
+                  <span className="font-semibold">
+                    {(reqCurrentPage - 1) * itemPerPage + 1}
+                  </span>{" "}
+                  to{" "}
+                  <span className="font-semibold ">
+                    {Math.min(
+                      reqCurrentPage * itemPerPage,
+                      filterFeature.length
+                    )}
+                  </span>{" "}
+                  of{" "}
+                  <span className="font-semibold">{filterFeature.length}</span>{" "}
+                  Entries
+                </span>
+                <div className="inline-flex mt-[1px] xs:mt-0">
+                  <button
+                    className="flex items-center justify-center cursor-pointer  text-xs p-1 rounded-s hover:text-black"
+                    onClick={() => handleReqChange(reqCurrentPage - 1)}
+                    disabled={reqCurrentPage === 1}
+                  >
+                    <svg
+                      className="w-3 me-1 rtl:rotate-180"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 5H1m0 0 4 4M1 5l4-4"
+                      />
+                    </svg>
+                    Prev
+                  </button>
+
+                  <button
+                    className="flex items-center justify-center cursor-pointer  text-xs p-1 rounded-s hover:text-black"
+                    onClick={() => handleReqChange(reqCurrentPage + 1)}
+                    disabled={reqCurrentPage === totalReqPages}
+                  >
+                    Next
+                    <svg
+                      className="w-3 ms-1 rtl:rotate-180"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}
 
         <div className="flex">
           <button
-            className={`border p-1 ${
+            className={`border-2 p-1 ${
               showReservation == "vehicle" ? "bg-button" : ""
             }`}
             onClick={() => {
@@ -338,7 +545,7 @@ export const AdminDashboard = () => {
             <span className="text-lime-500">({reservation.length})</span>
           </button>
           <button
-            className={`border p-1 ${
+            className={`border-2 p-1 ${
               showReservation == "trek" ? "bg-button" : ""
             }`}
             onClick={() => {
@@ -349,7 +556,7 @@ export const AdminDashboard = () => {
             <span className="text-red-800">({trekRev.length})</span>
           </button>
           <button
-            className={`border p-1 ${
+            className={`border-2 p-1 ${
               showReservation == "tour" ? "bg-button" : ""
             }`}
             onClick={() => {
@@ -361,259 +568,304 @@ export const AdminDashboard = () => {
           </button>
         </div>
         {showReservation === "vehicle" && reservation.length > 0 && (
-          <div className="bg-white flex flex-col justify-center items-center  rounded-lg p-3 gap-5">
-            <div className="font-semibold text-lg text-button w-fit p-2">
+          <div className="bg-white flex flex-col justify-start items-start  rounded-lg pt-4 pb-10 gap-5">
+            <div className="font-semibold underline text-lg text-button w-fit p-2">
               Recent Vehicle Reservations
             </div>
-            <div className="w-full max-w-full flex  justify-center overflow-x-auto">
-              <table className="table-auto border-collapse border border-slate-400 text-xs md:text-sm">
-                <thead>
-                  <tr>
-                    <th className="border border-slate-400 p-1 min-w-[70px] font-semibold">
-                      Booking ID
-                    </th>
-                    <th className="border border-slate-400 p-1 min-w-[70px] font-semibold">
-                      Vehicle ID
-                    </th>
-                    <th className="border  border-slate-400 p-1 min-w-[100px] font-semibold">
-                      {" "}
-                      Vehicle Number
-                    </th>
+            <div className=" flex justify-start flex-col items-start text-xs">
+              <div className="relative overflow-x-auto shadow-md rounded-sm">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th className="px-4  py-3">Booking&nbsp;ID</th>
+                      <th className="px-4  py-3"> Vehicle&nbsp;Number</th>
+                      <th className="px-4  py-3 "> Booked&nbsp;By</th>
+                      <th className="px-4  py-3 "> Start&nbsp;Date</th>
+                      <th className="px-4  py-3 "> End&nbsp;Date</th>
+                      <th className="px-4  py-3 ">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="">
+                    {vehPagination.map((data) => (
+                      <>
+                        <tr key={data?._id}>
+                          <td className="px-4 py-3 ">{data?.bookingId}</td>
+                          <td className="px-4 py-3">{data?.vehicleNumber}</td>
+                          <td className="px-4  py-3">{data?.bookedByName}</td>
+                          <td className="px-4  py-3">
+                            {data?.startDate?.toString().split("T")[0]}
+                          </td>
+                          <td className="px-4  py-3">
+                            {data?.endDate?.toString().split("T")[0]}
+                          </td>
+                          <td className=" px-4  py-3">{data?.status}</td>
+                        </tr>
+                      </>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="flex flex-col w-full items-start text-slate-400 text-xs p-2">
+                <span className=" ">
+                  Showing{" "}
+                  <span className="font-semibold">
+                    {(vehCurrentPage - 1) * itemPerPage + 1}
+                  </span>{" "}
+                  to{" "}
+                  <span className="font-semibold ">
+                    {Math.min(vehCurrentPage * itemPerPage, reservation.length)}
+                  </span>{" "}
+                  of <span className="font-semibold">{reservation.length}</span>{" "}
+                  Entries
+                </span>
+                <div className="inline-flex mt-[1px] xs:mt-0">
+                  <button
+                    className="flex items-center justify-center cursor-pointer  text-xs p-1 rounded-s hover:text-black"
+                    onClick={() => handleVehChange(vehCurrentPage - 1)}
+                    disabled={vehCurrentPage === 1}
+                  >
+                    <svg
+                      className="w-3 me-1 rtl:rotate-180"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 5H1m0 0 4 4M1 5l4-4"
+                      />
+                    </svg>
+                    Prev
+                  </button>
 
-                    <th className="border border-slate-400  p-2 font-semibold">
-                      {" "}
-                      BookedBy
-                    </th>
-                    <th className="border border-slate-400 p-2 min-w-[110px] font-semibold">
-                      {" "}
-                      Booking Name
-                    </th>
-
-                    <th className="border border-slate-400 p-2 font-semibold">
-                      {" "}
-                      Phone{" "}
-                    </th>
-                    <th className="border border-slate-400 p-2 min-w-[75px] font-semibold">
-                      {" "}
-                      Start Date
-                    </th>
-                    <th className="border border-slate-400 p-2 min-w-[75px] font-semibold">
-                      {" "}
-                      End Date{" "}
-                    </th>
-                    <th className="border border-slate-400 p-2 font-semibold">
-                      Status
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="">
-                  {reservation.slice(0, 5).map((data) => (
-                    <>
-                      <tr key={data?._id}>
-                        <td className="border border-slate-400 text-center">
-                          {data?.bookingId}
-                        </td>
-                        <td className="border border-slate-400 text-center">
-                          {data?.vehicleId}
-                        </td>
-                        <td className="border  border-slate-400 text-center">
-                          {data?.vehicleNumber}
-                        </td>
-
-                        <td className="border border-slate-400 p-1 text-center">
-                          {data?.bookedByName}
-                        </td>
-
-                        <td className="border border-slate-400  p-1 text-center">
-                          {data?.bookingName}
-                        </td>
-
-                        <td className="border border-slate-400 p-2 text-center">
-                          {data?.phone}
-                        </td>
-
-                        <td className="border border-slate-400 p-1 text-center">
-                          {data?.startDate?.toString().split("T")[0]}
-                        </td>
-                        <td className="border border-slate-400 p-1 text-center">
-                          {data?.endDate?.toString().split("T")[0]}
-                        </td>
-                        <td className="border border-slate-400 p-1 text-button text-center">
-                          {data?.status}
-                        </td>
-                      </tr>
-                    </>
-                  ))}
-                </tbody>
-              </table>
+                  <button
+                    className="flex items-center justify-center cursor-pointer  text-xs p-1 rounded-s hover:text-black"
+                    onClick={() => handleVehChange(vehCurrentPage + 1)}
+                    disabled={vehCurrentPage === totalVehiclePages}
+                  >
+                    Next
+                    <svg
+                      className="w-3 ms-1 rtl:rotate-180"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}
         {showReservation === "trek" && trekRev.length > 0 && (
-          <div className="bg-white flex flex-col justify-center items-center rounded-lg p-3 gap-5">
-            <div className="font-semibold text-lg text-button w-fit p-2">
+          <div className="bg-white flex flex-col justify-start items-start rounded-lg pt-4 pb-10 gap-5">
+            <div className="font-semibold underline text-lg text-button w-fit p-2">
               Recent Trek Reservations
             </div>
-            <div className="w-full max-w-full flex  justify-center overflow-x-auto">
-              <table className="table   border-collapse border border-slate-400 text-xs md:text-sm">
-                <thead>
-                  <tr>
-                    <th className="border border-slate-400 p-1 min-w-[70px] font-semibold">
-                      Booking ID
-                    </th>
-                    <th className="border border-slate-400 p-1 min-w-[70px] font-semibold">
-                      Trek Name
-                    </th>
-                    {/* <th className="border  border-slate-400 p-2 font-semibold">
-                      {" "}
-                      Vehicle Number
-                    </th> */}
+            <div className=" flex justify-start flex-col items-start text-xs">
+              <div className="relative overflow-x-auto shadow-md rounded-sm">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th className="px-4  py-3 ">Booking&nbsp;ID</th>
+                      <th className="px-4  py-3 ">Trek&nbsp;Name</th>
+                      <th className="px-4  py-3 ">Booked&nbsp;By</th>
+                      <th className="px-4  py-3 "> Booking&nbsp;Name</th>
+                      <th className="px-4  py-3 "> Date</th>
+                      <th className="px-4  py-3 ">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {trekPagination.map((data) => (
+                      <>
+                        <tr key={data?._id}>
+                          <td className="px-4  py-3 ">{data?.bookingId}</td>
+                          <td className="px-4  py-3 ">{data?.trekName}</td>
+                          <td className="px-4  py-3 ">{data?.bookedBy}</td>
+                          <td className="px-4  py-3 ">{data?.passengerName}</td>
+                          <td className="min-w-[80px]  py-3 ">
+                            {data?.date?.toString().split("T")[0]}
+                          </td>
+                          <td className="px-4 py-3">{data?.status}</td>
+                        </tr>
+                      </>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="flex flex-col w-full items-start text-slate-400 text-xs p-2">
+                <span className=" ">
+                  Showing{" "}
+                  <span className="font-semibold">
+                    {(trekCurrentPage - 1) * itemPerPage + 1}
+                  </span>{" "}
+                  to{" "}
+                  <span className="font-semibold ">
+                    {Math.min(trekCurrentPage * itemPerPage, trekRev.length)}
+                  </span>{" "}
+                  of <span className="font-semibold">{trekRev.length}</span>{" "}
+                  Entries
+                </span>
+                <div className="inline-flex mt-[1px] xs:mt-0">
+                  <button
+                    className="flex items-center justify-center cursor-pointer  text-xs p-1 rounded-s hover:text-black"
+                    onClick={() => handleTrekChange(trekCurrentPage - 1)}
+                    disabled={trekCurrentPage === 1}
+                  >
+                    <svg
+                      className="w-3 me-1 rtl:rotate-180"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 5H1m0 0 4 4M1 5l4-4"
+                      />
+                    </svg>
+                    Prev
+                  </button>
 
-                    <th className="border border-slate-400  p-2 font-semibold">
-                      {" "}
-                      BookedBy
-                    </th>
-                    <th className="border border-slate-400 p-2 min-w-[100px] font-semibold">
-                      {" "}
-                      Booking Name
-                    </th>
-
-                    <th className="border border-slate-400 p-2 font-semibold">
-                      {" "}
-                      Phone{" "}
-                    </th>
-                    <th className="border border-slate-400 p-2 font-semibold">
-                      {" "}
-                      Date
-                    </th>
-                    {/* <th className="border border-slate-400 p-2 font-semibold"> End Date </th> */}
-                    <th className="border border-slate-400 p-2 font-semibold">
-                      Status
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {trekRev.slice(0, 5).map((data) => (
-                    <>
-                      <tr key={data?._id}>
-                        <td className="border border-slate-400 text-center">
-                          {data?.bookingId}
-                        </td>
-                        <td className="border border-slate-400 p-1 text-center">
-                          {data?.trekName}
-                        </td>
-                        <td className="border  border-slate-400 text-center">
-                          {data?.bookedBy}
-                        </td>
-
-                        <td className="border border-slate-400 text-center">
-                          {data?.passengerName}
-                        </td>
-
-                        <td className="border border-slate-400 p-2 text-center">
-                          {data?.phone}
-                        </td>
-
-                        <td className="border border-slate-400 min-w-[80px] text-center">
-                          {data?.date?.toString().split("T")[0]}
-                        </td>
-                        {/* <td className="border border-slate-400 text-center">
-                          {data?.endDate?.toString().split("T")[0]}
-                        </td> */}
-                        <td className="border border-slate-400 text-button text-center">
-                          {data?.status}
-                        </td>
-                      </tr>
-                    </>
-                  ))}
-                </tbody>
-              </table>
+                  <button
+                    className="flex items-center justify-center cursor-pointer  text-xs p-1 rounded-s hover:text-black"
+                    onClick={() => handleTrekChange(trekCurrentPage + 1)}
+                    disabled={trekCurrentPage === totalTrekPages}
+                  >
+                    Next
+                    <svg
+                      className="w-3 ms-1 rtl:rotate-180"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}
         {showReservation === "tour" && tourRev.length > 0 && (
-          <div className="bg-white flex flex-col justify-center items-center rounded-lg p-3 gap-5">
-            <div className="font-semibold text-lg text-button w-fit p-2">
+          <div className="bg-white flex flex-col justify-start items-start rounded-lg pt-4 pb-10 gap-5">
+            <div className="font-semibold underline text-lg text-button w-fit p-2">
               Recent Tour Reservations
             </div>
-            <div className="w-full max-w-full flex justify-center overflow-x-auto">
-              <table className="table border-collapse border border-slate-400 text-xs md:text-sm">
-                <thead className="">
-                  <tr>
-                    <th className="border border-slate-400 p-1 min-w-[70px] font-semibold">
-                      Booking ID
-                    </th>
-                    <th className="border border-slate-400 p-1 min-w-[70px] font-semibold">
-                      Tour Name
-                    </th>
-                    {/* <th className="border  border-slate-400 p-2 font-semibold">
-                      {" "}
-                      Vehicle Number
-                    </th> */}
+            <div className=" flex justify-center flex-col items-center text-xs">
+              <div className="relative overflow-x-auto shadow-md rounded-sm">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th className="px-4  py-3 ">Booking&nbsp;ID</th>
+                      <th className="px-4  py-3 ">Tour&nbsp;Name</th>
+                      <th className="px-4  py-3 ">Booked&nbsp;By</th>
+                      <th className="px-4  py-3"> Booking&nbsp;Name</th>
+                      <th className=" px-4  py-3"> Date </th>
+                      <th className="px-4  py-3 ">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tourPagination.map((data) => (
+                      <>
+                        <tr key={data?._id}>
+                          <td className="px-4  py-3 ">{data?.bookingId}</td>
+                          <td className="px-4  py-3">{data?.tourName}</td>
+                          <td className=" px-4  py-3">{data?.bookedBy}</td>
+                          <td className="px-4  py-3 ">{data?.passengerName}</td>
+                          <td className=" min-w-[80px]">
+                            {data?.date?.toString().split("T")[0]}
+                          </td>
+                          <td className="px-4  py-3">{data?.status}</td>
+                        </tr>
+                      </>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="flex flex-col w-full items-start text-slate-400 text-xs p-2">
+                <span className=" ">
+                  Showing{" "}
+                  <span className="font-semibold">
+                    {(tourCurrentPage - 1) * itemPerPage + 1}
+                  </span>{" "}
+                  to{" "}
+                  <span className="font-semibold ">
+                    {Math.min(tourCurrentPage * itemPerPage, tourRev.length)}
+                  </span>{" "}
+                  of <span className="font-semibold">{tourRev.length}</span>{" "}
+                  Entries
+                </span>
+                <div className="inline-flex mt-[1px] xs:mt-0">
+                  <button
+                    className="flex items-center justify-center cursor-pointer  text-xs p-1 rounded-s hover:text-black"
+                    onClick={() => handleTourChange(tourCurrentPage - 1)}
+                    disabled={tourCurrentPage === 1}
+                  >
+                    <svg
+                      className="w-3 me-1 rtl:rotate-180"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 5H1m0 0 4 4M1 5l4-4"
+                      />
+                    </svg>
+                    Prev
+                  </button>
 
-                    <th className="border border-slate-400  p-2 font-semibold">
-                      {" "}
-                      BookedBy
-                    </th>
-                    <th className="border border-slate-400 p-1 min-w-[100px] font-semibold">
-                      {" "}
-                      Booking Name
-                    </th>
-
-                    <th className="border border-slate-400 p-2 font-semibold">
-                      {" "}
-                      Phone{" "}
-                    </th>
-                    {/* <th className="border border-slate-400 p-2 font-semibold"> Start Date</th> */}
-                    <th className="border border-slate-400 p-2 font-semibold">
-                      {" "}
-                      Date{" "}
-                    </th>
-                    <th className="border border-slate-400 p-2 font-semibold">
-                      Status
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tourRev.slice(0, 5).map((data) => (
-                    <>
-                      <tr key={data?._id}>
-                        <td className="border border-slate-400 text-center">
-                          {data?.bookingId}
-                        </td>
-                        <td className="border border-slate-400 p-1 text-center">
-                          {data?.tourName}
-                        </td>
-                        <td className="border  border-slate-400 text-center">
-                          {data?.bookedBy}
-                        </td>
-
-                        <td className="border border-slate-400 text-center">
-                          {data?.passengerName}
-                        </td>
-
-                        <td className="border border-slate-400  p-2 text-center">
-                          {data?.phone}
-                        </td>
-
-                        {/* <td className="border border-slate-400 text-center">
-                          {data?.phone}
-                        </td> */}
-
-                        {/* <td className="border border-slate-400 text-center">
-                          {data?.startDate?.toString().split("T")[0]}
-                        </td> */}
-                        <td className="border border-slate-400 min-w-[80px] text-center">
-                          {data?.date?.toString().split("T")[0]}
-                        </td>
-                        <td className="border border-slate-400 p-1 text-button text-center">
-                          {data?.status}
-                        </td>
-                      </tr>
-                    </>
-                  ))}
-                </tbody>
-              </table>
+                  <button
+                    className="flex items-center justify-center cursor-pointer  text-xs p-1 rounded-s hover:text-black"
+                    onClick={() => handleTourChange(tourCurrentPage + 1)}
+                    disabled={tourCurrentPage === totalTourPages}
+                  >
+                    Next
+                    <svg
+                      className="w-3 ms-1 rtl:rotate-180"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}
