@@ -29,7 +29,7 @@ interface AuthUserType {
   driverName?: string;
   businessName?: string;
   bId?: string;
-
+  loginedId: string;
   vehicleId?: string;
 }
 

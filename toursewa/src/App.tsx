@@ -18,7 +18,7 @@ import { Layout } from "./pages/landingPage/components/Layout";
 import LandingPage from "./pages/landingPage/LandingPage";
 import VehReservation from "./pages/ReservationForm/VehReservation";
 import { AdminDashboard } from "./pages/admin/AdminDashboard";
-import { AdminLayout } from "./pages/admin/AdminLayout";
+// import { AdminLayout } from "./pages/admin/AdminLayout";
 import { Profile } from "./pages/business/Profile";
 import { Dashboard } from "./pages/business/Dashboard";
 import { BusinessLayout } from "./pages/business/layout/BusinessLayout";
@@ -121,6 +121,7 @@ import { VehicleInfo } from "./pages/Driver/VehicleInfo";
 import { HotDealsPage } from "./pages/landingPage/HotDealsPage";
 import { UpdateHero } from "./pages/admin/components/hero/UpdateHero";
 import { DestinationPage } from "./pages/landingPage/DestinationPage";
+import { AdminSideBar } from "./pages/admin/AdminSideBar";
 
 function App() {
   const { authUser } = useAuthContext();
@@ -129,7 +130,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="admin" element={<AdminLayout />}>
+          <Route path="admin" element={<AdminSideBar />}>
             {authUser?.userId ? (
               <>
                 <Route path="admindashboard" element={<AdminDashboard />} />
